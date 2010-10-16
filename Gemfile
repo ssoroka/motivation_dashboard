@@ -8,6 +8,7 @@ gem 'rails', '3.0.1'
 gem "mysql"
 gem "haml"
 gem "haml-rails"
+gem "thin"
 
 # Use unicorn as the web server
 # gem 'unicorn'
