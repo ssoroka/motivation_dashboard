@@ -1,0 +1,18 @@
+- if @data_sources.blank?
+  %h2
+    Add New Data Source
+  - # TODO: Add logos
+  
+  %ul.no_bullets
+    - Integration::INTEGRATIONS.each_pair do |integration_key, integration_value|
+      %li
+        %h2= link_to integration_key.to_s.titleize, new_setup_data_source_path(:integration => integration_key)
+
+- else
+  #new_widget
+    .left_choice
+      %h2
+        Pick an Existing Data Source
+    .right_choice
+      %h2
+        Add New Data Source

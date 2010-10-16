@@ -9,7 +9,7 @@ gem "mysql"
 gem "haml"
 gem "haml-rails"
 gem "thin"
-gem "authlogic"
+gem "authlogic", :git => 'git://github.com/bdrister/authlogic.git'
 gem "resque"
 gem 'mustache'
 

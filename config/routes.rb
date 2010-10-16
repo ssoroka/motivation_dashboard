@@ -16,10 +16,12 @@ MotivationdashboardCom::Application.routes.draw do
   resource :dashboard
   
   namespace :setup do
+    root :to => "data_sources#index"
     resources :data_sources do
       resources :data_sets do
-        resources :widgets do
-        end      
+        resources :reports do
+          resources :widgets
+        end
       end
     end
   end

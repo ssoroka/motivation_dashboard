@@ -1,0 +1,9 @@
+%h2
+  What kind of widget would you like?
+
+- form_for [:setup, @data_source, @data_set, @report, @widget] do |f|
+  %ul
+    %li
+      Widget Options Here
+    %li
+      = f.submit 'Finish'

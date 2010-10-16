@@ -1,4 +1,0 @@
-class DataSourcesController < ApplicationController
-
-
-end
