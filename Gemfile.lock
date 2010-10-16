@@ -38,21 +38,51 @@ GEM
     arel (1.0.1)
       activesupport (~> 3.0.0)
     builder (2.1.2)
+    chronic (0.2.3)
+      hoe (>= 1.2.1)
+    crack (0.1.8)
+    curb (0.7.8)
     daemons (1.1.0)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     eventmachine (0.12.10)
+    fast-stemmer (1.0.0)
+    feedzirra (0.0.24)
+      activesupport (>= 2.3.8)
+      builder (>= 2.1.2)
+      curb (>= 0.2.3)
+      loofah (>= 0.3.1)
+      nokogiri (> 0.0.0)
+      sax-machine (>= 0.0.12)
+    gcal4ruby (0.5.5)
+      gdata4ruby (>= 0.1.5)
+    gdata (1.1.1)
+    gdata4ruby (0.1.5)
+    gemcutter (0.6.1)
+    git (1.2.5)
     haml (3.0.21)
-    haml-rails (0.3.3)
+    haml-rails (0.3.4)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
-      haml (~> 3.0.18)
+      haml (~> 3.0)
       railties (~> 3.0)
+    hoe (2.6.2)
+      rake (>= 0.8.7)
+      rubyforge (>= 2.0.4)
+    hominid (2.2.0)
+      json (>= 1.2.0)
     i18n (0.4.1)
+    jeweler (1.4.0)
+      gemcutter (>= 0.1.0)
+      git (>= 1.2.5)
+      rubyforge (>= 2.0.0)
     jquery-rails (0.2.3)
       rails (~> 3.0)
     json (1.4.6)
+    json_pure (1.4.6)
+    loofah (1.0.0.beta.1)
+      nokogiri (>= 1.3.3)
     mail (2.2.7)
       activesupport (>= 2.3.6)
       mime-types
@@ -60,11 +90,18 @@ GEM
     mime-types (1.16)
     mustache (0.11.2)
     mysql (2.8.1)
+    nokogiri (1.4.3.1)
+    pismo (0.7.0)
+      chronic
+      fast-stemmer
+      jeweler
+      nokogiri
+      sanitize
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
-    rack-test (0.5.4)
+    rack-test (0.5.6)
       rack (>= 1.0)
     rails (3.0.1)
       actionmailer (= 3.0.1)
@@ -100,6 +137,14 @@ GEM
       rspec-expectations (= 2.0.0)
     rspec-rails (2.0.1)
       rspec (~> 2.0.0)
+    rubyforge (2.0.4)
+      json_pure (>= 1.1.7)
+    sanitize (1.2.1)
+      nokogiri (~> 1.4.1)
+    sax-machine (0.0.15)
+      nokogiri (> 0.0.0)
+    shopify_api (1.1.1)
+      activeresource (>= 2.2.2)
     sinatra (1.0)
       rack (>= 1.0)
     system_timer (1.0)
@@ -107,25 +152,39 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
-    thor (0.14.1)
+    thor (0.14.3)
+    titanous-garb (0.8.7)
+      activesupport (>= 2.2.0)
+      crack (>= 0.1.6)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
     vegas (0.1.8)
       rack (>= 1.0.0)
+    xml-simple (1.0.12)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   authlogic!
+  feedzirra
+  gcal4ruby
+  gdata
   haml
   haml-rails
+  hominid
   jquery-rails
+  loofah (~> 1.0.0.beta.1)
   mustache
   mysql
+  nokogiri
+  pismo
   rails (= 3.0.1)
   resque
   rspec-rails
+  shopify_api
   system_timer
   thin
+  titanous-garb
+  xml-simple

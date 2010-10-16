@@ -39,6 +39,7 @@ class BasecampIntegration
           todo_item.completed ? finished_by_you_count += 1 : unfinished_assigned_to_you_count += 1
         else
           todo_item.completed? ? finished_by_others_count += 1 : unfinished_assigned_to_any_count += 1
+        end
       end
     end
     
