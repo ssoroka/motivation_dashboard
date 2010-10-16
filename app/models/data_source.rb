@@ -3,9 +3,19 @@ class DataSource < ActiveRecord::Base
   has_many :data_sets
   
   before_create :set_api_key
+  validates_presence_of :integration_id
+
 
   def set_api_key
     self.api_key = SecureRandom.hex(20)
+  end
+  
+  def integration
+    Integration::INTEGRATIONS.select{ |k,v| v == integration_id }.flatten.first
+  end
+  
+  def integration=(key)
+    self.integration_id = Integration::INTEGRATIONS[key.to_sym]
   end
   
 end

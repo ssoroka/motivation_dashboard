@@ -11,6 +11,7 @@ class Setup::DataSourcesController < Setup::ApplicationController
 
   def create
     @data_source = DataSource.new(params[:data_source])
+    @data_source.integration = params[:integration]
     
     if @data_source.save
       redirect_to [:new, :setup, @data_source, :data_set]
