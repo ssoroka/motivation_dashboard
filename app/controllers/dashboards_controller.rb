@@ -3,7 +3,7 @@ class DashboardsController < ApplicationController
   
   # Use this controller for the front-facing site? - Nathan 7:15pm
   def show
-    @dashboard = current_user.dashboard
+    @dashboard = current_user.dashboard || current_user.create_dashboard
   end
 
 end
