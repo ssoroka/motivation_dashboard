@@ -11,6 +11,7 @@ gem "haml-rails"
 gem "thin"
 gem "authlogic"
 gem "resque"
+gem 'mustache'
 
 gem "system_timer"
 

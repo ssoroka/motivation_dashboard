@@ -1,16 +1,16 @@
 body {
-    margin: 0; padding: 0;
-    background: #fff;
-    font-size: 12px;
-		text-align: center;
-    font-family: "Helvetica", Arial, Lucida Console, Sans-serif;
-		color: #333;
+  margin: 0; padding: 0;
+  background: #333;
+  font-size: 12px;
+  text-align: center;
+  font-family: "Helvetica", Arial, Lucida Console, Sans-serif;
+  color: #333;
 }
 
 div {
-	border: none;
-	text-align: left;
-	vertical-align: top;
+  border: none;
+  text-align: left;
+  vertical-align: top;
 }
 
 img { border: none; }
@@ -53,4 +53,3 @@ form input.text {
   border: 1px solid #ccc;
   color: #343838;
 }
-
