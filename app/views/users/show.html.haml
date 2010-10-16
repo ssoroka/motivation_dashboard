@@ -1,0 +1,15 @@
+%h2
+  Your Details
+  = link_to 'Edit', edit_user_path
+
+%ul.no_bullets
+  %li
+    First Name:
+    = current_user.first_name
+  %li
+    Last Name:
+    = current_user.last_name
+  %li
+    Email:
+    = current_user.email
+  

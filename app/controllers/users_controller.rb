@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update]
+  layout 'dashboard', :except => [:create]
   
   def create
     @user = User.new_user_session_or_new_user(params[:user])
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      redirect_to dashboards_path
+      redirect_to user_path(@user)
     else
       render :action => :edit
     end

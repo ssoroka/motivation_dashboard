@@ -1,0 +1,21 @@
+%h2
+  Edit Your Details
+
+- form_for @user do |f|
+  %ul
+    %li
+      %label  
+        First Name
+      = f.text_field :first_name, :class => :text
+    %li
+      %label
+        Last Name
+      = f.text_field :last_name, :class => :text
+    %li
+      %label
+        Email
+      = f.text_field :email, :class => :text
+    %li
+      = f.submit 'Update Account', :disable_with => 'Updating Account ...'
+      |
+      = link_to 'Cancel', user_path(@user)

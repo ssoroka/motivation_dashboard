@@ -10,8 +10,11 @@
   %body
     #wrapper
       #header
+        %span.right
+          = "#{current_user.user_bar_name} (#{link_to('My Account', user_path(current_user))} | #{link_to('Logout', logout_path)})".html_safe
+
         %h1
-          Motivational Dashboard
+          = link_to current_user.dashboard.name, dashboard_path
       #main
         = yield
       #footer

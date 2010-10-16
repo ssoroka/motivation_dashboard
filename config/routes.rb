@@ -1,9 +1,11 @@
 MotivationdashboardCom::Application.routes.draw do
   
   root :to => "pages#home"
-  
-  resources :user_session
+
   resources :users
+  resources :user_session
+  match '/logout' => 'user_sessions#destroy', :as => :logout
+  
   resource :dashboard
   
   # The priority is based upon order of creation:
