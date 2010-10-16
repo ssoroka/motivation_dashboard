@@ -18,7 +18,6 @@ function process_widgets() {
 
 function create_widget(widget) {
   tmpl = widget_templates[widget.widget_type];
-  log(tmpl);
   if (tmpl) {
     var html = $(Mustache.to_html(tmpl, widget));
     html.hide();
@@ -28,6 +27,6 @@ function create_widget(widget) {
 }
 
 function update_widget(widget) {
-  log('hi')
+  log('implement me')
 }
 
