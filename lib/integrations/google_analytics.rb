@@ -12,27 +12,31 @@ class GoogleAnalyticsIntegration
     @profile = Garb::Profile.first(options[:property_id])
   end
 
-  def perform
-    visits
-  end
+  # view_type can be one of [:visitors, :visits, :pageviews, :unique_pageviews]
+  def views(view_type)
+    report = Garb::Report.new(@profile, month_to_date.merge(:metrics => [view_type]))
+    month_to_date = report.results.map { |day| day.send(view_type) }
 
-  def visits
-    results = Visits.results(@profile, :start_date => Date.today.beginning_of_month,
-                                       :end_date => Date.today)
-    month_to_date = results.map { |day| day.visits }
-
-    results = Visits.results(@profile, :start_date => Date.today.beginning_of_month - 1.month,
-                                       :end_date => Date.today.beginning_of_month - 1.day)
-    last_month = results.map { |day| day.visits }
+    report = Garb::Report.new(@profile, last_month.merge(:metrics => [view_type]))
+    last_month = report.results.map { |day| day.send(view_type) }
 
     { :month_to_date => month_to_date, :last_month => last_month }
   end
 
-  class Visits
-    extend Garb::Resource
+  def month_to_date
+    {
+      :start_date => Date.today.beginning_of_month,
+      :end_date => Date.today,
+      :dimensions => [:date]
+    }
+  end
 
-    metrics :visits
-    dimensions :date
+  def last_month
+    {
+      :start_date => Date.today.beginning_of_month - 1.month,
+      :end_date => Date.today.beginning_of_month - 1.day,
+      :dimensions => [:date]
+    }
   end
 
 end

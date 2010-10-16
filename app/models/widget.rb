@@ -6,6 +6,7 @@ class Widget < ActiveRecord::Base
   
   def as_json(options)
     {
+      :id => id,
       :position => position,
       :widget_size => widget_size, 
       :widget_type => WIDGET_TYPES.invert[widget_type_id],

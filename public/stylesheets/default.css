@@ -4,7 +4,7 @@ body {
   font-size: 12px;
   text-align: center;
   font-family: "Helvetica", Arial, Lucida Console, Sans-serif;
-  color: #333;
+  color: #eee;
 }
 
 div {
@@ -14,8 +14,8 @@ div {
 }
 
 img { border: none; }
-a { color: #333; }
-a:holver { color : #ccc; }
+a { color: #eee; }
+a:holver { color : #fff; }
 
 .clear { clear: both; }
 .right { float: right; }
@@ -25,9 +25,10 @@ fieldset { margin: 0; padding: 0; border: none; }
 /* Main Wrappers */
 
 div#wrapper {
-  margin: 0 auto; 
+/*  margin: 0 auto; */
+  margin: 10px 10px;
   display: block;
-  width: 1024px;
+/*  width: 1024px;*/
 }
 
 div#main {

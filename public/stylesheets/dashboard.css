@@ -1,14 +1,14 @@
 body {
-  background: #333;
-  color: #fff;
+/*  background: #333;*/
+/*  color: #eee;*/
 }
 
 a {
-  color: #fff;
+/*  color: #eee;*/
 }
 
 h1 {
-  color: #fff;
+/*  color: #eee;*/
 }
 
 #wrapper {
@@ -26,10 +26,11 @@ h1 {
   border: 1px solid #999;
   padding: 5px;
   margin: 10px;
+  overflow:hidden;
 }
 
-.widget_image {
-  
+.widget_image img {
+  width: 100%;
 }
 
 .widget_size_1 {
