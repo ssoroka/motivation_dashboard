@@ -11,6 +11,17 @@ MotivationdashboardCom::Application.routes.draw do
   
   resource :dashboard
   
+  namespace :integrations do
+    
+    resources :github do
+      collection do
+        post 'post_receive_hook'
+      end
+    end
+    
+  end
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
