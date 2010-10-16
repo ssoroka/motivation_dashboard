@@ -1,0 +1,56 @@
+body {
+    margin: 0; padding: 0;
+    background: #fff;
+    font-size: 12px;
+		text-align: center;
+    font-family: "Helvetica", Arial, Lucida Console, Sans-serif;
+		color: #333;
+}
+
+div {
+	border: none;
+	text-align: left;
+	vertical-align: top;
+}
+
+img { border: none; }
+a { color: #333; }
+a:holver { color : #ccc; }
+
+.clear { clear: both; }
+fieldset { margin: 0; padding: 0; border: none; }
+
+/* Main Wrappers */
+
+div#wrapper {
+  margin: 0 auto; 
+  display: block;
+  width: 1024px;
+}
+
+/* General Forms */
+
+form ul {
+  margin: 0; padding: 0;
+}
+
+form ul li {
+  margin: 0 0 5px 0; padding: 0;
+  list-style: none;
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+}
+
+form input.text {
+  margin: 0; padding: 5px;
+  height: 28px;
+  width: 240px;
+  he\ight: 18px;
+  w\idth: 230px;
+  border: 1px solid #ccc;
+  color: #343838;
+}
+

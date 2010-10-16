@@ -9,7 +9,7 @@ gem "mysql"
 gem "haml"
 gem "haml-rails"
 gem "thin"
-gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
+gem "authlogic"
 gem "resque"
 
 # Use unicorn as the web server
