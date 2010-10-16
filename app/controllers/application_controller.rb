@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     if logged_in?
       store_location
       flash[:notice] = "You must be logged out to access this page"
-      redirect_to account_url
+      redirect_to root_path
       return false
     end
   end

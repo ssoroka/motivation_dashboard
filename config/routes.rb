@@ -1,9 +1,14 @@
 MotivationdashboardCom::Application.routes.draw do
   
   root :to => "pages#home"
-  
-  resources :user_session
+
   resources :users
+  resources :user_session
+  match '/logout' => 'user_sessions#destroy', :as => :logout
+  match '/forgot_password' => 'password_resets#new', :as => :forgot_password
+  match '/reset_password/:perishable_token' => 'password_resets#edit', :as => :reset_password
+  resources :password_resets
+  
   resource :dashboard
   
   # The priority is based upon order of creation:

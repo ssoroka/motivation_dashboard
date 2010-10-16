@@ -18,6 +18,8 @@ a { color: #333; }
 a:holver { color : #ccc; }
 
 .clear { clear: both; }
+.right { float: right; }
+.left { float: left; }
 fieldset { margin: 0; padding: 0; border: none; }
 
 /* Main Wrappers */
@@ -26,6 +28,22 @@ div#wrapper {
   margin: 0 auto; 
   display: block;
   width: 1024px;
+}
+
+div#main {
+  min-height: 400px;
+}
+
+
+/* No Bullets */
+
+ul.no_bullets {
+  margin: 0; padding: 0;
+}
+
+ul.no_bullets li {
+  margin: 0 0 5px 0; padding: 0;
+  list-style: none;
 }
 
 /* General Forms */
