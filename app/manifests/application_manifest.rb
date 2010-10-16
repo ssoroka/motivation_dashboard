@@ -23,6 +23,7 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   recipe :nginx_stack
   recipe :redis
   recipe :resque
+  recipe :resque_web_nginx
   recipe :god
 
   # Add your application's custom requirements here

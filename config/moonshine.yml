@@ -79,3 +79,6 @@
 
 :resque:
   :scheduler: true
+  :web:
+    :username: admin
+    :password: raphael.js
