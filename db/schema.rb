@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101016031611) do
+ActiveRecord::Schema.define(:version => 20101016115645) do
 
   create_table "dashboards", :force => true do |t|
     t.string   "name",       :default => "Motivation Dashboard"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20101016031611) do
     t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "phone_number"
+    t.string   "twitter_username"
   end
 
   create_table "widgets", :force => true do |t|
