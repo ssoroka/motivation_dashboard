@@ -5,8 +5,6 @@ $(document).ready(function() {
 
 function process_widgets() {
   _(widgets).each(function(w) {
-    log(w.id);
-    
     // if widget already exists, update it
     if (_($('#widget_' + w.id)).any()) {
       update_widget(w);

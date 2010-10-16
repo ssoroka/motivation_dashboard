@@ -1,6 +1,7 @@
 !!! Strict
 %html{:lang =>"en"}
   %head
+    %link{:rel => 'shortcut icon', :href => '/favicon.ico'}
     %title= current_user.dashboard.name
     = stylesheet_link_tag 'default', 'dashboard'
     - if Rails.env.production?
