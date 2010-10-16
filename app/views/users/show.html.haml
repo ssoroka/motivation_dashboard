@@ -1,0 +1,24 @@
+%h2
+  Your Details
+  = link_to 'Edit', edit_user_path
+
+%ul.no_bullets
+  %li
+    %strong First Name:
+    = not_set(current_user.first_name)
+  %li
+    %strong Last Name:
+    = not_set(current_user.last_name)
+  %li
+    %strong Email:
+    = current_user.email
+  %li
+    %strong Phone Number:
+    = not_set(current_user.phone_number)
+  %li
+    %strong Twitter Username:
+    = not_set(current_user.twitter_username)
+      
+
+%p
+  %strong= link_to 'Back to Dashboard', dashboard_path

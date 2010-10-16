@@ -1,0 +1,45 @@
+%h2
+  Edit Your Details
+
+- form_for @user do |f|
+  %ul
+    %li
+      %label  
+        First Name
+      = f.text_field :first_name, :class => :text
+    %li
+      %label
+        Last Name
+      = f.text_field :last_name, :class => :text
+    %li
+      %label
+        Email
+      = f.text_field :email, :class => :text
+
+    %li
+      %label
+        Phone
+      = f.text_field :phone_number, :class => :text
+  
+    %li
+      %label
+        Twitter Username
+      = f.text_field :twitter_username, :class => :text
+
+    %li
+      %label
+        Change Your Password?
+      = radio_button_tag :change_password, '1', params[:change_password] == '1', :onclick => "$('.change_password').show();"
+      Yes
+      = radio_button_tag :change_password, '1', params[:change_password] != '1', :onclick => "$('.change_password').hide();"
+      No 
+    %li.change_password{:style => params[:change_password] == '1' ? '' : 'display: none;'}
+      %label Password
+      = f.password_field :password, :class => :text
+    %li.change_password{:style => params[:change_password] == '1' ? '' : 'display: none;'}
+      %label  Confirm Password
+      = f.password_field :password_confirmation, :class => :text
+    %li
+      = f.submit 'Update Account', :disable_with => 'Updating Account ...'
+      |
+      = link_to 'Cancel', user_path(@user)

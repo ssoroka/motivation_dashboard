@@ -1,7 +1,7 @@
 %h2
   Create Account or Login
 
-- form_for @user do |f|
+- form_for @user, :url => users_path do |f|
   = debug @user.errors
   %ul
     %li
@@ -17,4 +17,4 @@
       = '-or-'
       = f.submit 'Login'
     %li
-      = link_to 'Forgot your password?', '#'
+      = link_to 'Forgot your password?', forgot_password_path

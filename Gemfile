@@ -11,7 +11,9 @@ gem "haml-rails"
 gem "thin"
 gem "authlogic"
 gem "resque"
+gem 'mustache'
 
+gem 'jquery-rails'
 gem "system_timer"
 
 # Use unicorn as the web server

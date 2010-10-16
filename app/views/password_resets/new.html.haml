@@ -1,0 +1,15 @@
+%h2
+  Forgot your password?
+
+
+- form_tag password_resets_path do
+  %ul
+    - if flash[:notice] # errr, FUGLY alerrrtttt
+      %li
+        = flash[:notice]
+    %li
+      %label
+        Your Email
+      = text_field_tag :email, params[:email], :class => :text
+    %li
+      = submit_tag 'Retrieve Password', :disable_with => 'Retrieving Password ...'
