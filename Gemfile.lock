@@ -86,6 +86,7 @@ GEM
       vegas (~> 0.1.2)
     sinatra (1.0)
       rack (>= 1.0)
+    system_timer (1.0)
     thin (1.2.7)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -107,4 +108,5 @@ DEPENDENCIES
   mysql
   rails (= 3.0.1)
   resque
+  system_timer
   thin

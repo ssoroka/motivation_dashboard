@@ -12,6 +12,8 @@ gem "thin"
 gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
 gem "resque"
 
+gem "system_timer"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
