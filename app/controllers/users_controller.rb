@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update]
-  layout 'dashboard', :except => [:create]
-  
+  layout :determine_layout
+
   def create
-    @user = User.new_user_session_or_new_user(params[:user])
+    @user = User.new_user_session_or_new_user(params[:user] || params[:user_session])
     
     if @user.save
       redirect_to dashboard_path
@@ -30,4 +30,12 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
+  
+  private
+  
+  # Apparently, you can't specify layout multiple times :-( Nathan 12:49AM SAT
+  def determine_layout
+    action_name == 'create' ? 'application' : 'dashboard'
+  end
+  
 end

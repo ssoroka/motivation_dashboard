@@ -1,0 +1,20 @@
+%h2
+  Reset Your Password
+
+- if flash[:notice]
+  %p
+    %strong=flash[:notice]
+- else
+  - form_for @user, :url => password_reset_path(params[:perishable_token]) do |f|
+    %ul
+      %li
+        %label
+          New Password
+        = f.password_field :password, :class => :text
+      %li
+        %label
+          Confirm New Password
+        = f.password_field :password_confirmation, :class => :text
+      %li
+        = hidden_field_tag :perishable_token, params[:perishable_token]
+        = f.submit 'Update Password', :disable_with => 'Updating Password ...'

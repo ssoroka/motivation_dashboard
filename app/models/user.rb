@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  acts_as_authentic
+  acts_as_authentic 
   
   has_one :dashboard
 
@@ -12,7 +12,11 @@ class User < ActiveRecord::Base
     full_name.blank? ? email : full_name
   end
   
-
+  def self.find_by_email_and_send_reset_instructions(email)
+    user = self.find_by_email(email)
+    UserMailer.password_reset_instructions(user).deliver if user
+  end
+  
   def self.new_user_session_or_new_user(params)
     existing_user = self.find_by_email(params[:email])
     
