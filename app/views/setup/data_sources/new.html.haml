@@ -1,0 +1,10 @@
+%h2
+  = "Configure #{params[:source].titleize}"
+
+- form_for [:setup, @data_source] do |f|
+  %ul
+    %li
+      Options for each data source config here.
+    %li
+      = f.hidden_field :integration, :value => params[:source]
+      = f.submit 'Save'
