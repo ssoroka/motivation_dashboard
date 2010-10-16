@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update]
   
-  # Currently we're using this action for the front-end login & registration. - Nathan Fri 8:33pm
   def create
-    @user = User.new(params[:user])
+    @user = User.new_user_session_or_new_user(params[:user])
+    
     if @user.save
       redirect_to dashboards_path
     else

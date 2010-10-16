@@ -2,6 +2,7 @@
   Create Account or Login
 
 - form_for @user do |f|
+  = debug @user.errors
   %ul
     %li
       %label
@@ -10,7 +11,7 @@
     %li
       %label
         Password
-      = f.text_field :password, :class => 'text'
+      = f.password_field :password, :class => 'text'
     %li
       = f.submit 'Create Account'
       = '-or-'
