@@ -1,0 +1,12 @@
+[submodule "vendor/plugins/moonshine"]
+	path = vendor/plugins/moonshine
+	url = git://github.com/titanous/moonshine.git
+[submodule "vendor/plugins/moonshine_redis"]
+	path = vendor/plugins/moonshine_redis
+	url = git://github.com/titanous/moonshine_redis.git
+[submodule "vendor/plugins/moonshine_resque"]
+	path = vendor/plugins/moonshine_resque
+	url = git://github.com/titanous/moonshine_resque.git
+[submodule "vendor/plugins/moonshine_god"]
+	path = vendor/plugins/moonshine_god
+	url = git://github.com/titanous/moonshine_god.git
