@@ -1,0 +1,10 @@
+# Copy this to database.yml 
+development:
+  adapter: mysql
+  database: motivational_dev
+  username: root
+
+test:
+  adapter: mysql
+  database: motivational_test
+  username: root
