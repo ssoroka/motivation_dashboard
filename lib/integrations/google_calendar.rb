@@ -1,6 +1,6 @@
 require 'gcal4ruby'
 
-class GoogleCalIntegration
+class GoogleCalendarIntegration
 
   def self.perform(*args)
     new(*args).perform
