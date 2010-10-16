@@ -9,7 +9,10 @@ gem "mysql"
 gem "haml"
 gem "haml-rails"
 gem "thin"
+gem "authlogic"
 gem "resque"
+
+gem "system_timer"
 
 # Use unicorn as the web server
 # gem 'unicorn'

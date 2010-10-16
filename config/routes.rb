@@ -2,11 +2,10 @@ MotivationdashboardCom::Application.routes.draw do
   
   root :to => "pages#home"
   
-  resources :pages
+  resources :user_session
+  resources :users
+  resource :dashboard
   
-  
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -24,9 +24,8 @@
 :domain: motivationdashboard.r10.railsrumble.com
 
 # Domain aliases for application. One common use of this is for asset hosts.
-#:domain_aliases:
-#  - assets1.yourapp.com
-#  - assets2.yourapp.com
+:domain_aliases:
+  - motivationdashboard.com
 
 # Source control management to use. Defaults to git.
 # If you change this value, you will need to run: cap vcs:install
@@ -67,6 +66,9 @@
 :passenger:
   :max_pool_size: 3
   :version: 3.0.0.pre4
+
+:nginx:
+  :worker_processes: 4
 
 # MySQL-specific options. Refer to the following templates for details about
 # what values are used:

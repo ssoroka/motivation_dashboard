@@ -1,2 +1,20 @@
 %h2
-  Home Page
+  Create Account or Login
+
+- form_for @user do |f|
+  = debug @user.errors
+  %ul
+    %li
+      %label
+        Email
+      = f.text_field :email, :class => 'text'
+    %li
+      %label
+        Password
+      = f.password_field :password, :class => 'text'
+    %li
+      = f.submit 'Create Account'
+      = '-or-'
+      = f.submit 'Login'
+    %li
+      = link_to 'Forgot your password?', '#'
