@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.new_user_session_or_new_user(params[:user])
     
     if @user.save
-      redirect_to dashboards_path
+      redirect_to dashboard_path
     else
       render :action => 'pages/home'
     end
