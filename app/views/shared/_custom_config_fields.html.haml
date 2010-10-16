@@ -1,0 +1,6 @@
+- @config_info[:fields].each do |config_field|
+  %li
+    %label= config_field[:label] || config_field[:name].to_s.humanize
+    = custom_config_field(config_field)
+    - if config_field[:helper_text]
+      %span.helper_text=config_field[:helper_text]

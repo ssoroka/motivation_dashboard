@@ -3,8 +3,10 @@
 
 - form_for [:setup, @data_source] do |f|
   %ul
-    %li
-      Options for each data source config here.
+    %li= @config_info[:description]
+    = render :partial => 'shared/custom_config_fields', :object => {:config_info => @config_info}
     %li
       = hidden_field_tag :integration, params[:integration]
       = f.submit 'Save'
+
+= debug @config_info

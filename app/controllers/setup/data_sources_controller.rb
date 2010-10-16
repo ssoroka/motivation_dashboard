@@ -7,13 +7,22 @@ class Setup::DataSourcesController < Setup::ApplicationController
   
   def new
     @data_source = DataSource.new
-  end
-
-  def create
+    @config = "Integration::#{params[:integration].classify}::DataSource".constantize 
+    @config_info = @config.info
+  end                                                                                      
+                                                                                           
+  def create                                                                               
+    @config = "Integration::#{params[:integration].classify}::DataSource".constantize 
+    @config_info = @config.info
+        
     @data_source = DataSource.new(params[:data_source])
     @data_source.integration = params[:integration]
     
-    if @data_source.save
+    config_result = @config.check_config(params[:custom_config]) 
+    
+    @data_source.config = config_result if config_result
+    
+    if config_result && @data_source.save
       redirect_to [:new, :setup, @data_source, :data_set]
     else
       render :action => :new
