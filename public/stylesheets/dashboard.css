@@ -1,3 +1,48 @@
+body {
+  background: #333;
+  color: #fff;
+}
+
+a {
+  color: #fff;
+}
+
+h1 {
+  color: #fff;
+}
+
+#wrapper {
+  width: 100%;
+}
+
 #dashboard {
+  border: 1px solid #999;
+  height: 500px;
+  margin:5px;
+  background: #666;
+}
+
+.widget {
+  border: 1px solid #999;
+  padding: 5px;
+  margin: 10px;
+}
+
+.widget_image {
   
+}
+
+.widget_size_1 {
+  width: 300px;
+  height: 300px;
+}
+
+.widget_size_2 {
+  width: 600px;
+  height: 300px;
+}
+
+.widget_size_4 {
+  width: 600px;
+  height: 600px;
 }
