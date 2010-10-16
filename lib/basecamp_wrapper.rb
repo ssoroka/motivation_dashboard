@@ -18,11 +18,11 @@ ERROR
 end
 
 begin
-  require 'activeresource'
+  require 'active_resource'
 rescue LoadError
   begin
     require 'rubygems'
-    require 'activeresource'
+    require 'active_resource'
   rescue LoadError
     abort <<-ERROR
 The 'activeresource' library could not be loaded. If you have RubyGems 
@@ -159,7 +159,7 @@ class Basecamp
     def post(path, body, headers = {})
       request = Net::HTTP::Post.new(path, headers.merge('Accept' => 'application/xml'))
       request.basic_auth(@master.user, @master.password)
-      @connection.request(request, body)
+      puts @connection.request(request, body)
     end
   end
 
@@ -195,9 +195,16 @@ class Basecamp
     end
   end
 
-  class Project < Resource
+  class Project < Resource    
+    def self.all
+      find(:all)
+    end
+    
+    def self.first
+      find(:first)
+    end
   end
-
+  
   class Company < Resource
     parent_resources :project
 
@@ -231,7 +238,7 @@ class Basecamp
       find(:all, :params => options.merge(:project_id => project_id, :type => 'attachment'))
     end
   end
-
+  
   class Message < Resource
     parent_resources :project
     set_element_name 'post'
@@ -284,7 +291,19 @@ class Basecamp
   class Comment < Resource
     parent_resources :post, :milestone, :todo_item
   end
-
+  
+  class Person < Resource
+    parent_resources :company
+    
+    def self.all(params = {})
+      find(:all, :params => params)
+    end
+    
+    def self.find_by_username(username)
+      find(:first, :params => { :user_name => username })
+    end
+  end
+  
   class TodoList < Resource
     parent_resources :project
 
@@ -483,7 +502,7 @@ class Basecamp
   def person(id)
     record "/contacts/person/#{id}"
   end
-
+  
   # ==========================================================================
   # MILESTONES
   # ==========================================================================
