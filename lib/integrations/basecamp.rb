@@ -26,34 +26,22 @@ class BasecampIntegration
     todo_list
   end
   
-  def todo_list
-    finished_keys = [:finished, :unfinished]
-    assigned_keys = [:anyone_count, :assigned_count]
-    values = []
-    tasks = {}
-    
-    finished_keys.each do |finished_key|
-      tasks[finished_key] = {}
-      assigned_keys.each do |assigned_key|
-        tasks[finished_key][assigned_key] = 0
-      end
-    end
+  def todo_list    
+    finished_by_others_count = 0;
+    finished_by_you_count = 0;
+    unfinished_assigned_to_any_count = 0;
+    unfinished_assigned_to_you_count = 0;
     
     todo_lists = Basecamp::TodoList.all(@project_id, nil)
     todo_lists.each do |todo_list|
       todo_list.todo_items.each do |todo_item|
-        assigned_key = todo_item.attributes["responsible_party_id"] == @user_id ? :assigned_count : :anyone_count
-        finished_key = todo_item.completed? ? :finished : :unfinished
-        tasks[finished_key][assigned_key] += 1
+        if todo_item.attributes["responsible_party_id"] == @user_id 
+          todo_item.completed ? finished_by_you_count += 1 : unfinished_assigned_to_you_count += 1
+        else
+          todo_item.completed? ? finished_by_others_count += 1 : unfinished_assigned_to_any_count += 1
       end
     end
     
-    finished_keys.each do |finished_key|
-      assigned_keys.each do |assigned_key|
-        values << tasks[finished_key][assigned_key]
-      end
-    end
-    
-    values
+    [finished_by_others_count, finished_by_you_count, unfinished_assigned_to_any_count, unfinished_assigned_to_you_count]
   end
 end
