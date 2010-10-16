@@ -4,9 +4,9 @@
     %title Motivational Dashboard
     = stylesheet_link_tag 'default', 'dashboard'
     - if Rails.env.production?
-      = javascript_include_tag 'application', 'jquery.masonry.min'
+      = javascript_include_tag 'application', 'jquery.min', 'jquery.masonry.min', 'rails.js'
     - else
-      = javascript_include_tag 'application', 'jquery.masonry'
+      = javascript_include_tag 'application', 'jquery', 'jquery.masonry', 'rails.js'
   %body
     #wrapper
       #header

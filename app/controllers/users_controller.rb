@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   end
   
   def update
+    params[:user][:password], params[:user][:password_confirmation] = nil, nil unless params[:change_password]
     @user = current_user
     if @user.update_attributes(params[:user])
       redirect_to user_path(@user)

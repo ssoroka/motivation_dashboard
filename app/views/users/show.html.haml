@@ -4,12 +4,14 @@
 
 %ul.no_bullets
   %li
-    First Name:
+    %strong First Name:
     = current_user.first_name
   %li
-    Last Name:
+    %strong Last Name:
     = current_user.last_name
   %li
-    Email:
+    %strong Email:
     = current_user.email
-  
+
+%p
+  %strong= link_to 'Back to Dashboard', dashboard_path

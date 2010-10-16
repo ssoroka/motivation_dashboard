@@ -12,6 +12,7 @@ gem "thin"
 gem "authlogic"
 gem "resque"
 
+gem 'jquery-rails'
 gem "system_timer"
 
 # Use unicorn as the web server
