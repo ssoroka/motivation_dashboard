@@ -1,14 +1,15 @@
 !!! Strict
 %html{:lang =>"en"}
   %head
-    %title Motivation Dashboard
+    %title
+      Motivation Dashboard
     = stylesheet_link_tag 'default', 'application'
     = javascript_include_tag :all
   %body
     #wrapper
       #header
         %h1
-          Motivational Dashboard
+          = link_to 'Motivation Dashboard', root_path
       #main
         = yield :layout
         :plain
