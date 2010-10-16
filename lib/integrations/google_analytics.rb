@@ -3,6 +3,8 @@ require 'active_support/time'
 
 class GoogleAnalyticsIntegration
 
+  attr_reader :profile
+
   def self.perform(*args)
     new(*args).perform
   end
@@ -12,31 +14,37 @@ class GoogleAnalyticsIntegration
     @profile = Garb::Profile.first(options[:property_id])
   end
 
-  # view_type can be one of [:visitors, :visits, :pageviews, :unique_pageviews]
-  def views(view_type)
-    report = Garb::Report.new(@profile, month_to_date.merge(:metrics => [view_type]))
-    month_to_date = report.results.map { |day| day.send(view_type) }
 
-    report = Garb::Report.new(@profile, last_month.merge(:metrics => [view_type]))
-    last_month = report.results.map { |day| day.send(view_type) }
-
-    { :month_to_date => month_to_date, :last_month => last_month }
+  def goal_conversions_by_day(goal_id)
+    metric_by_day("goal#{goal_id}_completions".to_sym)
   end
 
-  def month_to_date
-    {
-      :start_date => Date.today.beginning_of_month,
-      :end_date => Date.today,
-      :dimensions => [:date]
-    }
+  # view_type can be one of [:visitors, :visits, :pageviews, :unique_pageviews,
+  #   :goal1_completions, etc]
+  def metric_by_day(metric)
+    { :month_to_date => month_to_date(metric), :last_month => last_month(metric) }
   end
 
-  def last_month
-    {
-      :start_date => Date.today.beginning_of_month - 1.month,
-      :end_date => Date.today.beginning_of_month - 1.day,
-      :dimensions => [:date]
-    }
+  def month_to_date(metric)
+    report = Garb::Report.new(@profile,
+                              :start_date => Date.today.beginning_of_month,
+                              :end_date => Date.today,
+                              :dimensions => [:date],
+                              :metrics => [metric])
+    compile_report_to_day_array(report, metric)
+  end
+
+  def last_month(metric)
+    report = Garb::Report.new(@profile,
+                              :start_date => Date.today.beginning_of_month - 1.month,
+                              :end_date => Date.today.beginning_of_month - 1.day,
+                              :dimensions => [:date],
+                              :metrics => [metric])
+    compile_report_to_day_array(report, metric)
+  end
+
+  def compile_report_to_day_array(report, metric)
+    report.results.map { |day| day.send(metric) }
   end
 
 end
