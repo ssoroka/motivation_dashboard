@@ -18,8 +18,9 @@ MotivationdashboardCom::Application.routes.draw do
   namespace :setup do
     resources :data_sources do
       resources :data_sets do
-        resources :widgets do
-        end      
+        resources :reports do
+          resources :widgets
+        end
       end
     end
   end

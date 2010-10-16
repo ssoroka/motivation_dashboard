@@ -5,5 +5,6 @@ class Setup::ApplicationController < ApplicationController
   def find_nested_resources
     @data_source = DataSource.find(params[:data_source_id]) if params[:data_source_id]
     @data_set = DataSet.find(params[:data_set_id]) if params[:data_set_id]
+    @report = Report.find(params[:report_id]) if params[:report_id]
   end
 end
