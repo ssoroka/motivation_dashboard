@@ -7,6 +7,9 @@ body {
   color: #333;
 }
 
+a { color: #333; }
+a:hover { color: #333; }
+
 /* Main Wrappers */
 
 div#wrapper {
