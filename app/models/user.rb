@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     existing_user = self.find_by_email(params[:email])
     
     if existing_user
-      user_session = UserSession.new(params[:user_session])
+      user_session = UserSession.new(params)
     else
       params[:password_confirmation] = params[:password]
       self.new(params)
