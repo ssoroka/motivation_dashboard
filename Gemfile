@@ -16,6 +16,18 @@ gem 'mustache'
 gem 'jquery-rails'
 gem "system_timer"
 
+# Stuff for integrations
+gem 'loofah', '~> 1.0.0.beta.1' # feedzirra
+gem 'xml-simple' # basecamp_wrapper
+gem 'gdata' # Google stuff
+gem 'nokogiri' # Gmail
+gem 'titanous-garb', :require => 'garb' # Google Analytics
+gem 'gcal4ruby' # Google Calendar
+gem 'hominid' # MailChimp
+gem 'shopify_api' # Shopify
+gem 'feedzirra' # XML Feed
+gem 'pismo' # XML Feed
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
