@@ -4,15 +4,14 @@
     %title= current_user.dashboard.name
     = stylesheet_link_tag 'default', 'dashboard'
     - if Rails.env.production?
-      = javascript_include_tag 'application', 'jquery.min', 'jquery.masonry.min', 'rails.js'
+      = javascript_include_tag %w(jquery.min jquery.masonry.min underscore-min rails mustache utilities widget_templates dashboard)
     - else
-      = javascript_include_tag 'application', 'jquery', 'jquery.masonry', 'rails.js'
+      = javascript_include_tag %w(jquery jquery.masonry underscore rails mustache utilities /widget_templates.js dashboard)
   %body
     #wrapper
       #header
         %span.right
-          = "#{current_user.user_bar_name} (#{link_to('My Account', user_path(current_user))} | #{link_to('Logout', logout_path)})".html_safe
-
+          = raw("#{current_user.user_bar_name} (#{link_to('My Account', user_path(current_user))} | #{link_to('Logout', logout_path)})")
         %h1
           = link_to current_user.dashboard.name, dashboard_path
       #main

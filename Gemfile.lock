@@ -116,8 +116,8 @@ DEPENDENCIES
   authlogic
   haml
   haml-rails
-  mustache
   jquery-rails
+  mustache
   mysql
   rails (= 3.0.1)
   resque
