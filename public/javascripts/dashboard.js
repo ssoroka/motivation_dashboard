@@ -1,5 +1,6 @@
 $(document).ready(function() {
   process_widgets();
+  $('.widgets').masonry();
 });
 
 function process_widgets() {
