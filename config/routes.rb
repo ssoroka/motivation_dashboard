@@ -4,7 +4,7 @@ MotivationdashboardCom::Application.routes.draw do
   
   resources :user_session
   resources :users
-  resources :dashboards
+  resource :dashboard
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
