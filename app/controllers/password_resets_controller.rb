@@ -9,7 +9,7 @@ class PasswordResetsController < ApplicationController
   def create
     # TODO - Change the flash messages? They are a bit FUGLY lookin' - Nathan 1:21AM SAT
     if User.find_by_email_and_send_reset_instructions(params[:email])
-      flash[:notice] = "Instructions to reset your password have been emailed to #{params[:email]}."
+      flash.now[:notice] = "Instructions to reset your password have been emailed to #{params[:email]}."
       params[:email] = nil
       render :action => :new
     else
