@@ -21,10 +21,10 @@ class ShopifyIntegration
   def perform
     # This should check what type of data is needed, and run the appropriate
     # method(s).
-    unfullfilled_orders
+    unfulfilled_orders
   end
 
-  def unfullfilled_orders
+  def unfulfilled_orders
     unshipped = ShopifyAPI::Order.count(:fulfillment_status => 'unshipped')
     partial = ShopifyAPI::Order.count(:fulfillment_status => 'partial')
     unshipped + partial
@@ -61,6 +61,15 @@ class ShopifyIntegration
     { :last_month => last_month, :month_to_date => month_to_date }
   end
 
+  def order_statuses
+    statuses = {}
+    statuses[:authorized] = ShopifyAPI::Order.count(:financial_status => 'authorized')
+    statuses[:pending]    = ShopifyAPI::Order.count(:financial_status => 'pending')
+    statuses[:unshipped]  = ShopifyAPI::Order.count(:fulfillment_status => 'unshipped')
+    statuses[:partially_shipped] = ShopifyAPI::Order.count(:fulfillment_status => 'partial')
+    statuses
+  end
+
 
 end
 
@@ -90,26 +99,6 @@ module ShopifyAPI
         page += 1
         objects = find(:all, :params => {:page => page, :limit => limit}.merge(options[:params]))
       end
-    end
-
-    def self.count(options = {})
-      options[:params] ||= {}
-      count = 0
-
-      page = 1
-      limit = options.delete(:limit) || 100
-
-      objects = find(:all, :params => {:page => page, :limit => limit}.merge(options[:params]))
-      count += objects.size
-
-      while objects.any?
-        break if objects.size < limit
-        page += 1
-        objects = find(:all, :params => {:page => page, :limit => limit}.merge(options[:params]))
-        count += objects.size
-      end
-
-      count
     end
   end
 end
