@@ -1,4 +1,4 @@
-num_workers = RAILS_ENV == 'production' ? 5 : 2
+num_workers = RAILS_ENV == 'production' ? 2 : 2
  
 num_workers.times do |num|
   God.watch do |w|

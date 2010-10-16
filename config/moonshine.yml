@@ -67,6 +67,9 @@
   :max_pool_size: 3
   :version: 3.0.0.pre4
 
+:nginx:
+  :worker_processes: 4
+
 # MySQL-specific options. Refer to the following templates for details about
 # what values are used:
 # - vendor/plugins/moonshine/lib/moonshine/manifest/rails/templates/moonshine.cnf.erb 
