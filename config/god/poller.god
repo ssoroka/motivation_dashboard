@@ -4,6 +4,7 @@ God.watch do |w|
   w.env = {'RAILS_ENV'=>RAILS_ENV}
   w.dir = RAILS_ROOT
   w.start = "/opt/ruby/bin/ruby lib/poller.rb"
+  w.log = "/srv/motivationdashboard/shared/poller.log"
 
   w.uid = 'rails' # user id
   w.gid = 'rails' # group id
