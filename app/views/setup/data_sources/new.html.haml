@@ -3,7 +3,7 @@
 
 - form_for [:setup, @data_source] do |f|
   %ul
-    %li= @config_info[:description]
+    %li=raw @config_info[:description]
     = render :partial => 'shared/custom_config_fields', :object => {:config_info => @config_info}
     %li
       = hidden_field_tag :integration, params[:integration]
