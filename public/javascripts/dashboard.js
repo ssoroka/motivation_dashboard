@@ -31,6 +31,7 @@ function create_widget(widget) {
     html.hide();
     $('#dashboard .widgets').append(html);
     $('#widget_' + widget.id).fadeIn(1000);
+    $('#widget_' + widget.id).append(generate_destroy_link(widget.id));
   }else{
     log('Template Missing');
   }
@@ -71,4 +72,8 @@ function pre_process_widgets() {
       return widget;
     }
   });
+}
+
+function generate_destroy_link(widget_id){
+  return "<a href='/widgets/" + widget_id + "' data-method='delete' class='delete_widget'>X</a>";
 }

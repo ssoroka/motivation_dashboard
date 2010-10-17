@@ -16,6 +16,3 @@ class Widget < ActiveRecord::Base
     }
   end
 end
-
-# Report Types
-# Wideget widget_size(line_chart == 2), widget_type_id

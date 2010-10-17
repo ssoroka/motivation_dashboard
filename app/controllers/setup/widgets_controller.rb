@@ -1,4 +1,4 @@
-class Setup::WidgetsController < Setup::ApplicationController
+ class Setup::WidgetsController < Setup::ApplicationController
 
   def new
     @widget = @report.widgets.build
