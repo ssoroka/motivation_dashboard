@@ -3,7 +3,7 @@ require 'json'
 
 class Integration
   class GetSatisfaction
-    REPORT_TYPES = {:unanswered_topics => 1}
+    REPORT_TYPES = HashWithIndifferentAccess.new({ :unanswered_topics => :table })
     API_HOST = 'http://api.getsatisfaction.com'
 
     def self.perform(*args)
@@ -20,7 +20,7 @@ class Integration
     end
 
     def unanswered_topics
-      product = @product ? "/products/#{@product}" : ''
+      product = @product.any? ? "/products/#{@product}" : ''
       result = open(API_HOST + "/companies/#{@company_name + product}/topics.json?style=problem&sort=unanswered").read
       result = JSON.parse(result)
       topics = result['data']
@@ -98,7 +98,7 @@ class Integration
       def self.info
         {
           :fields => [
-            { :name => :report_type, :type => :select, :options => [['Unanswered Topics', REPORT_TYPES[:unanswered_topics]]] }
+            { :name => :report_type, :type => :select, :options => [['Unanswered Topics', :unanswered_topics]] }
           ]
         }
       end
