@@ -52,9 +52,9 @@ class Integration
     end
 
     def compile_report_to_day_array(report, metric)
-      report.results.map { |day| day.send(metric) }
+      report.results.map { |day| day.send(metric).to_i }
     end
-    
+
     class DataSource
       def self.info
         {
@@ -67,7 +67,7 @@ class Integration
           ]
         }
       end
-    
+
       # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
       def self.check_config(config)
         begin
@@ -78,8 +78,8 @@ class Integration
         end
       end
     end
-    
-    
+
+
     class DataSet
       def self.info(data_source_config)
         Garb::Session.auth_sub data_source_config[:authsub_token]
@@ -92,15 +92,15 @@ class Integration
           ]
         }
       end
-      
+
       # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
       def self.check_config(config)
         config
       end
     end
-    
+
     class Report
-      
+
       def self.info
         {
           :fields => [
@@ -114,11 +114,11 @@ class Integration
           ]
         }
       end
-      
+
       def self.check_config(config)
         config
       end
-      
+
     end
   end
 end
