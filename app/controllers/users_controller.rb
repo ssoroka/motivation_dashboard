@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to dashboard_path
     else
+      @subscriber = Subscriber.new
       render :action => 'pages/home'
     end
   end

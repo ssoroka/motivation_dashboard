@@ -19,10 +19,6 @@ div#wrapper {
   width: 1024px;
 }
 
-.field_with_errors {
-  display: inline;
-}
-
 div#header {
   background: #fafafa;
   padding: 0 10px;
@@ -250,6 +246,17 @@ form input.submit {
 form .submit_contain {
   margin: 10px 0 0 100px;
 }
+
+/* Validation Styles */
+
+.field_with_errors {
+  display: inline;
+}
+
+.field_with_errors .text {
+  border: 1px solid #e2666a;
+}
+
 
 /* Flash Notices */
 div.flash_notice, div.flash_error, div.flash_info  {
