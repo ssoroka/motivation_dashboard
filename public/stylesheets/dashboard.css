@@ -67,10 +67,12 @@ h1 sup {
 
 .widget_table tbody td {
   background: #222;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
   padding:3px;
+  border-bottom: 1px solid #333;
+}
+
+.widget_table h2 {
+  margin: 0 0 5px 0; padding: 0;
 }
 
 .widget_size_1 {

@@ -18,7 +18,7 @@ class Setup::ReportsController < Setup::ApplicationController
       @widget = @report.widgets.build
       @widget.dashboard = current_user.dashboard
       @widget.widget_type_id = Widget::WIDGET_TYPES[data_source_report_type_constant[params['custom_config']['report_type']]]
-      @widget.widget_size = 2 if data_source_report_type_constant[params['custom_config']['report_type']] == :line
+      @widget.widget_size = 2 if [:line, :table].include?(data_source_report_type_constant[params['custom_config']['report_type']])
       current_user.set_next_poll_at!
       if @widget.save
         redirect_to dashboard_path
