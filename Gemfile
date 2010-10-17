@@ -27,6 +27,9 @@ gem 'feedzirra' # XML Feed
 gem 'pismo' # XML Feed
 gem 'hoptoad_notifier'
 
+gem 'event_machine'
+gem 'faye'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
