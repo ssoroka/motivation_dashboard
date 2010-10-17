@@ -63,7 +63,14 @@ class Integration
         last_month[day+1] || 0
       end
 
-      { :last_month => last_month, :month_to_date => month_to_date }
+      {
+        :label => 'Monthly Sales',
+        :x_type => 'days',
+        :y_label => 'Sales',
+        :line_labels => ['Sales Last Month',
+                         'Sales This Month'],
+        :lines => [last_month, this_month]
+      }
     end
 
     def order_statuses
@@ -119,7 +126,7 @@ class Integration
       def self.info
         {
           :fields => [
-            { :name => :report_type, :type => :select, :options => [['Unfulfilled Orders', :unfulfilled_orders]],
+            { :name => :report_type, :type => :select, :options => [['Unfulfilled Orders', :unfulfilled_orders],
                                                                     ['Monthly Sales', :monthly_sales]] }
           ]
         }

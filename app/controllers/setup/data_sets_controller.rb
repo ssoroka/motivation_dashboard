@@ -9,6 +9,7 @@ class Setup::DataSetsController < Setup::ApplicationController
       if @data_set.save
         redirect_to [:new, :setup, @data_source, @data_set, :report]
       else
+        flash.now[:error] = 'There was something wrong with the settings. Please re-check what you entered.'
         redirect_to [:new, :setup, @data_source]
       end
     end
@@ -28,6 +29,7 @@ class Setup::DataSetsController < Setup::ApplicationController
       # config.perform
       redirect_to [:new, :setup, @data_source, @data_set, :report]
     else
+      flash.now[:error] = 'There was something wrong with the settings. Please re-check what you entered.'
       render :action => :new
     end    
   end
@@ -42,6 +44,7 @@ class Setup::DataSetsController < Setup::ApplicationController
     if @data_set.update_attributes(params[:data_set])
       redirect_to [:new, :setup, @data_source, @data_set, :report] # Should redirect to existing page - Nathan 3:33PM SAT
     else
+      flash.now[:error] = 'There was something wrong with the settings. Please re-check what you entered.'
       render :action => :edit
     end
   end

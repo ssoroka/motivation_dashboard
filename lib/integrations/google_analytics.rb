@@ -23,7 +23,7 @@ class Integration
 
     def perform(data_set_config, report_config)
       @profile = Garb::Profile.first(data_set_config[:property_id])
-      metric_by_day([report_config[:report_type].to_sym])
+      metric_by_day(report_config[:report_type].to_sym)
     end
 
 
