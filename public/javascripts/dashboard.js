@@ -6,7 +6,11 @@ $(document).ready(function() {
   }
   
   $('#modify_dashboard_toggle').click(function(){
-    $('.delete_widget').toggle();
+    if($('#dashboard').hasClass('widgets_editable')){
+      $('#dashboard').removeClass('widgets_editable');
+    }else{
+      $('#dashboard').addClass('widgets_editable');
+    }
   })
   
 });
@@ -99,5 +103,5 @@ function pre_process_widgets() {
 }
 
 function generate_destroy_link(widget_id){
-  return "<a href='/widgets/" + widget_id + "' style='display: none;' data-method='delete' class='delete_widget'>X</a>";
+  return "<a href='/widgets/" + widget_id + "' data-method='delete' class='delete_widget'>X</a>";
 }

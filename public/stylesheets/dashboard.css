@@ -88,6 +88,17 @@ h1 sup {
   height: 640px;
 }
 
+
+#dashboard .delete_widget {
+  display: none;
+}
+
+
+#dashboard.widgets_editable .delete_widget {
+  display: inline;
+}
+
+
 h2.count_text_title {
   text-align: center;
 }
