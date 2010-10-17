@@ -24,7 +24,7 @@ class Poller
     data_source.data_sets.each do |data_set|
       data_set.reports.each do |report|
         obj ||= klass.new(data_source.config)
-        report.update_attribute(:data, obj.perform(data_set.config, report.config))
+        report.update_attribute(:data, obj.perform(data_set.config, report.config).to_json)
       end
     end
   end

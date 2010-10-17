@@ -25,6 +25,7 @@ class Setup::DataSetsController < Setup::ApplicationController
     @data_set.config = config_result if config_result
     
     if config_result && @data_set.save
+      # config.perform
       redirect_to [:new, :setup, @data_source, @data_set, :report]
     else
       render :action => :new

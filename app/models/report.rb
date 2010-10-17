@@ -3,7 +3,7 @@ class Report < ActiveRecord::Base
   belongs_to :data_set
   
   def config=(opts)
-    write_attribute(:config, opts.to_yaml)
+    write_attribute(:config, HashWithIndifferentAccess.new(opts).to_yaml)
   end
 
   def config
