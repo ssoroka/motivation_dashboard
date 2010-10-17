@@ -4,7 +4,9 @@ MotivationdashboardCom::Application.routes.draw do
   get 'features', :to => "pages#features"
   get 'pricing', :to => "pages#pricing"
 
-  resources :users
+  resources :users do
+    get :reset_api_key
+  end
   resources :user_session
   resources :widget_templates
   match '/logout' => 'user_sessions#destroy', :as => :logout

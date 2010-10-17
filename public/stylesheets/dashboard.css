@@ -99,7 +99,10 @@ h1 sup {
 
 
 .main_title {
-  -moz-border-radius:10px 10px 10px 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
   background:none repeat scroll 0 0 #444;
   display:block;
   height:40px;
@@ -117,7 +120,10 @@ h1 sup {
 }
 
 .data_source_item {
-  -moz-border-radius:10px 10px 10px 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
   background: none repeat scroll 0 0 #FFF;
   display: block;
   float: left;
@@ -160,7 +166,10 @@ h1 sup {
 }
 
 .data_source_title {
-  -moz-border-radius:10px 10px 10px 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
   background:none repeat scroll 0 0 #444;
   height:40px;
   width:200px;
@@ -178,7 +187,10 @@ h1 sup {
 }
 
 .data_source_form {
-  -moz-border-radius:10px 10px 10px 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
   background:none repeat scroll 0 0 #444;
   width: 500px;
   margin-left: auto;
