@@ -1,9 +1,9 @@
 body {
   margin: 0; padding: 0;
-  background: #333;
+  background: #111;
   font-size: 12px;
   text-align: center;
-  font-family: "Helvetica", Arial, Lucida Console, Sans-serif;
+  font-family: "Helvetica Neue", "Helvetica", Arial, Lucida Console, Sans-serif;
   color: #eee;
 }
 

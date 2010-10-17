@@ -11,7 +11,6 @@ gem "haml-rails"
 gem "thin"
 gem "authlogic", :git => 'git://github.com/bdrister/authlogic.git'
 gem "resque"
-gem 'mustache'
 
 gem 'jquery-rails'
 gem "system_timer"
@@ -27,6 +26,9 @@ gem 'hominid' # MailChimp
 gem 'shopify_api' # Shopify
 gem 'feedzirra' # XML Feed
 gem 'pismo' # XML Feed
+
+# scheduler
+gem 'resque-scheduler'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -48,4 +50,5 @@ gem 'pismo' # XML Feed
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'rspec-rails'
+  gem 'capistrano'
 end

@@ -13,10 +13,11 @@ h1 a {
 }
 
 #dashboard {
-  border: 1px solid #999;
+/*  border: 1px solid #999;*/
 /*  height: 100%;*/
   margin:5px;
-  background: #666;
+padding:10px;
+  background: #222;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -24,17 +25,14 @@ h1 a {
 
 .widget {
   position:absolute;
-  border: 1px solid #999;
-  padding: 5px;
+/*  border: 1px solid #999;*/
+  padding: 10px;
   margin: 10px;
   overflow:hidden;
-  background: #555;
+  background: #333;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  box-shadow: 3px 3px 3px #222;
-  -webkit-box-shadow: 3px 3px 3px #222;
-  -moz-box-shadow: 3px 3px 3px #222;
 }
 
 .widget_image img {

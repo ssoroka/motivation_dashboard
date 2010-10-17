@@ -7,3 +7,6 @@ require 'rake'
 MotivationdashboardCom::Application.load_tasks
 
 require 'resque/tasks'
+
+require 'resque_scheduler/tasks'
+task "resque:setup" => :environment
