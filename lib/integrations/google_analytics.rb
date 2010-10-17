@@ -12,10 +12,14 @@ class Integration
     def self.perform(*args)
       new(*args).perform
     end
-  
+
     def initialize(options)
       Garb::Session.auth_sub options[:authsub_token]
-      @profile = Garb::Profile.first(options[:property_id])
+    end
+
+    def perform(data_set_config, report_config)
+      @profile = Garb::Profile.first(data_set_config[:property_id])
+      metric_by_day(REPORT_TYPES.invert[report_config[:report_type]])
     end
 
 
