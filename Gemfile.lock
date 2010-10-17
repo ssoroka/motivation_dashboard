@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/bdrister/authlogic.git
-  revision: 0a58cd2e113df18814cefbfc47b485eb5a503c58
+  revision: 0a58cd2
   specs:
     authlogic (2.1.6)
       activesupport
