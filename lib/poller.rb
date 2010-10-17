@@ -1,7 +1,10 @@
 require 'config/environment'
 require 'lib/faye_client'
 class Poller
+  TIMESTAMP_FORMAT = '%h %d %H:%M:%S'
+  
   def poll_loop
+    debug('Started poller')
     loop do
       User.where('next_poll_at <= ?', Time.now.utc.to_s(:db)).order('next_poll_at asc').limit(50).each{|user|
         debug("processing user #{user.id}..")
@@ -11,7 +14,6 @@ class Poller
           poll_datasource(user, data_source)
         }
       }
-      debug("loop..")
       sleep 0.5
     end
   end
@@ -49,8 +51,8 @@ class Poller
   end
   
   def debug(str)
-    puts str
-    client.publish('/debug', {'text' => str}) if Rails.env.development?
+    puts "[#{Time.now.strftime(TIMESTAMP_FORMAT)}] #{str}"
+    # client.publish('/debug', {'text' => str}) if Rails.env.development?
   end
   
   def client

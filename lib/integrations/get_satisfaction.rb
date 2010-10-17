@@ -20,7 +20,7 @@ class Integration
     end
 
     def unanswered_topics
-      product = @product.any? ? "/products/#{@product}" : ''
+      product = @product.present? ? "/products/#{@product}" : ''
       result = open(API_HOST + "/companies/#{@company_name + product}/topics.json?style=problem&sort=unanswered").read
       result = JSON.parse(result)
       topics = result['data']
