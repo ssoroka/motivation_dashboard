@@ -3,16 +3,16 @@ require 'hominid'
 class Integration
   class MailChimp
     REPORT_TYPES = { :campaign_stats => 1 }
-    
+
     def self.perform(*args)
       new(*args).perform
     end
 
     def initialize(options)
-      @hominid = Hominid::Base.new({:api_key => options[:api_key]})
+      @hominid = Hominid::Base.new(:api_key => options[:api_key])
     end
 
-    def perform
+    def perform(*args)
       campaign_stats
     end
 
@@ -22,17 +22,17 @@ class Integration
         [campaign["subject"], campaign["from_email"], list["name"], list["member_count"], list["unsubscribe_count_since_send"]]
       end
     end
-    
+
     class DataSource
       def self.info
         {
-          :description => 'Mail Chimp',
+          :description => 'MailChimp',
           :fields => [
-            { :name => :api_key, :type => :string, :helper_text => 'Enter your Mail Chimp API Key.' }
+            { :name => :api_key, :type => :string, :helper_text => 'Enter your MailChimp API Key.' }
           ]
         }
       end
-    
+
       # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
       def self.check_config(config)
         begin
@@ -43,21 +43,21 @@ class Integration
         end
       end
     end
-    
-    
+
+
     class DataSet
       def self.info(data_source_config)
         nil
       end
-      
+
       # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
       def self.check_config(config)
         config
       end
     end
-    
+
     class Report
-      
+
       def self.info
         {
           :fields => [
@@ -65,12 +65,12 @@ class Integration
           ]
         }
       end
-      
+
       def self.check_config(config)
         config
       end
-      
+
     end
-    
+
   end
 end
