@@ -88,6 +88,15 @@ h1 sup {
   height: 640px;
 }
 
+h2.count_text_title {
+  text-align: center;
+}
+
+p.count_text {
+  margin: 0; padding: 0;
+  font-size: 100px;
+  text-align: center;
+}
 .delete_widget {
   display: block;
   width: 30px; height: 30px;
