@@ -2,7 +2,8 @@ God.watch do |w|
   w.name = 'poller'
   w.interval = 30.seconds
   w.env = {'RAILS_ENV'=>RAILS_ENV}
-  w.start = "/opt/ruby/bin/ruby #{RAILS_ROOT}/lib/poller.rb"
+  w.dir = RAILS_ROOT
+  w.start = "/opt/ruby/bin/ruby lib/poller.rb"
 
   w.uid = 'rails' # user id
   w.gid = 'rails' # group id
