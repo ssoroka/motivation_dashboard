@@ -10,8 +10,14 @@ class WidgetsController < ApplicationController
 
   def destroy
     @widget = current_user.dashboard.widgets.find(params[:id])
-    @widget.destroy
-    redirect_to dashboard_path
+    # @widget.destroy
+    respond_with(@widget) {|format|
+      format.js {
+        render :update do |page|
+          page << %( $('#widget_#{@widget.id}').fadeOut().delay(3000, function() {$(this).remove(); mason(); }); )
+        end
+      }
+    }
   end
 
 end
