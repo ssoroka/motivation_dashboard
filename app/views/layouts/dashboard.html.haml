@@ -21,9 +21,9 @@
             %li= link_to('My Account', user_path(current_user))
             %li= link_to('Logout', logout_path)
         %h1
-          = link_to image_tag('logo.png', :width => 30) << ' Motivation Dashboard', dashboard_path
+          = link_to(image_tag('logo.png', :width => 30) << raw(' Motivation Dashboard<sup>beta</sup>'), dashboard_path)
       #main
         = render :partial => 'shared/flashes'
         = yield
       #footer
-        = image_tag('logo.png', :width => 15) << " MotivationDashboard.com"
+        = link_to(image_tag('logo.png', :width => 15) << " MotivationDashboard.com", root_path)

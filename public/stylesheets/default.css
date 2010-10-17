@@ -71,4 +71,7 @@ form input.text {
   w\idth: 230px;
   border: 1px solid #ccc;
   color: #343838;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;  
 }

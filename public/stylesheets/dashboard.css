@@ -1,5 +1,3 @@
-body {
-}
 
 .top_menu a {
   text-decoration:none;
@@ -13,8 +11,17 @@ body {
   margin: 5px;
 }
 
+#footer a {
+  text-decoration: none;
+}
+
 h1 a {
   text-decoration:none;
+}
+
+h1 sup {
+  margin: 0; padding: 0;
+  font-size: 12px;
 }
 
 #wrapper {
@@ -58,10 +65,12 @@ h1 a {
 
 .widget_table tbody td {
   background: #222;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
   padding:3px;
+  border-bottom: 1px solid #333;
+}
+
+.widget_table h2 {
+  margin: 0 0 5px 0; padding: 0;
 }
 
 .widget_size_1 {
@@ -79,6 +88,15 @@ h1 a {
   height: 640px;
 }
 
+h2.count_text_title {
+  text-align: center;
+}
+
+p.count_text {
+  margin: 0; padding: 0;
+  font-size: 100px;
+  text-align: center;
+}
 .delete_widget {
   display: block;
   width: 30px; height: 30px;
@@ -94,7 +112,10 @@ h1 a {
 
 
 .main_title {
-  -moz-border-radius:10px 10px 10px 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
   background:none repeat scroll 0 0 #444;
   display:block;
   height:40px;
@@ -112,7 +133,10 @@ h1 a {
 }
 
 .data_source_item {
-  -moz-border-radius:10px 10px 10px 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
   background: none repeat scroll 0 0 #FFF;
   display: block;
   float: left;
@@ -155,7 +179,10 @@ h1 a {
 }
 
 .data_source_title {
-  -moz-border-radius:10px 10px 10px 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
   background:none repeat scroll 0 0 #444;
   height:40px;
   width:200px;
@@ -173,7 +200,10 @@ h1 a {
 }
 
 .data_source_form {
-  -moz-border-radius:10px 10px 10px 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
   background:none repeat scroll 0 0 #444;
   width: 500px;
   margin-left: auto;
@@ -312,4 +342,12 @@ div.flash_error {
 div.flash_info {
 	border: 2px solid #FFD324; 
 	color: #fff;
+}
+
+.field_with_errors {
+  display: inline;
+}
+
+.field_with_errors .text {
+  border: 3px solid #e2666a;
 }

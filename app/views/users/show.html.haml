@@ -1,24 +1,29 @@
-%h2
-  Your Details
-  = link_to 'Edit', edit_user_path
+.data_source_title
+  %h2
+    Your Details
+    = link_to 'Edit', edit_user_path
 
-%ul.no_bullets
-  %li
-    %strong First Name:
-    = not_set(current_user.first_name)
-  %li
-    %strong Last Name:
-    = not_set(current_user.last_name)
-  %li
-    %strong Email:
-    = current_user.email
-  %li
-    %strong Phone Number:
-    = not_set(current_user.phone_number)
-  %li
-    %strong Twitter Username:
-    = not_set(current_user.twitter_username)
+.data_source_form
+  %ul.no_bullets
+    %li
+      %strong First Name:
+      = not_set(current_user.first_name)
+    %li
+      %strong Last Name:
+      = not_set(current_user.last_name)
+    %li
+      %strong Email:
+      = current_user.email
+    %li
+      %strong Phone Number:
+      = not_set(current_user.phone_number)
+    %li
+      %strong Twitter Username:
+      = not_set(current_user.twitter_username)
+    %li
+      %strong API Key:
+      = not_set(current_user.api_key)
+      = raw"(#{link_to 'reset', user_reset_api_key_path(current_user)})"
       
-
-%p
-  %strong= link_to 'Back to Dashboard', dashboard_path
+  %p
+    %strong= link_to 'Back to Dashboard', dashboard_path

@@ -40,6 +40,11 @@ div#header h1 {
   line-height: 35px;
 }
 
+div#header h1 sup {
+  margin: 0; padding: 0;
+  font-size: 12px;
+}
+
 div#header h1 img {
   float: left;
   margin: 0 5px 0 0;

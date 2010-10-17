@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   def set_api_key
     self.api_key = SecureRandom.hex(20)
   end
-  
 
   def full_name
     "#{first_name} #{last_name}"
@@ -54,4 +53,9 @@ class User < ActiveRecord::Base
       update_attribute(:next_poll_at, 1.hour.from_now.utc)
     end
   end
+  
+  def set_next_poll_at!
+    update_attribute(:next_poll_at, Time.now.utc.to_s(:db))
+  end
+
 end

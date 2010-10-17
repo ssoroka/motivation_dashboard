@@ -70,7 +70,7 @@ class Integration
     class DataSource
       def self.info
         {
-          :description => 'The Google Analytics integration gives you all your vital website statistics.
+          :description => 'The Google Analytics widget gives you all your vital website statistics.
             To get the data, Motivation Dashboard needs to connect to Google.
             When you press next, you will be taken to Google to authorize access.',
           :fields => [{ :type => :redirect_url }]
@@ -98,7 +98,7 @@ class Integration
         profiles = Garb::Profile.all
         options = profiles.map { |p| [p.title, p.web_property_id]}
         {
-          :description => 'Choose a website:',
+          :description => 'Choose which websites data you would like to display.',
           :fields => [
             { :name => :property_id, :type => :select, :options => options, :label => '' }
           ]

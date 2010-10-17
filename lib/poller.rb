@@ -11,7 +11,7 @@ class Poller
           poll_datasource(user, data_source)
         }
       }
-      debug("loop..\n")
+      debug("loop..")
       sleep 0.5
     end
   end
@@ -58,4 +58,8 @@ class Poller
   end
 end
 
+<<<<<<< HEAD
 Poller.new.poll_loop
+=======
+Poller.new.poll 
+>>>>>>> 8174bfceff8dc95753ded8a2121d39f7cd2d1488

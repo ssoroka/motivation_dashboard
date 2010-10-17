@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   
   def update
     params[:user][:password], params[:user][:password_confirmation] = nil, nil unless params[:change_password]
+
     @user = current_user
     if @user.update_attributes(params[:user])
       redirect_to user_path(@user)
@@ -32,11 +33,20 @@ class UsersController < ApplicationController
     end
   end
   
+  def reset_api_key
+    current_user.api_key = SecureRandom.hex(20)
+    if current_user.save
+      flash[:notice] = "Your API Key has been reset to " + current_user.api_key
+    else
+      flash[:error] = "Could not update your API Key at this time."
+    end
+    redirect_to user_path(current_user)
+  end
+  
   private
   
   # Apparently, you can't specify layout multiple times :-( Nathan 12:49AM SAT
   def determine_layout
     action_name == 'create' ? 'application' : 'dashboard'
-  end
-  
+  end  
 end
