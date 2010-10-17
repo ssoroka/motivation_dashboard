@@ -6,7 +6,7 @@ require 'time'
 class Integration
   class Gmail
     REPORT_TYPES = { :unread_messages_table => 1, :unread_messages_count => 2 }
-    
+
     def self.perform(*args)
       new(*args).perform
     end
@@ -16,8 +16,8 @@ class Integration
       @client.authsub_token = options[:authsub_token]
     end
 
-    def perform
-      unread_messages_count
+    def perform(data_set_config, report_config)
+      send REPORT_TYPES.invert[report_config[:report_type].to_i]
     end
 
     def unread_messages_table
@@ -52,7 +52,7 @@ class Integration
           ]
         }
       end
-    
+
       # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
       def self.check_config(config)
         begin
