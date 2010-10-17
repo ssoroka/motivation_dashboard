@@ -3,7 +3,9 @@
 .data_source_form
   - form_for [:setup, @data_source, @data_set, @report] do |f|
     - if @config_info[:description]
-      raw(= @config_info[:description])
+      = raw( @config_info[:description])
+    - else
+      = "Select what kind of #{@data_source.integration.to_s.titleize} data would like us to report on"
     .data_source_fields
       %div{:style => "width: 260px; margin-left:auto; margin-right: auto;"}
         = render :partial => 'shared/custom_config_fields', :object => {:config_info => @config_info}
