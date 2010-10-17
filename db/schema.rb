@@ -51,6 +51,12 @@ ActiveRecord::Schema.define(:version => 20101017025715) do
 
   add_index "reports", ["data_set_id"], :name => "index_reports_on_data_set_id"
 
+  create_table "subscribers", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                              :null => false
     t.string   "first_name"

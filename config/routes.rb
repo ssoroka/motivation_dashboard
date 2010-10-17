@@ -18,6 +18,9 @@ MotivationdashboardCom::Application.routes.draw do
   namespace :setup do
     root :to => "data_sources#index"
     resources :data_sources do
+      collection do
+        get :auth_receive
+      end
       resources :data_sets do
         resources :reports do
           resources :widgets
@@ -25,8 +28,6 @@ MotivationdashboardCom::Application.routes.draw do
       end
     end
   end
-  
-  
   
   namespace :integrations do
     

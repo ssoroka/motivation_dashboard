@@ -1,5 +1,6 @@
 require 'garb'
 require 'active_support/time'
+require 'gdata_google_analytics'
 
 class Integration
   class GoogleAnalytics
@@ -49,6 +50,71 @@ class Integration
     def compile_report_to_day_array(report, metric)
       report.results.map { |day| day.send(metric) }
     end
-
+    
+    class DataSource
+      def self.info
+        {
+          :description => 'Google Analytics',
+          :fields => [
+            { 
+              :url => lambda { |url| GData::Client::Analytics.new.authsub_url(url) }, 
+              :url_text => 'Authorize Your Google Analytics Account', :type => :authsub
+            }
+          ]
+        }
+      end
+    
+      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
+      def self.check_config(config)
+        begin
+          config[:authsub_token] = GData::Client::Analytics.new(:authsub_token => config[:authsub_token]).auth_handler.upgrade
+          config
+        rescue Exception => e
+          false
+        end
+      end
+    end
+    
+    
+    class DataSet
+      def self.info(data_source_config)
+        Garb::Session.auth_sub data_source_config[:authsub_token]
+        profiles = Garb::Profile.all
+        options = profiles.map { |p| [p.title, p.web_property_id]}
+        {
+          :description => 'Choose the Site to Show',
+          :fields => [
+            { :name => :property_id, :type => :select, :options => options }
+          ]
+        }
+      end
+      
+      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
+      def self.check_config(config)
+        config
+      end
+    end
+    
+    class Report
+      
+      def self.info
+        {
+          :fields => [
+            { :name => :report_type, :type => :select, :options => [
+                                                                      ['Visitors', REPORT_TYPES[:visitors]],
+                                                                      ['Visit Amount', REPORT_TYPES[:visits]],
+                                                                      ['Hits', REPORT_TYPES[:page_views]],
+                                                                      ['Unique Hits', REPORT_TYPES[:unique_pageviews]]
+                                                                   ]
+            }
+          ]
+        }
+      end
+      
+      def self.check_config(config)
+        config
+      end
+      
+    end
   end
 end

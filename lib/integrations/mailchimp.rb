@@ -12,10 +12,10 @@ class Integration
     end
 
     def perform
-      sends_remaining
+      campaign_stats
     end
 
-    def sends_remaining
+    def campaign_stats
       rows = @hominid.campaigns.map do |campaign|
         list = @hominid.find_list_by_id(campaign["list_id"])
         [campaign["subject"], campaign["from_email"], list["name"], list["member_count"], list["unsubscribe_count_since_send"]]

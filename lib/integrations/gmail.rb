@@ -5,7 +5,8 @@ require 'time'
 
 class Integration
   class Gmail
-
+    REPORT_TYPES = { :unread_messages_table => 1, :unread_messages_count => 2 }
+    
     def self.perform(*args)
       new(*args).perform
     end
@@ -36,6 +37,60 @@ class Integration
 
     def unread_messages
       @unread_messages ||= Nokogiri::XML(@client.get('https://mail.google.com/mail/feed/atom/inbox/').body)
+    end
+
+
+    class DataSource
+      def self.info
+        {
+          :description => 'List all the unread messages from your Gmail account',
+          :fields => [
+            { 
+              :url => lambda { |url| GData::Client::GMail.new.authsub_url(url) }, 
+              :url_text => 'Authorize Your Gmail Account', :type => :authsub
+            }
+          ]
+        }
+      end
+    
+      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
+      def self.check_config(config)
+        begin
+          config[:authsub_token] = GData::Client::Gmail.new(:authsub_token => config[:authsub_token]).auth_handler.upgrade
+          config
+        rescue Exception => e
+          false
+        end
+      end
+    end
+    
+    
+    class DataSet
+      def self.info(data_source_config)
+        nil
+      end
+      
+      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
+      def self.check_config(config)
+        config
+      end
+    end
+    
+    class Report
+      
+      def self.info
+        {
+          :fields => [
+            { :name => :report_type, :type => :select, :options => [['Unread Messages Data', REPORT_TYPES[:unread_messages_table]],
+                                                                      ['Unread Messages Count', REPORT_TYPES[:unread_messages_count]]] }
+          ]
+        }
+      end
+      
+      def self.check_config(config)
+        config
+      end
+      
     end
 
   end

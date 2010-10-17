@@ -48,11 +48,16 @@ class Integration
     
       # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
       def self.check_config(config)
-          
-        # info[:fields].each do 
-        #   
-        # end
-        config
+        begin
+          info[:fields].each do |field|
+            return false if config[field[:name]].blank?
+          end
+          # This needs to change - we need a better way to validate that a company exists
+          Integration::GetSatisfaction.new(:company_name => config[:company_name]).products
+          config
+        rescue Exception => e
+          false
+        end
       end
     end
     
