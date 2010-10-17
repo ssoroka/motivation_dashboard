@@ -51,7 +51,7 @@ class Poller
   end
   
   def debug(str)
-    STDOUT.puts "[#{Time.now.strftime(TIMESTAMP_FORMAT)}] #{str}"
+    puts "[#{Time.now.strftime(TIMESTAMP_FORMAT)}] #{str}"
     # client.publish('/debug', {'text' => str}) if Rails.env.development?
   end
   
