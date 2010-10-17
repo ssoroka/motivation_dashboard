@@ -73,6 +73,28 @@ h1 a {
   height: 640px;
 }
 
+.main_title {
+  -moz-border-radius:10px 10px 10px 10px;
+  background:none repeat scroll 0 0 #444;
+  display:block;
+  height:40px;
+  width:275px;
+  text-align:center;
+  vertical-align:middle;
+}
+
+.main_title h2 {
+  padding-top: 5px;
+}
+
+.data_sources {
+  margin-top: 20px;
+}
+
+.data_source_item {
+  
+}
+
 .top_menu ul li {
   display:inline-block;
   margin-right: 30px;

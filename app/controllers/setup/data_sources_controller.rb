@@ -29,6 +29,7 @@ class Setup::DataSourcesController < Setup::ApplicationController
     if config_result && @data_source.save
       redirect_to [:new, :setup, @data_source, :data_set]
     else
+      flash.now[:error] = 'There was something wrong with the settings. Please re-check what you entered.'
       render :action => :new
     end
 
@@ -44,6 +45,7 @@ class Setup::DataSourcesController < Setup::ApplicationController
     if config_result && @data_source.save
       redirect_to [:new, :setup, @data_source, :data_set]
     else
+      flash[:error] = 'Your third-party authentication is invalid. Please retry.'
       redirect_to new_setup_data_source_path(:integration => params[:integration])
     end
   end

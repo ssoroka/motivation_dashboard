@@ -29,6 +29,12 @@ class Integration
         subject = %Q(<a href="#{url}">#{subject}</a>)
         [date, sender, subject]
       end
+
+      {
+        'label' => "Recent Unread Emails",
+        'headers' => ['Date', 'From', 'Subject'],
+        'rows' => emails
+      }
     end
 
     def unread_messages_count
@@ -43,7 +49,9 @@ class Integration
     class DataSource
       def self.info
         {
-          :description => 'List all the unread messages from your Gmail account',
+          :description => 'The Gmail integration will give you a list of recent unread messages.
+            To get the data, Motivation Dashboard will query a read-only feed of your inbox.
+            When you press next, you will be taken to Google so that you can authorize access.',
           :fields => [{ :type => :redirect_url }]
         }
       end
