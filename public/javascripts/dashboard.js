@@ -16,10 +16,12 @@ function process_widgets() {
     formatted_widgets = pre_process_widgets();
     _(widgets).each(function(w) {
 
-      if(data_is_null_check(w)) return false;
-
+      // if the widget has no data; notify the user that the application is fetching data
+      if(data_is_null_check(w)){
+        widget_fetching_data_notification(w);
+        
       // if widget already exists, update it
-      if (_($('#widget_' + w.id)).any()) {
+      }else if (_($('#widget_' + w.id)).any()) {
         update_widget(w);
       } else {
         // otherwise create widget
@@ -29,6 +31,11 @@ function process_widgets() {
   } else {
     log("no widgets. :-S");
   }
+}
+
+function widget_fetching_data_notification(widget) {
+  $('#dashboard .widgets').append("<div class='widget widget_size_1', id='widget_" + widget.id + "' style='display: none;'>Loading Data ...</div>");
+  $('#widget_' + widget.id).fadeIn(1000).append(generate_destroy_link(widget.id));
 }
 
 function create_widget(widget) {
