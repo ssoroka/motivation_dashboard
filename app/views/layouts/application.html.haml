@@ -11,6 +11,7 @@
         %h1
           = link_to 'Motivation Dashboard', root_path
       #main
+        = render :partial => 'shared/flashes'
         = yield :layout
         :plain
           <script type="text/javascript">

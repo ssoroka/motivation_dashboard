@@ -97,17 +97,14 @@ div.flash_notice, div.flash_error, div.flash_info  {
 div.flash_notice {
 	border: 2px solid #C6D880;
   color: #529214;
-	background: url("/images/flash_notice.jpg") 3px 3px no-repeat #E6EFC2;
 }
 
 div.flash_error {
   border: 2px solid #FBC2C4;
   color: #D12F19;
-	background: url("/images/flash_error.jpg") 3px 3px no-repeat #FBE3E4;
 }
 
 div.flash_info {
 	border: 2px solid #FFD324; 
 	color: #817134;
-	background: url("/images/flash_info.jpg") 3px 3px no-repeat #FFF6BF;
 }
