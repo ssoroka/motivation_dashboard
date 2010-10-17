@@ -53,6 +53,7 @@ function create_widget(widget) {
 
 function update_widget(widget) {
   pre_process_widget(widget);
+  update_widget_list(widget);
   var tmpl = widget_templates[widget.widget_type];
   // log(tmpl);
   
@@ -120,4 +121,15 @@ $(document).ready(function() {
 
 function generate_destroy_link(widget_id){
   return "<a href='/widgets/" + widget_id + "' data-method='delete' data-remote='true' class='delete_widget'>X</a>";
+}
+
+function update_widget_list(widget) {
+  widgets = _(widgets).map(function(w) { 
+    if (w.id == widget.id) { 
+      return widget
+    } else { 
+      return w;
+    }
+  }
+);
 }
