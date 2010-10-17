@@ -27,6 +27,12 @@ h1 sup {
 #wrapper {
 }
 
+.frame {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
 #dashboard {
   margin:5px;
   padding:10px;
@@ -41,7 +47,7 @@ h1 sup {
   position:absolute;
   padding: 10px;
   margin: 10px;
-  overflow:hidden;
+/*  overflow:hidden;*/
   background: #333;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -101,7 +107,7 @@ p.count_text {
   display: block;
   width: 30px; height: 30px;
   margin: 0; padding: 0;
-  top: 10px; right: 10px;
+  top: -13px; left: -13px;
   position: absolute;
   z-index: 999;
   text-indent: -9999px;
