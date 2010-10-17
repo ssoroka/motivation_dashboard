@@ -17,8 +17,7 @@ class Setup::DataSourcesController < Setup::ApplicationController
     @data_source = DataSource.new(params[:data_source])
     @data_source.integration = params[:integration]
     
-    config_result = @config.check_config(params[:custom_config]) 
-    
+    config_result = @config.check_config(params[:custom_config])
     @data_source.config = config_result if config_result
     
     if config_result && @data_source.save

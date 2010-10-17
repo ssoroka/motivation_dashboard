@@ -26,8 +26,6 @@ MotivationdashboardCom::Application.routes.draw do
     end
   end
   
-  
-  
   namespace :integrations do
     
     resources :github do
