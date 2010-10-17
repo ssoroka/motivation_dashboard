@@ -14,7 +14,11 @@ class Setup::ReportsController < Setup::ApplicationController
     @report.config = config_result if config_result
     
     if config_result && @report.save
-      redirect_to [:new, :setup, @data_source, @data_set, @report, :widget]
+      @widget = @report.widgets.build(data_source_report_type_constant[params[:report]])
+      @widget.dashboard = current_user.dashboard
+      if @widget.save
+        redirect_to dashboard_path
+      end
     else
       render :action => :new
     end    
@@ -37,5 +41,9 @@ class Setup::ReportsController < Setup::ApplicationController
   private
     def integration_constant
       "Integration::#{@data_source.integration.to_s.camelcase}::Report".constantize
+    end
+    
+    def data_source_report_type_constant
+      "Integration::#{@data_source.integration.to_s.camelcase}::REPORT_TYPES".constantize
     end
 end

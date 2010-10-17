@@ -5,7 +5,7 @@ require 'time'
 
 class Integration
   class Gmail
-    REPORT_TYPES = { :unread_messages_table => 1, :unread_messages_count => 2 }
+    REPORT_TYPES = { :unread_messages_table => :table, :unread_messages_count => :count }
 
     def self.perform(*args)
       new(*args).perform

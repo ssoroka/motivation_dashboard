@@ -53,7 +53,9 @@ class Integration
     #     "watchers": 1
     #   }
     # }'
-  
+    
+    REPORT_TYPES = { :commits => :table }
+    
     def initialize(params)
       @payload = JSON.parse(params[:payload])
     end
@@ -99,7 +101,7 @@ class Integration
       def self.info
         {
           :fields => [
-            { :name => :report_type, :type => :select, :options => [['Commit History', REPORT_TYPES[:commits]]] }
+            { :name => :report_type, :type => :select, :options => [['Commit History', :commits]] }
           ]
         }
       end
