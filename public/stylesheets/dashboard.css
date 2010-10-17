@@ -386,3 +386,16 @@ div.flash_info {
 .field_with_errors .text {
   border: 3px solid #e2666a;
 }
+
+
+.submit_button input.submit {
+ 	background: #5d9bc5;
+	color: #fff;
+  font-weight: bold;
+  margin: 0; padding: 6px;
+  cursor: pointer;
+	border: none; 
+	-moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}

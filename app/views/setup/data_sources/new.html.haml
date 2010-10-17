@@ -9,4 +9,4 @@
         = render :partial => 'shared/custom_config_fields', :object => {:config_info => @config_info}
     = hidden_field_tag :integration, params[:integration]
     .submit_button
-      = f.submit 'Next'
+      = f.submit 'Next', :class => :submit
