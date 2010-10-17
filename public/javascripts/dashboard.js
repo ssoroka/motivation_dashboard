@@ -1,6 +1,6 @@
 $(document).ready(function() {
   process_widgets();
-  $('.widgets').masonry({animate: true, itemSelector: '.widget', columnWidth:340});
+  mason();
   if ($('.widget').size() < 3) {
     add_new_widget_widget();
   }
@@ -14,6 +14,10 @@ $(document).ready(function() {
   })
   
 });
+
+function mason() {
+  $('.widgets').masonry({animate: true, itemSelector: '.widget', columnWidth:340});
+}
 
 function process_widgets() {
   if (window.widgets){
@@ -67,7 +71,7 @@ function add_new_widget_widget() {
     var html = $(Mustache.to_html(tmpl, {id: 0, widget_type: 'add_new_widget', widget_size: 1}));
     html.hide();
     $('#dashboard .widgets').append(html);
-    $('.widgets').masonry();
+    mason();
     $('#widget_0').fadeIn(1000);
   }
 }
@@ -84,7 +88,8 @@ function pre_process_widget(widget) {
       case 'table':
         rows = _(widget.data.rows).map(function(row_hash) {
           var row = row_hash.row;
-          var date = new Date(row.shift());
+          var d = row.shift();
+          var date = parse_date(d);
           row.unshift(short_date(date));
           return row;
         })
@@ -106,7 +111,7 @@ var client = new Faye.Client('http://' + host() + ':8000/faye', {timeout: 120});
 
 $(document).ready(function() {
   if (!_.isUndefined(window.user)) {
-    console.log('subscribing to user channel');
+    log('subscribing to user channel');
     client.subscribe('/users/' + user.api_key + '/widgets', function(message) {
       update_widget(message);
     });
@@ -114,5 +119,5 @@ $(document).ready(function() {
 });
 
 function generate_destroy_link(widget_id){
-  return "<a href='/widgets/" + widget_id + "' data-method='delete' class='delete_widget'>X</a>";
+  return "<a href='/widgets/" + widget_id + "' data-method='delete' data-remote='true' class='delete_widget'>X</a>";
 }
