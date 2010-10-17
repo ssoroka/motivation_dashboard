@@ -81,24 +81,25 @@ class Integration
           :description => 'Shows Shopify order statuses.',
           :fields => [
             { :name => :shop_url, :type => :string, :helper_text => 'Enter the URL of your Shopify store (ex. secretsauce.myshopify.com)' },
-            { :type => :shopify }
+            { :type => :redirect_url }
           ]
         }
       end
 
       # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
-      def self.check_config(config)
+      def self.check_config(params)
         begin
           Shopify.setup_session
+          config = { :shop_url => params[:shop], :token => params[:t] }
           config if ShopifyAPI::Session.new(config[:shop_url], config[:token]).valid?
         rescue Exception => e
           false
         end
       end
 
-      def self.install_url(store_url)
+      def self.redirect_url(config, url)
         Shopify.setup_session
-        ShopifyAPI::Session.new(store_url).create_permission_url
+        ShopifyAPI::Session.new(config[:shop_url]).create_permission_url
       end
     end
 

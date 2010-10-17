@@ -54,28 +54,25 @@ class Integration
     def compile_report_to_day_array(report, metric)
       report.results.map { |day| day.send(metric).to_i }
     end
-
-    class DataSource
+class DataSource
       def self.info
         {
           :description => 'Google Analytics',
-          :fields => [
-            { 
-              :url => lambda { |url| GData::Client::Analytics.new.authsub_url(url) }, 
-              :url_text => 'Authorize Your Google Analytics Account', :type => :authsub
-            }
-          ]
+          :fields => [{ :type => :redirect_url }]
         }
       end
 
-      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
-      def self.check_config(config)
+      def self.check_config(params)
         begin
-          config[:authsub_token] = GData::Client::Analytics.new(:authsub_token => config[:authsub_token]).auth_handler.upgrade
-          config
-        rescue Exception => e
+          token = GData::Client::Analytics.new(:authsub_token => params[:token]).auth_handler.upgrade
+          { :authsub_token => token }
+        rescue
           false
         end
+      end
+
+      def self.redirect_url(config, url)
+        GData::Client::Analytics.new.authsub_url(url)
       end
     end
 

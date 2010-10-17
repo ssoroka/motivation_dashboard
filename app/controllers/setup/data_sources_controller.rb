@@ -12,11 +12,13 @@ class Setup::DataSourcesController < Setup::ApplicationController
   def create
     @config = integration_klass
     @config_info = @config.info
-        
+
     @data_source = current_user.data_sources.build(params[:data_source])
 
-    if params[:shopify] # FUGLY HACK
-      return redirect_to @config.install_url(params[:custom_config][:shop_url])
+    if params[:redirect_url]
+      redirect_to @config.redirect_url(params[:custom_config],
+                                       auth_receive_setup_data_sources_url(:integration => params[:integration]))
+      return
     end
 
     @data_source.integration = params[:integration]
@@ -32,30 +34,15 @@ class Setup::DataSourcesController < Setup::ApplicationController
 
   end
 
-  # This needs massive refactoring
   def auth_receive
     @data_source = current_user.data_sources.build
     @data_source.integration = params[:integration]
 
-    if params[:token] # Authsub
-      config_result = integration_klass.check_config(:authsub_token => params[:token])
-      @data_source.config = config_result if config_result
+    config_result = integration_klass.check_config(params)
+    @data_source.config = config_result if config_result
 
-      if config_result && @data_source.save
-        redirect_to [:new, :setup, @data_source, :data_set]
-      else
-        redirect_to new_setup_data_source_path(:integration => params[:integration])
-      end
-    elsif params[:t] # Shopify
-      config_result = integration_klass.check_config(:token => params[:t],
-                                                     :shop_url => params[:shop])
-      @data_source.config = config_result if config_result
-
-      if config_result && @data_source.save
-        redirect_to [:new, :setup, @data_source, :data_set]
-      else
-        redirect_to new_setup_data_source_path(:integration => params[:integration])
-      end
+    if config_result && @data_source.save
+      redirect_to [:new, :setup, @data_source, :data_set]
     else
       redirect_to new_setup_data_source_path(:integration => params[:integration])
     end
