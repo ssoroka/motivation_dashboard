@@ -107,8 +107,8 @@ class Integration
             { :name => :report_type, :type => :select, :options => [
                                                                       ['Visitors', REPORT_TYPES[:visitors]],
                                                                       ['Visit Amount', REPORT_TYPES[:visits]],
-                                                                      ['Hits', REPORT_TYPES[:page_views]],
-                                                                      ['Unique Hits', REPORT_TYPES[:unique_pageviews]]
+                                                                      ['Pageviews', REPORT_TYPES[:pageviews]],
+                                                                      ['Unique Pageviews', REPORT_TYPES[:unique_pageviews]]
                                                                    ]
             }
           ]
