@@ -11,7 +11,8 @@ class Integration
     def initialize(options)
     end
 
-    def perform
+    def perform(data_set_config, report_config)
+      {}
     end
 
     class DataSource
