@@ -1,6 +1,9 @@
 $(document).ready(function() {
   process_widgets();
-  $('.widgets').masonry();
+  $('.widgets').masonry({animate: true, itemSelector: '.widget'});
+  if ($('.widget').size() < 3) {
+    add_new_widget_widget();
+  }
 });
 
 function process_widgets() {
@@ -26,6 +29,16 @@ function create_widget(widget) {
 }
 
 function update_widget(widget) {
-  log('implement me')
+  log('implement me');
 }
 
+function add_new_widget_widget() {
+  tmpl = widget_templates['add_new_widget'];
+  if (tmpl) {
+    var html = $(Mustache.to_html(tmpl, {id: 0, widget_type: 'add_new_widget', widget_size: 1}));
+    html.hide();
+    $('#dashboard .widgets').append(html);
+    $('.widgets').masonry();
+    $('#widget_0').fadeIn(1000);
+  }
+}

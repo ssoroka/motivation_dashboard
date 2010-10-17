@@ -2,9 +2,11 @@ body {
 }
 
 a {
+  text-decoration:none;
 }
 
-h1 {
+h1 a {
+  text-decoration:none;
 }
 
 #wrapper {
@@ -12,7 +14,7 @@ h1 {
 
 #dashboard {
   border: 1px solid #999;
-  height: 100%;
+/*  height: 100%;*/
   margin:5px;
   background: #666;
   border-radius: 5px;
@@ -21,6 +23,7 @@ h1 {
 }
 
 .widget {
+  position:absolute;
   border: 1px solid #999;
   padding: 5px;
   margin: 10px;
@@ -39,7 +42,14 @@ h1 {
 }
 
 .widget_image {
-  padding: 0px;
+}
+
+.widget_add_new_widget a {
+  font-size: 32px;
+}
+
+.widget_add_new_widget {
+  font-size: 20px;
 }
 
 .widget_size_1 {
@@ -55,4 +65,20 @@ h1 {
 .widget_size_4 {
   width: 600px;
   height: 600px;
+}
+
+.top_menu ul li {
+  display:inline-block;
+  margin-right: 30px;
+}
+
+.top_menu {
+  position:absolute;
+  right:0px;
+  top: 0px;
+  font-size: 20px;
+}
+
+.top_menu ul li img {
+  vertical-align: bottom;
 }
