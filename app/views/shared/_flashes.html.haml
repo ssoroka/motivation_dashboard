@@ -1,0 +1,14 @@
+- unless flash[:notice].blank?
+  %div.flash_notice
+    %strong Notice:
+    = flash[:notice]
+  
+- unless flash[:info].blank?
+  %div.flash_info
+    %strong Info:
+    = flash[:info]
+
+- unless flash[:error].blank?
+  %div.flash_error
+    %strong Error:
+    = flash[:error]
