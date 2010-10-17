@@ -1,0 +1,27 @@
+<div id="widget_{{id}}" class="widget widget_{{widget_type}} widget_size_{{widget_size}}" data-id="{{id}}">
+  {{#data}}
+    <p>{{label}}</p>
+    
+    <table>
+      <thead>
+        <tr>
+          {{#headers}}
+            <th>{{.}}</th>
+          {{/headers}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#rows}}
+          <tr>
+            {{#row}}
+              <td>{{.}}</td>
+            {{/row}}
+          </tr>
+        {{/rows}}
+        {{^rows}}
+          <tr><td></td><td>No Unread Email</td><td></td></tr>
+        {{/rows}}
+      </tbody>
+    </table>
+  {{/data}}
+</div>

@@ -66,10 +66,13 @@ class Integration
     def compile_report_to_day_array(report, metric)
       report.results.map { |day| day.send(metric).to_i }
     end
-class DataSource
+
+    class DataSource
       def self.info
         {
-          :description => 'Google Analytics',
+          :description => 'The Google Analytics integration gives you all your vital website statistics.
+            To get the data, Motivation Dashboard needs to connect to Google.
+            When you press next, you will be taken to Google to authorize access.',
           :fields => [{ :type => :redirect_url }]
         }
       end
@@ -95,9 +98,9 @@ class DataSource
         profiles = Garb::Profile.all
         options = profiles.map { |p| [p.title, p.web_property_id]}
         {
-          :description => 'Choose the Site to Show',
+          :description => 'Choose a website:',
           :fields => [
-            { :name => :property_id, :type => :select, :options => options }
+            { :name => :property_id, :type => :select, :options => options, :label => '' }
           ]
         }
       end

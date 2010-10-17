@@ -94,20 +94,21 @@ function setup_line_chart(opts) {
   }
   
   var x_offset = 15,
-      y_offset = 0,
+      y_offset = 10,
       x_gutter = 25,
       y_gutter = 30;
 
   // title
   var title = data.label || "My Line Chart";
-  r.g.text((opts.width / 2) + 1.3 * title.length, 5, title);
+  r.g.txtattr.font = '20px "Helvetica Neue",Helvetica,"Arial Unicode MS",Arial,sans-serif';
+  r.g.text((opts.width / 2) + 1.3 * title.length, 8, title)
+  r.g.txtattr.font = '14px "Helvetica Neue",Helvetica,"Arial Unicode MS",Arial,sans-serif';
 
   // x axis label
   var x_label = data.x_type || "x axis";
   switch(data.x_type) {
     case 'days':
-      x_label = 'Day of Month'
-      break;
+      x_label = 'Day of Month'; break;
   }
   r.g.text((opts.width / 2) + 1.3 * title.length, opts.height - (x_gutter / 2), x_label);
 
@@ -116,14 +117,14 @@ function setup_line_chart(opts) {
   r.g.text((y_gutter / 2), (opts.height / 2), y_label).rotate(90, true);
 
   // draw a grid
-  var x_grid_offset = 0,
-      y_grid_offset = 0;
+  var x_grid_offset = 10,
+      y_grid_offset = 10;
   r.drawGrid(x_offset + x_gutter + x_grid_offset, //x 
     y_offset + y_grid_offset, //y
-    opts.width - x_offset - x_gutter - x_grid_offset, // w
-    opts.height - y_offset - y_gutter - y_grid_offset, //h 
-    40, // wv?
-    10, // hv?
+    opts.width - x_offset - x_gutter - x_grid_offset * 2, // w
+    opts.height - y_offset - y_gutter - y_grid_offset * 2, //h 
+    _(data.lines).chain().map(function(arr) {return arr.length}).max().value(), // wv? # of horizontal elements
+    12, // hv? # of vertical elements
     "#444");
   
   // draw the chart

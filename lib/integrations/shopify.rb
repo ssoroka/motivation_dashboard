@@ -32,7 +32,11 @@ class Integration
     def unfulfilled_orders
       unshipped = ShopifyAPI::Order.count(:fulfillment_status => 'unshipped')
       partial = ShopifyAPI::Order.count(:fulfillment_status => 'partial')
-      unshipped + partial
+      total = unshipped + partial
+      {
+        'label' => 'Unfulfilled Orders',
+        'count' => total
+      }
     end
 
     def monthly_sales
@@ -85,7 +89,9 @@ class Integration
     class DataSource
       def self.info
         {
-          :description => 'Shows Shopify order statuses.',
+          :description => 'This Shopify intgration gives you graphs of sales.
+            To get the data, Motivation Dashboard needs to have access to your Shopify store.
+            When you press next, you will be taken to Shopify where you will be asked to install our app.',
           :fields => [
             { :name => :shop_url, :type => :string, :helper_text => 'Enter the URL of your Shopify store (ex. secretsauce.myshopify.com)' },
             { :type => :redirect_url }

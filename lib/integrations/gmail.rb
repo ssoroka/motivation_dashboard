@@ -33,12 +33,15 @@ class Integration
       {
         'label' => "Recent Unread Emails",
         'headers' => ['Date', 'From', 'Subject'],
-        'rows' => emails
+        'rows' => emails.map { |email| { :row => email } }
       }
     end
 
     def unread_messages_count
-      unread_messages.at_css('fullcount').inner_text.to_i
+      {
+        'label' => 'Unread Emails',
+        'count' => unread_messages.at_css('fullcount').inner_text.to_i
+      }
     end
 
     def unread_messages
@@ -49,9 +52,9 @@ class Integration
     class DataSource
       def self.info
         {
-          :description => 'The Gmail integration will give you a list of recent unread messages.
-            To get the data, Motivation Dashboard will query a read-only feed of your inbox.
-            When you press next, you will be taken to Google so that you can authorize access.',
+          :description => 'The Gmail integration gives you information on unread messages.
+            To get the data, Motivation Dashboard will use a read-only feed of your inbox.
+            When you press next, you will be taken to Google to authorize access.',
           :fields => [{ :type => :redirect_url }]
         }
       end

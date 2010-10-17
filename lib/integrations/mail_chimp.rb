@@ -19,16 +19,24 @@ class Integration
     def campaign_stats
       rows = @hominid.campaigns.map do |campaign|
         list = @hominid.find_list_by_id(campaign["list_id"])
-        [campaign["subject"], campaign["from_email"], list["name"], list["member_count"], list["unsubscribe_count_since_send"]]
+        [list["name"], campaign["subject"], list["member_count"], list["unsubscribe_count_since_send"]]
       end
+
+      {
+        'label' => 'Email Campaign Stats',
+        'headers' => ['Name', 'Subject', 'Members', 'Recent Unsubscribes'],
+        'rows' => rows.map { |row| { 'row' => row } }
+      }
     end
 
     class DataSource
       def self.info
         {
-          :description => 'MailChimp',
+          :description => %Q(The MailChimp integration give you information about your campaigns.
+            Motivation Dashboard needs an API key to connect to MailChimp. You can get this from the
+            <a href="http://admin.mailchimp.com/account/api-key-popup">MailChimp API admin page</a>.),
           :fields => [
-            { :name => :api_key, :type => :string, :helper_text => 'Enter your MailChimp API Key.' }
+            { :name => :api_key, :type => :string, :label => 'API Key' }
           ]
         }
       end
