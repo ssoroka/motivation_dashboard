@@ -8,6 +8,7 @@ $(document).ready(function() {
 
 function process_widgets() {
   if (window.widgets){
+    formatted_widgets = pre_process_widgets();
     _(widgets).each(function(w) {
       // if widget already exists, update it
       if (_($('#widget_' + w.id)).any()) {
@@ -45,4 +46,26 @@ function add_new_widget_widget() {
     $('.widgets').masonry();
     $('#widget_0').fadeIn(1000);
   }
+}
+
+function pre_process_widgets() {
+  return _(widgets).map(function(widget) {
+    if (widget.config.report_type == 'unread_messages_table') {
+      switch(widget.widget_type){
+        case 'table':
+          rows = _(widget.data.rows).map(function(row_hash) {
+            var row = row_hash.row;
+            var date = new Date(row.shift());
+            row.unshift(short_date(date));
+            return row;
+          })
+          widget.rows = rows;
+          return widget;
+        default:
+          return widget;
+      }
+    } else {
+      return widget;
+    }
+  });
 }

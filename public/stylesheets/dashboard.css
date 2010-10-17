@@ -21,8 +21,6 @@ h1 a {
 }
 
 #dashboard {
-/*  border: 1px solid #999;*/
-/*  height: 100%;*/
   margin:5px;
   padding:10px;
   background: #222;
@@ -33,7 +31,6 @@ h1 a {
 
 .widget {
   position:absolute;
-/*  border: 1px solid #999;*/
   padding: 10px;
   margin: 10px;
   overflow:hidden;
@@ -56,6 +53,14 @@ h1 a {
 
 .widget_add_new_widget {
   font-size: 20px;
+}
+
+.widget_table tbody td {
+  background: #222;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  padding:3px;
 }
 
 .widget_size_1 {
