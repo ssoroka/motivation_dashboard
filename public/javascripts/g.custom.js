@@ -38,12 +38,14 @@ function raphael_setup() {
 
 $(document).ready(function() {
   raphael_setup();
+  populate_line_charts();
 });
 
 function populate_line_charts() {
-  $('.widget_line').each(function() {
+  $('.widget_line .frame').each(function() {
     var self = $(this);
-    setup_line_chart({height: self.height(), width: self.width(), id: self.attr('id'), widget: self});
+    self.parent().find('svg').remove();
+    setup_line_chart({height: self.height(), width: self.width(), id: self.attr('id'), widget: self.parent()});
   });
 }
 
@@ -67,7 +69,6 @@ function populate_line_charts() {
 //   "config":{"report_type":"visitors"},
 //   "id":11
 // }
-var o = null;
 function setup_line_chart(opts) {
   var r = Raphael(opts.id);
   
@@ -76,7 +77,7 @@ function setup_line_chart(opts) {
   });
   var data = widget.data;
   if (!data) {
-    log('No data found for ' + opts.id);
+    log('No chart data found for ' + opts.id);
     return;
   }
   

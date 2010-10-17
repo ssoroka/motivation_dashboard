@@ -48,6 +48,7 @@ function create_widget(widget) {
 }
 
 function update_widget(widget) {
+  pre_process_widget(widget);
   var tmpl = widget_templates[widget.widget_type];
   // log(tmpl);
   
@@ -73,24 +74,28 @@ function add_new_widget_widget() {
 
 function pre_process_widgets() {
   return _(widgets).map(function(widget) {
-    if (widget.config && widget.data && widget.config.report_type == 'unread_messages_table') {
-      switch(widget.widget_type){
-        case 'table':
-          rows = _(widget.data.rows).map(function(row_hash) {
-            var row = row_hash.row;
-            var date = new Date(row.shift());
-            row.unshift(short_date(date));
-            return row;
-          })
-          widget.rows = rows;
-          return widget;
-        default:
-          return widget;
-      }
-    } else {
-      return widget;
-    }
+    return pre_process_widget(widget);
   });
+}
+
+function pre_process_widget(widget) {
+  if (widget.config && widget.data && widget.config.report_type == 'unread_messages_table') {
+    switch(widget.widget_type){
+      case 'table':
+        rows = _(widget.data.rows).map(function(row_hash) {
+          var row = row_hash.row;
+          var date = new Date(row.shift());
+          row.unshift(short_date(date));
+          return row;
+        })
+        widget.rows = rows;
+        return widget;
+      default:
+        return widget;
+    }
+  } else {
+    return widget;
+  }
 }
 
 var client = new Faye.Client('http://' + host() + ':8000/faye', {timeout: 120});
