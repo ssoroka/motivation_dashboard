@@ -33,6 +33,10 @@ h1 sup {
   width: 100%;
 }
 
+.add_new_widget_link {
+  text-decoration: none;
+}
+
 #dashboard {
   margin:5px;
   padding:10px;
