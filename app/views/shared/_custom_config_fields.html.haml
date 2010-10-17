@@ -1,6 +1,9 @@
 - @config_info[:fields].each do |config_field|
-  %div{:style => "float: left; padding-right: 10px; vertical-align: middle;"}
-    %label= config_field[:label] || config_field[:name].to_s.humanize
-  = custom_config_field(config_field)
-  - if config_field[:helper_text]
-    %span.helper_text=config_field[:helper_text]
+  - if config_field[:options] == [["Custom Image", :custom_image]]
+    = hidden_field_tag 'custom_config[report_type]', :custom_image
+  - else
+    %div{:style => "float: left; padding-right: 10px; vertical-align: middle;"}
+      %label= config_field[:label] || config_field[:name].to_s.humanize
+    = custom_config_field(config_field)
+    - if config_field[:helper_text]
+      %span.helper_text=config_field[:helper_text]
