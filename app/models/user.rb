@@ -5,6 +5,13 @@ class User < ActiveRecord::Base
   
   has_one :dashboard
   has_many :data_sources
+  
+  before_create :set_api_key
+
+  def set_api_key
+    self.api_key = SecureRandom.hex(20)
+  end
+  
 
   def full_name
     "#{first_name} #{last_name}"

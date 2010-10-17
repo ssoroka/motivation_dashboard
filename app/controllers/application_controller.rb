@@ -3,9 +3,20 @@ class ApplicationController < ActionController::Base
   
   helper :all
   helper_method :current_user_session, :current_user
+  before_filter :login_from_api_key
   
   private
 
+  def login_from_api_key
+    
+    if params[:api_key]
+      if @current_user = User.find_by_api_key(params[:api_key])
+        @user_session = UserSession.new(@current_user) 
+        @current_user_session = UserSession.find
+      end
+    end
+  end
+  
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find

@@ -1,9 +1,6 @@
 class Setup::DataSourcesController < Setup::ApplicationController
   # Note: We may want to throw an exception or redirect them to the index action if they tamper with data_source param - Nathan 2:23PM SAT
 
-  def index
-  end
-
   def new
     @data_source = current_user.data_sources.build
     @config_info = integration_klass.info
