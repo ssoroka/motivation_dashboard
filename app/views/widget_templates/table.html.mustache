@@ -19,9 +19,12 @@
           </tr>
         {{/rows}}
         {{^rows}}
-          <tr><td></td><td>No Unread Email</td><td></td></tr>
+          <tr><td colspan='3'>No Unread Email</td></tr>
         {{/rows}}
       </tbody>
     </table>
+  {{/data}}
+  {{^data}}
+    Loading...
   {{/data}}
 </div>

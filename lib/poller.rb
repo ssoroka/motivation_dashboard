@@ -1,23 +1,32 @@
 require 'config/environment'
+require 'lib/faye_client'
 class Poller
-  def poll
+  def poll_loop
     loop do
-      # User.where('next_poll_at <= ?', Time.now.utc.to_s(:db))
-      User.order('next_poll_at asc').limit(50).each{|user|
+      User.where('next_poll_at <= ?', Time.now.utc.to_s(:db)).order('next_poll_at asc').limit(50).each{|user|
         debug("processing user #{user.id}..")
-        # user.punt_polling!
+        user.punt_polling!
           
         user.data_sources.each{|data_source|
-          poll_datasource(data_source)
+          poll_datasource(user, data_source)
         }
       }
       debug("loop..\n")
-      sleep 0.2
-      break
+      sleep 0.5
     end
   end
   
-  def poll_datasource(data_source)
+  def poll_all
+    User.find_each{|user|
+      debug("processing user #{user.id}..")
+        
+      user.data_sources.each{|data_source|
+        poll_datasource(data_source)
+      }
+    }
+  end
+  
+  def poll_datasource(user, data_source)
     debug("  fetching data source #{data_source.id} #{data_source.integration}..")
     klass_str = data_source.integration.to_s.camelcase
     klass = "Integration::#{klass_str}".constantize
@@ -26,14 +35,27 @@ class Poller
     data_source.data_sets.each do |data_set|
       data_set.reports.each do |report|
         obj ||= klass.new(data_source.config)
-        report.update_attribute(:data, obj.perform(data_set.config, report.config))
+        if report.widgets.any?
+          data = obj.perform(data_set.config, report.config)
+
+          report.update_attribute(:data, data)
+
+          report.widgets.each{|widget|
+            client.publish("/users/#{user.api_key}/widgets", widget.as_json({}))
+          }
+        end
       end
     end
   end
   
   def debug(str)
     puts str
+    client.publish('/debug', {'text' => str}) if Rails.env.development?
+  end
+  
+  def client
+    @client ||= FayeClient.instance
   end
 end
 
-Poller.new.poll 
+Poller.new.poll_loop

@@ -16,12 +16,8 @@ function process_widgets() {
     formatted_widgets = pre_process_widgets();
     _(widgets).each(function(w) {
 
-      // if the widget has no data; notify the user that the application is fetching data
-      if(data_is_null_check(w)){
-        widget_fetching_data_notification(w);
-        
       // if widget already exists, update it
-      }else if (_($('#widget_' + w.id)).any()) {
+      if (_($('#widget_' + w.id)).any()) {
         update_widget(w);
       } else {
         // otherwise create widget
@@ -33,26 +29,31 @@ function process_widgets() {
   }
 }
 
-function widget_fetching_data_notification(widget) {
-  $('#dashboard .widgets').append("<div class='widget widget_size_1', id='widget_" + widget.id + "' style='display: none;'>Loading Data ...</div>");
-  $('#widget_' + widget.id).fadeIn(1000).append(generate_destroy_link(widget.id));
-}
-
 function create_widget(widget) {
-  tmpl = widget_templates[widget.widget_type];
+  var tmpl = widget_templates[widget.widget_type];
   // log(tmpl);
   if (tmpl) {
     var html = $(Mustache.to_html(tmpl, widget));
     html.hide();
+    
     $('#dashboard .widgets').append(html);
     $('#widget_' + widget.id).fadeIn(1000).append(generate_destroy_link(widget.id));
   }else{
-    log('Template Missing');
+    log('Template Missing: ' + widget.widget_type + ' for widget: ' + widget.id);
   }
 }
 
 function update_widget(widget) {
-  log('implement me');
+  var tmpl = widget_templates[widget.widget_type];
+  // log(tmpl);
+  
+  if (tmpl) {
+    var html = $(Mustache.to_html(tmpl, widget)).html();
+    $('#widget_' + widget.id).html(html).append(generate_destroy_link(widget.id));
+  }else{
+    log('Template Missing: ' + widget.widget_type + ' for widget: ' + widget.id);
+  }
+  populate_line_charts();
 }
 
 function add_new_widget_widget() {
@@ -66,19 +67,9 @@ function add_new_widget_widget() {
   }
 }
 
-function data_is_null_check (widget) {
-  if(widget.data == null){
-    log("Error: Empty data widget.data" + widget);
-    return true;
-  }
-}
-
 function pre_process_widgets() {
   return _(widgets).map(function(widget) {
-    
-    if(data_is_null_check(widget)) return false;
-
-    if (widget.config.report_type == 'unread_messages_table') {
+    if (widget.config && widget.data && widget.config.report_type == 'unread_messages_table') {
       switch(widget.widget_type){
         case 'table':
           rows = _(widget.data.rows).map(function(row_hash) {
@@ -98,30 +89,20 @@ function pre_process_widgets() {
   });
 }
 
-var client = new Faye.Client('http://0.0.0.0:8000/faye', {timeout: 120});
+var client = new Faye.Client('http://' + host() + ':8000/faye', {timeout: 120});
 
-client.subscribe('/alert', function(message) {
-  alert(message.text);
-});
-
-client.subscribe('/debug', function(message) {
-  console.log(message.text);
-});
+// client.subscribe('/debug', function(message) {
+//   console.log(message.text);
+// });
 
 $(document).ready(function() {
-  // if (!_.isUndefined(window.user_id)) {
-  //   console.log('subscribing to user channel ' + user_id);
-  //   client.subscribe('/users/' + user_id, enqueue_method);
-  // }
-  // 
-  // if (!_.isUndefined(window.subject_ids)) {
-  //   _(subject_ids).each(function(subject_id) { 
-  //     console.log('subscribing to subject channel ' + subject_id);
-  //     client.subscribe('/subjects/' + subject_id, enqueue_method);
-  //   });
-  // }
+  if (!_.isUndefined(window.user)) {
+    console.log('subscribing to user channel');
+    client.subscribe('/users/' + user.api_key + '/widgets', function(message) {
+      update_widget(message);
+    });
+  }
 });
-
 
 function generate_destroy_link(widget_id){
   return "<a href='/widgets/" + widget_id + "' style='display: none;' data-method='delete' class='delete_widget'>X</a>";
