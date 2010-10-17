@@ -11,7 +11,7 @@ class Integration
     #   "before": "83814b06b9d403f3f9e43589ee137c3cac44d182", 
     #   "commits": [
     #     {
-    #       "added": [], 
+    #       "added": [],
     #       "author": {
     #         "email": "jonathan@titanous.com", 
     #         "name": "Jonathan Rudenberg"
@@ -54,8 +54,6 @@ class Integration
     #   }
     # }'
   
-
-
     def initialize(params)
       @payload = JSON.parse(params[:payload])
     end
@@ -65,6 +63,52 @@ class Integration
         [commit['author']['name'], commit['author']['message'], commit['author']['timestamp']]
       end
     end
-
+    
+    class DataSource
+      def self.info
+        {
+          :description => 'Set up a hook on your repository to motivationaldashboard.com/integrations/github/post_receive_hook',
+          :fields => []
+        }
+      end
+    
+      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
+      def self.check_config(config)
+        begin
+          config
+        rescue Exception => e
+          false
+        end
+      end
+    end
+    
+    
+    class DataSet
+      def self.info(data_source_config)
+        nil
+      end
+      
+      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
+      def self.check_config(config)
+        config
+      end
+    end
+    
+    class Report
+      
+      def self.info
+        {
+          :fields => [
+            { :name => :report_type, :type => :select, :options => [['Commit History', REPORT_TYPES[:commits]]] }
+          ]
+        }
+      end
+      
+      def self.check_config(config)
+        config
+      end
+      
+    end
+    
   end
 end
