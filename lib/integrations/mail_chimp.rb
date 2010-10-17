@@ -2,7 +2,7 @@ require 'hominid'
 
 class Integration
   class MailChimp
-    REPORT_TYPES = HashWithIndifferentAccess.new({ :campaign_stats => :table })
+    REPORT_TYPES = HashWithIndifferentAccess.new({ :campaign_stats => :table, :subscriber_count => :count })
 
     def self.perform(*args)
       new(*args).perform
@@ -12,8 +12,8 @@ class Integration
       @hominid = Hominid::Base.new(:api_key => options[:api_key])
     end
 
-    def perform(*args)
-      campaign_stats
+    def perform(data_source_config, report_config)
+      send report_config[:report_type].to_sym
     end
 
     def campaign_stats
@@ -23,9 +23,16 @@ class Integration
       end
 
       {
-        'label' => 'Email Campaign Stats',
+        'label' => 'Mail Chimp Campaign Stats',
         'headers' => ['Name', 'Subject', 'Members', 'Recent Unsubscribes'],
         'rows' => rows.map { |row| { 'row' => row } }
+      }
+    end
+    
+    def subscriber_count
+      {
+        'label' => 'Total Mail Chimp Subscribers',
+        'count' => @hominid.lists.map{|l| l["member_count"] }.inject{|sum, n| sum + n }
       }
     end
 
@@ -69,7 +76,7 @@ class Integration
       def self.info
         {
           :fields => [
-            { :name => :report_type, :type => :select, :options => [['Campaign Statistics', :campaign_stats]] }
+            { :name => :report_type, :type => :select, :options => [['Campaign Statistics', :campaign_stats], ['Total subscriber count', :subscriber_count]] }
           ]
         }
       end

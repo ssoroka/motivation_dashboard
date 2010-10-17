@@ -69,6 +69,10 @@ h1 sup {
   font-size: 20px;
 }
 
+.widget_table table {
+  width: 100%;
+}
+
 .widget_table tbody td {
   background: #222;
   padding:3px;
@@ -93,6 +97,17 @@ h1 sup {
   width: 640px;
   height: 640px;
 }
+
+
+#dashboard .delete_widget {
+  display: none;
+}
+
+
+#dashboard.widgets_editable .delete_widget {
+  display: inline;
+}
+
 
 h2.count_text_title {
   text-align: center;

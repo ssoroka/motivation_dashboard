@@ -34,7 +34,7 @@ class Integration
       partial = ShopifyAPI::Order.count(:fulfillment_status => 'partial')
       total = unshipped + partial
       {
-        'label' => 'Unfulfilled Orders',
+        'label' => 'Unfulfilled Shopify Orders',
         'count' => total
       }
     end
@@ -68,7 +68,7 @@ class Integration
       end
 
       {
-        :label => 'Monthly Sales',
+        :label => 'Monthly Shopify Sales',
         :x_type => 'days',
         :y_label => 'Sales',
         :line_labels => ['Sales Last Month',
