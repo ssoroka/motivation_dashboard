@@ -3,6 +3,20 @@ class Setup::ReportsController < Setup::ApplicationController
   def new
     @report = @data_set.reports.build
     @config_info = integration_klass.const_get('Report').info
+    
+    if @config_info[:fields].size == 1 && @config_info[:fields].first[:options].size
+      report_type = @config_info[:fields].first[:options].flatten[1].to_s
+      @report.config = {"report_type" => report_type}
+      @report.save
+      @widget = @report.widgets.build
+      @widget.dashboard = current_user.dashboard
+      @widget.widget_type_id = Widget::WIDGET_TYPES[data_source_report_type_constant[report_type]]
+      @widget.widget_size = 2 if [:line, :table].include?(data_source_report_type_constant[report_type])
+      current_user.set_next_poll_at!
+      if @widget.save
+        redirect_to dashboard_path
+      end
+    end
   end
   
   # {"commit"=>"Next", "data_set_id"=>"4", "data_source_id"=>"4", "authenticity_token"=>"pJIC3IM8rlGaf8nwUwZWqJyglyAMOm1If0Ko4zJgM9s=", "utf8"=>"\342\234\223", "custom_config"=>{"report_type"=>"unread_messages_table"}}
