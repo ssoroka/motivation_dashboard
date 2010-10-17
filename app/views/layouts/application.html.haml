@@ -2,22 +2,22 @@
 %html{:lang =>"en"}
   %head
     %title
-      Motivation Dashboard
+      Motivation Dashboard | Realtime visualization of your data. The way you want.
     = stylesheet_link_tag 'default', 'application'
-    = javascript_include_tag %w(rails utilities)
+    
+    - if Rails.env.production?
+      = javascript_include_tag %w(jquery.min rails utilities)
+    - else
+      = javascript_include_tag %w(jquery rails utilities)
   %body
     #wrapper
       #header
         %h1
-          = link_to 'Motivation Dashboard', root_path
-      #main
-        = render :partial => 'shared/flashes'
-        = yield :layout
-        :plain
-          <script type="text/javascript">
-            var rumbleUrl = 'http://railsrumble.com';
-          </script>
-          <script type="text/javascript" src="http://blog.railsrumble.com/javascripts/rumble-r10-sash.js"></script>
-        
-      #footer
-        MotivationDashboard.com
+          = link_to image_tag('logo.png', :width => 30) << ' Motivation Dashboard', dashboard_path
+      = render :partial => 'shared/flashes'
+      = yield :layout
+      :plain
+        <script type="text/javascript">
+          var rumbleUrl = 'http://railsrumble.com';
+        </script>
+        <script type="text/javascript" src="http://blog.railsrumble.com/javascripts/rumble-r10-sash.js"></script>
