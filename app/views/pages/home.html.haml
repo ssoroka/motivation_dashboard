@@ -20,21 +20,29 @@
 .home_left_2
   %h2
     Create Account / Sign In
-
-  - form_for @user, :url => users_path do |f|
-    %ul
-      %li
-        %label Your Email
-        = f.text_field :email, :class => 'text'
-      %li
-        %label Password
-        = f.password_field :password, :class => 'text'
-      %li.submit_contain
-        = f.submit 'Create Account', :class => 'submit'
-        = '-or-'
-        = f.submit 'Sign In', :class => 'submit'
-      %li.submit_contain
-        = link_to 'Forgot your password?', forgot_password_path
+  
+  - if current_user
+    %p.welcome_back
+      = raw("Welcome back <strong>#{current_user.user_bar_name}</strong>! <strong>#{link_to('Take me to My Dashboard', dashboard_path)}</strong>!")
+      %br
+      %br
+      %strong= link_to 'Not you?', logout_path
+    
+  - else
+    - form_for @user, :url => users_path do |f|
+      %ul
+        %li
+          %label Your Email
+          = f.text_field :email, :class => 'text'
+        %li
+          %label Password
+          = f.password_field :password, :class => 'text'
+        %li.submit_contain
+          = f.submit 'Create Account', :class => 'submit'
+          = '-or-'
+          = f.submit 'Sign In', :class => 'submit'
+        %li.submit_contain
+          = link_to 'Forgot your password?', forgot_password_path
 
 .home_right_2
   %h2

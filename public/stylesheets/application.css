@@ -176,6 +176,9 @@ div#header ul li a:hover, div#header ul li.at a {
   margin: 10px 0 0 0;
 }
 
+.home_left_2 p.welcome_back {
+  font-size: 1.3em;  
+}
 
 .home_right_2  .submit {
   margin-left: 10px;
@@ -185,6 +188,7 @@ div#header ul li a:hover, div#header ul li.at a {
   line-height: 25px;
   font-size: 15px;
 }
+
 
 /* No Bullets */
 
