@@ -33,7 +33,7 @@ class Integration
       {
         'label' => "Recent Unread Emails",
         'headers' => ['Date', 'From', 'Subject'],
-        'rows' => emails
+        'rows' => emails.map { |email| { :row => email } }
       }
     end
 
