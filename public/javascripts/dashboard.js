@@ -4,6 +4,11 @@ $(document).ready(function() {
   if ($('.widget').size() < 3) {
     add_new_widget_widget();
   }
+  
+  $('#modify_dashboard_toggle').click(function(){
+    $('.delete_widget').toggle();
+  })
+  
 });
 
 function process_widgets() {
@@ -30,8 +35,7 @@ function create_widget(widget) {
     var html = $(Mustache.to_html(tmpl, widget));
     html.hide();
     $('#dashboard .widgets').append(html);
-    $('#widget_' + widget.id).fadeIn(1000);
-    $('#widget_' + widget.id).append(generate_destroy_link(widget.id));
+    $('#widget_' + widget.id).fadeIn(1000).append(generate_destroy_link(widget.id));
   }else{
     log('Template Missing');
   }
@@ -75,5 +79,5 @@ function pre_process_widgets() {
 }
 
 function generate_destroy_link(widget_id){
-  return "<a href='/widgets/" + widget_id + "' data-method='delete' class='delete_widget'>X</a>";
+  return "<a href='/widgets/" + widget_id + "' style='display: none;' data-method='delete' class='delete_widget'>X</a>";
 }
