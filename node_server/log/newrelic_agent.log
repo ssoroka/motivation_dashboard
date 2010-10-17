@@ -1,0 +1,26 @@
+# Logfile created on Sat Aug 28 10:37:24 -0500 2010 by logger.rb
+[08/28/10 10:37:24 -0500 robot-devil-2.local (54566)] INFO : Dispatcher: thin
+[08/28/10 10:37:24 -0500 robot-devil-2.local (54566)] INFO : Application: Gravit (Development)
+[08/28/10 10:37:24 -0500 robot-devil-2.local (54566)] WARN : Agent configured not to send data in this environment - edit newrelic.yml to change this
+[08/28/10 10:37:24 -0500 robot-devil-2.local (54566)] INFO : New Relic RPM Agent 2.13.0.beta7 Initialized: pid = 54566
+[08/28/10 10:37:24 -0500 robot-devil-2.local (54566)] INFO : Agent Log found in /Users/steven/Projects/Gravit/notification_server_rb/log/newrelic_agent.log
+[08/28/10 11:12:27 -0500 robot-devil-2.local (54635)] INFO : Dispatcher: thin
+[08/28/10 11:12:27 -0500 robot-devil-2.local (54635)] INFO : Application: Gravit (Development)
+[08/28/10 11:12:27 -0500 robot-devil-2.local (54635)] WARN : Agent configured not to send data in this environment - edit newrelic.yml to change this
+[08/28/10 11:12:27 -0500 robot-devil-2.local (54635)] INFO : New Relic RPM Agent 2.13.0.beta7 Initialized: pid = 54635
+[08/28/10 11:12:27 -0500 robot-devil-2.local (54635)] INFO : Agent Log found in /Users/steven/Projects/Gravit/notification_server_rb/log/newrelic_agent.log
+[08/28/10 12:35:37 -0500 robot-devil-2.local (54859)] INFO : Dispatcher: thin
+[08/28/10 12:35:37 -0500 robot-devil-2.local (54859)] INFO : Application: Gravit (Development)
+[08/28/10 12:35:37 -0500 robot-devil-2.local (54859)] WARN : Agent configured not to send data in this environment - edit newrelic.yml to change this
+[08/28/10 12:35:37 -0500 robot-devil-2.local (54859)] INFO : New Relic RPM Agent 2.13.0.beta7 Initialized: pid = 54859
+[08/28/10 12:35:37 -0500 robot-devil-2.local (54859)] INFO : Agent Log found in /Users/steven/Projects/Gravit/notification_server/log/newrelic_agent.log
+[08/28/10 14:37:38 -0500 robot-devil-2.local (55113)] INFO : Dispatcher: thin
+[08/28/10 14:37:38 -0500 robot-devil-2.local (55113)] INFO : Application: Gravit (Development)
+[08/28/10 14:37:38 -0500 robot-devil-2.local (55113)] WARN : Agent configured not to send data in this environment - edit newrelic.yml to change this
+[08/28/10 14:37:38 -0500 robot-devil-2.local (55113)] INFO : New Relic RPM Agent 2.13.0.beta7 Initialized: pid = 55113
+[08/28/10 14:37:38 -0500 robot-devil-2.local (55113)] INFO : Agent Log found in /Users/steven/Projects/Gravit/notification_server/log/newrelic_agent.log
+[08/28/10 16:12:21 -0500 robot-devil-2.local (55211)] INFO : Dispatcher: thin
+[08/28/10 16:12:21 -0500 robot-devil-2.local (55211)] INFO : Application: Gravit (Development)
+[08/28/10 16:12:21 -0500 robot-devil-2.local (55211)] WARN : Agent configured not to send data in this environment - edit newrelic.yml to change this
+[08/28/10 16:12:21 -0500 robot-devil-2.local (55211)] INFO : New Relic RPM Agent 2.13.0.beta7 Initialized: pid = 55211
+[08/28/10 16:12:21 -0500 robot-devil-2.local (55211)] INFO : Agent Log found in /Users/steven/Projects/Gravit/notification_server/log/newrelic_agent.log

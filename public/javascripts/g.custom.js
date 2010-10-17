@@ -38,11 +38,14 @@ function raphael_setup() {
 
 $(document).ready(function() {
   raphael_setup();
+});
+
+function populate_line_charts() {
   $('.widget_line').each(function() {
     var self = $(this);
     setup_line_chart({height: self.height(), width: self.width(), id: self.attr('id'), widget: self});
   });
-});
+}
 
 // {
 //   "widget_size":2,

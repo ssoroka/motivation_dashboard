@@ -25,3 +25,7 @@ function month_name(num) {
 function short_date(date) {
   return month_name(date.getMonth()) + ' ' + date.getDate() + ', ' + date.getHours() + ':' + date.getMinutes();
 }
+
+function host() {
+  return _(window.location.href.match(/^https?\:\/\/([\w\.]+)(?:\:\d+)?\//)).last();
+}

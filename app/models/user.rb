@@ -43,12 +43,14 @@ class User < ActiveRecord::Base
   
   # punt the next_poll_at date to some time in the future.
   def punt_polling!
-    if current_login_at > 5.minutes.ago.utc
+    if last_request_at > 5.minutes.ago.utc
       update_attribute(:next_poll_at, 30.seconds.from_now.utc)
-    elsif current_login_at > 30.minutes.ago.utc
+    elsif last_request_at > 30.minutes.ago.utc
       update_attribute(:next_poll_at, 2.minutes.from_now.utc)
-    else
+    elsif last_request_at > 2.hours.ago.utc
       update_attribute(:next_poll_at, 5.minutes.from_now.utc)
+    else
+      update_attribute(:next_poll_at, 1.hour.from_now.utc)
     end
   end
   
