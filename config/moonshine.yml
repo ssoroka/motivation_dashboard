@@ -75,12 +75,3 @@
 # - vendor/plugins/moonshine/lib/moonshine/manifest/rails/templates/moonshine.cnf.erb 
 :mysql:
   :innodb_buffer_pool_size: 128M
-
-:redis:
-  :arch: i386
-
-:resque:
-  :scheduler: true
-  :web:
-    :username: admin
-    :password: raphael.js
