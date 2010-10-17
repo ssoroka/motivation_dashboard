@@ -37,7 +37,7 @@ class Setup::ReportsController < Setup::ApplicationController
   private
     
     def integration_constant
-      "Integration::#{@data_source.integration.to_s.classify}::Report".constantize
+      "Integration::#{@data_source.integration.to_s.camelcase}::Report".constantize
     end
 
 

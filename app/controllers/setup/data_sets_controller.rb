@@ -3,6 +3,16 @@ class Setup::DataSetsController < Setup::ApplicationController
   def new
     @data_set = DataSet.new
     @config_info = integration_constant.info(@data_source.config)
+        
+    if @config_info.blank?
+      @data_set.data_source_id = @data_source.id
+      if @data_set.save
+        redirect_to [:new, :setup, @data_source, @data_set, :report]
+      else
+        redirect_to [:new, :setup, @data_source]
+      end
+    end
+    
   end
   
   def create
@@ -38,7 +48,7 @@ class Setup::DataSetsController < Setup::ApplicationController
   private
     
     def integration_constant
-      "Integration::#{@data_source.integration.to_s.classify}::DataSet".constantize
+      "Integration::#{@data_source.integration.to_s.camelcase}::DataSet".constantize
     end
 
 end

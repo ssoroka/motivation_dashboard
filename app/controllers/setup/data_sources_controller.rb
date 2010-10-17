@@ -28,10 +28,27 @@ class Setup::DataSourcesController < Setup::ApplicationController
     
   end
   
+  def auth_receive
+    if params[:token]
+      @data_source = DataSource.new
+      @data_source.integration = params[:integration]
+      config_result = integration_constant.check_config({:authsub_token => params[:token]})
+      @data_source.config = config_result if config_result
+
+      if config_result && @data_source.save
+        redirect_to [:new, :setup, @data_source, :data_set]
+      else
+        redirect_to new_setup_data_source_path(:integration => params[:integration])
+      end
+    else
+      redirect_to new_setup_data_source_path(:integration => params[:integration])
+    end
+  end
+  
   private
     
     def integration_constant
-      "Integration::#{params[:integration].classify}::DataSource".constantize
+      "Integration::#{params[:integration].camelcase}::DataSource".constantize
     end
   
 end
