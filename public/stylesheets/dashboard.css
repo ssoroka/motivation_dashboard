@@ -334,3 +334,11 @@ div.flash_info {
 	border: 2px solid #FFD324; 
 	color: #fff;
 }
+
+.field_with_errors {
+  display: inline;
+}
+
+.field_with_errors .text {
+  border: 3px solid #e2666a;
+}
