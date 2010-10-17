@@ -98,9 +98,9 @@ class Integration
         profiles = Garb::Profile.all
         options = profiles.map { |p| [p.title, p.web_property_id]}
         {
-          :description => 'Choose the Site to Show',
+          :description => 'Choose a website:',
           :fields => [
-            { :name => :property_id, :type => :select, :options => options }
+            { :name => :property_id, :type => :select, :options => options, :label => '' }
           ]
         }
       end
