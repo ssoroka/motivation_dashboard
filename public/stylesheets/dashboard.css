@@ -65,6 +65,10 @@ h1 sup {
   font-size: 20px;
 }
 
+.widget_table table {
+  width: 100%;
+}
+
 .widget_table tbody td {
   background: #222;
   padding:3px;

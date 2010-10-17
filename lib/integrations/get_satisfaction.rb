@@ -32,7 +32,7 @@ class Integration
       rows.sort!{ |a,b| b[1].to_i <=> a[1].to_i }
 
       {
-        'label' => 'Unanswered Support Messages',
+        'label' => "#{@company_name} - Unanswered Support Messages",
         'headers' => ['Subject', 'Followers', 'Replies'],
         'rows' => rows.map { |row| { 'row' => row } }
       }

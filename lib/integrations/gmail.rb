@@ -6,7 +6,7 @@ require 'time'
 class Integration
   class Gmail
     REPORT_TYPES = HashWithIndifferentAccess.new({ :unread_messages_table => :table, :unread_messages_count => :count })
-
+#1/oxrqLLEhZg3_wzMp1EpsKls-1x-Lx2WevYaXskI1a5U
     def self.perform(*args)
       new(*args).perform
     end
@@ -31,7 +31,7 @@ class Integration
       end
 
       {
-        'label' => "Recent Unread Emails",
+        'label' => "Recent Unread Gmail mails",
         'headers' => ['Date', 'From', 'Subject'],
         'rows' => emails.map { |email| { :row => email } }
       }
