@@ -6,7 +6,7 @@ class Integration
   class GoogleAnalytics
 
     attr_reader :profile
-  
+
     REPORT_TYPES = {:visitors => 1, :visits => 2, :pageviews => 3, :unique_pageviews => 4, :goal_completions => 5}
 
     def self.perform(*args)
@@ -19,7 +19,7 @@ class Integration
 
     def perform(data_set_config, report_config)
       @profile = Garb::Profile.first(data_set_config[:property_id])
-      metric_by_day(REPORT_TYPES.invert[report_config[:report_type]])
+      metric_by_day(REPORT_TYPES.invert[report_config[:report_type].to_i])
     end
 
 
