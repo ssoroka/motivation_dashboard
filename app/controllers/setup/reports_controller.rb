@@ -1,12 +1,12 @@
 class Setup::ReportsController < Setup::ApplicationController
 
   def new
-    @report = Report.new
+    @report = @data_set.reports.build
     @config_info = integration_constant.info
   end
   
   def create
-    @report = Report.new(params[:report])
+    @report = @data_set.reports.build(params[:report])
     @config = integration_constant
     @config_info = @config.info
     
@@ -21,11 +21,11 @@ class Setup::ReportsController < Setup::ApplicationController
   end
 
   def edit
-    @report = Report.find(params[:id])
+    @report = @data_set.reports.find(params[:id])
   end
   
   def update
-    @report = Report.find(params[:id])
+    @report = @data_set.reports.find(params[:id])
     
     if @report.update_attributes(params[:data_set])
       redirect_to [:new, :setup, @data_source, @data_set, @report, :widget] # Should redirect to existing page - Nathan 3:33PM SAT
@@ -35,10 +35,7 @@ class Setup::ReportsController < Setup::ApplicationController
   end
 
   private
-    
     def integration_constant
       "Integration::#{@data_source.integration.to_s.camelcase}::Report".constantize
     end
-
-
 end

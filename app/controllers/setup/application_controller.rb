@@ -3,8 +3,8 @@ class Setup::ApplicationController < ApplicationController
   before_filter :require_user, :find_nested_resources
   
   def find_nested_resources
-    @data_source = DataSource.find(params[:data_source_id]) if params[:data_source_id]
-    @data_set = DataSet.find(params[:data_set_id]) if params[:data_set_id]
-    @report = Report.find(params[:report_id]) if params[:report_id]
+    @data_source = current_user.data_sources.find(params[:data_source_id]) if params[:data_source_id]
+    @data_set = @data_source.data_sets.find(params[:data_set_id]) if params[:data_set_id]
+    @report = @data_set.reports.find(params[:report_id]) if params[:report_id]
   end
 end

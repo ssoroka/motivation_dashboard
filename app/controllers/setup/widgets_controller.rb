@@ -1,11 +1,12 @@
 class Setup::WidgetsController < Setup::ApplicationController
 
   def new
-    @widget = Widget.new
+    @widget = @report.widgets.build
   end
   
   def create
-    @widget = Widget.new(params[:widget])
+    @widget = @report.widgets.build(params[:widget])
+    @widget.dashboard = current_user.dashboard
     
     if @widget.save
       redirect_to dashboard_path
@@ -15,11 +16,11 @@ class Setup::WidgetsController < Setup::ApplicationController
   end
 
   def edit
-    @widget = Widget.find(params[:id])
+    @widget = @report.widgets.find(params[:id])
   end
   
   def update
-    @widget = Widget.find(params[:id])
+    @widget = @report.widgets.find(params[:id])
     
     if @widget.update_attributes(params[:widget])
       redirect_to dashboard_path
@@ -27,5 +28,4 @@ class Setup::WidgetsController < Setup::ApplicationController
       render :action => :edit
     end
   end
-
 end

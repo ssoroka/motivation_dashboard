@@ -5,6 +5,8 @@ require 'active_support/time'
 class Integration
   class Shopify
 
+    REPORT_TYPES = { :unfullfilled_orders => 1, :monthly_sales => 2 }
+
     API_KEY = 'ce4f6995cf320e00daa4be4fcb178d67'
     SECRET  = '4095ab31e7ca34e2468f4cbc360c9d49'
 
@@ -12,9 +14,13 @@ class Integration
       new(*args).perform
     end
 
+    def self.setup_session
+      ShopifyAPI::Session.setup(:api_key => API_KEY, :secret => SECRET)
+    end
+
     def initialize(options)
       # This stuff will be in the DataSource model
-      ShopifyAPI::Session.setup(:api_key => API_KEY, :secret => SECRET)
+      self.setup_session
       @session = ShopifyAPI::Session.new(options[:shop_url], options[:token])
       ActiveResource::Base.site = @session.site
     end
@@ -69,6 +75,61 @@ class Integration
       statuses[:unshipped]  = ShopifyAPI::Order.count(:fulfillment_status => 'unshipped')
       statuses[:partially_shipped] = ShopifyAPI::Order.count(:fulfillment_status => 'partial')
       statuses
+    end
+
+    class DataSource
+      def self.info
+        {
+          :description => 'Shows Shopify order statuses.',
+          :fields => [
+            { :name => :shop_url, :type => :string, :helper_text => 'Enter the URL of your Shopify store (ex. secretsauce.myshopify.com)' },
+            { :type => :shopify }
+          ]
+        }
+      end
+
+      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
+      def self.check_config(config)
+        begin
+          Shopify.setup_session
+          config if ShopifyAPI::Session.new(config[:shop_url], config[:token]).valid?
+        rescue Exception => e
+          false
+        end
+      end
+
+      def self.install_url(store_url)
+        Shopify.setup_session
+        ShopifyAPI::Session.new(store_url).create_permission_url
+      end
+    end
+
+
+    class DataSet
+      def self.info(data_source_config)
+        nil
+      end
+
+      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
+      def self.check_config(config)
+        config
+      end
+    end
+
+    class Report
+      def self.info
+        {
+          :fields => [
+            { :name => :report_type, :type => :select, :options => [['Unfulfilled Orders', REPORT_TYPES[:unfulfilled_orders]],
+                                                                    ['Monthly Sales', REPORT_TYPES[:monthly_sales]]] }
+          ]
+        }
+      end
+
+      def self.check_config(config)
+        Shopify
+        config
+      end
     end
 
 

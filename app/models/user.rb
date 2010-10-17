@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   before_save :set_default_next_poll
   
   has_one :dashboard
+  has_many :data_sources
 
   def full_name
     "#{first_name} #{last_name}"
