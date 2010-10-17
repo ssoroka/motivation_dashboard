@@ -7,15 +7,19 @@ $(document).ready(function() {
 });
 
 function process_widgets() {
-  _(widgets).each(function(w) {
-    // if widget already exists, update it
-    if (_($('#widget_' + w.id)).any()) {
-      update_widget(w);
-    } else {
-      // otherwise create widget
-      create_widget(w);
-    }
-  });
+  if (window.widgets){
+    _(widgets).each(function(w) {
+      // if widget already exists, update it
+      if (_($('#widget_' + w.id)).any()) {
+        update_widget(w);
+      } else {
+        // otherwise create widget
+        create_widget(w);
+      }
+    });
+  } else {
+    log("no widgets. :-S");
+  }
 }
 
 function create_widget(widget) {
