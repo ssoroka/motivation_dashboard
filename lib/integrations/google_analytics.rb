@@ -30,7 +30,15 @@ class Integration
     # view_type can be one of [:visitors, :visits, :pageviews, :unique_pageviews,
     #   :goal1_completions, etc]
     def metric_by_day(metric)
-      { :month_to_date => month_to_date(metric), :last_month => last_month(metric) }
+      metric_name = metric.to_s.humanize
+      {
+        :label => "#{metric_name} for #{@profile.title}",
+        :x_type => 'days',
+        :y_label => metric_name,
+        :line_labels => ["#{metric_name} Last Month",
+                         "#{metric_name} This Month"],
+        :lines => [last_month(metric), month_to_date(metric)]
+      }
     end
 
     def month_to_date(metric)
