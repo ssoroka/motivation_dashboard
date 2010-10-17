@@ -73,7 +73,7 @@ class Integration
         :y_label => 'Sales',
         :line_labels => ['Sales Last Month',
                          'Sales This Month'],
-        :lines => [last_month, this_month]
+        :lines => [last_month, month_to_date]
       }
     end
 

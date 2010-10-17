@@ -25,6 +25,7 @@ gem 'hominid' # MailChimp
 gem 'shopify_api' # Shopify
 gem 'feedzirra' # XML Feed
 gem 'pismo' # XML Feed
+gem 'hoptoad_notifier'
 
 # Use unicorn as the web server
 # gem 'unicorn'
