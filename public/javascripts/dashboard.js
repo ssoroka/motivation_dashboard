@@ -1,6 +1,6 @@
 $(document).ready(function() {
   process_widgets();
-  $('.widgets').masonry({animate: true, itemSelector: '.widget'});
+  $('.widgets').masonry({animate: true, itemSelector: '.widget', columnWidth:340});
   if ($('.widget').size() < 3) {
     add_new_widget_widget();
   }

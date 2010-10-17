@@ -7,6 +7,8 @@ class DataSet < ActiveRecord::Base
   end
 
   def config
-    YAML::load(read_attribute(:config))
+    if c = read_attribute(:config)
+      YAML::load(c)
+    end
   end
 end

@@ -1,6 +1,6 @@
 module DashboardHelper
   def display_widgets(widgets)
-    javascript_tag(raw("var widgets = #{widgets.to_json};"))
+    javascript_tag(raw("var widgets = #{widgets.reverse.to_json};"))
   end
   
   def not_set(attribute)
