@@ -13,9 +13,9 @@
     #wrapper
       #header
         %ul
-          %li= link_to 'Home', root_path
-          %li= link_to 'Features', features_path
-          %li= link_to 'Pricing', pricing_path
+          %li.nav_01{:class => request.path_info == '/' ? 'at' : ''}= link_to 'Home', root_path
+          %li.nav_02{:class => request.path_info == '/features' ? 'at' : ''}= link_to 'Features', features_path
+          %li.nav_03{:class => request.path_info == '/pricing' ? 'at' : ''}= link_to 'Pricing', pricing_path
         %h1
           = link_to image_tag('logo.png', :width => 30) << ' Motivation Dashboard', dashboard_path
       = render :partial => 'shared/flashes'

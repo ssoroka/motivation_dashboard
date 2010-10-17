@@ -9,7 +9,7 @@ class PagesController < ApplicationController
       if @subscriber.save
         flash.now[:notice] = "Thanks for subscribing to our beta mailing list - we'll be sure to keep you posted!"
       else
-        flash.now[:error] = "Hmm, that doesn't look like email addresss."
+        flash.now[:error] = "Hmm, that doesn't look like an email addresss."
       end
     end
     
