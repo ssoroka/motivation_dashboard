@@ -1,9 +1,18 @@
 class PagesController < ApplicationController
 
-  # Use this controller for the front-facing site? - Nathan 7:15pm
   def home
     @user = User.new
-    @subscriber = Subscriber.new
+    @subscriber = Subscriber.new(params[:subscriber])
+    
+    # Oh, this is so good looookin' :-) 
+    if params[:subscriber]
+      if @subscriber.save
+        flash.now[:notice] = "Thanks for subscribing to our beta mailing list - we'll be sure to keep you posted!"
+      else
+        flash.now[:error] = "Hmm, that doesn't look like email addresss."
+      end
+    end
+    
   end
   
   def features

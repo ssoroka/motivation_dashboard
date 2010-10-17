@@ -13,7 +13,7 @@ class PasswordResetsController < ApplicationController
       params[:email] = nil
       render :action => :new
     else
-      flash.now[:error] = "Well thats no fun, looks like no user was found matching #{params[:email]}."
+      flash.now[:error] = "Well thats no fun, looks like no user was found matching #{params[:email].blank? ? 'your blank email' : params[:email]}."
       render :action => :new
     end
   end

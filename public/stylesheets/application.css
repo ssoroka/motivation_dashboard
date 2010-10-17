@@ -8,7 +8,7 @@ body {
 }
 
 a { color: #333; }
-a:hover { color: #333; }
+a:hover { color: #f15731; }
 p, label { color: #534540; }
 
 /* Main Wrappers */
@@ -17,6 +17,10 @@ div#wrapper {
   margin: 0 auto; 
   display: block;
   width: 1024px;
+}
+
+.field_with_errors {
+  display: inline;
 }
 
 div#header {
@@ -101,6 +105,9 @@ div#header ul li a:hover, div#header ul li a.at {
   -webkit-border-radius: 10px;
 }
 
+#content_full p {
+  font-size: 1.2em;
+}
 
 #content_full h2 {
   margin: 0; padding: 0;
