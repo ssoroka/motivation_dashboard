@@ -4,7 +4,7 @@ class Setup::ReportsController < Setup::ApplicationController
     @report = @data_set.reports.build
     @config_info = integration_klass.const_get('Report').info
     
-    if @config_info[:fields].size == 1 && @config_info[:fields].first[:options].size
+    if @config_info[:fields].size == 1 && @config_info[:fields].first[:options].size == 1
       report_type = @config_info[:fields].first[:options].flatten[1].to_s
       @report.config = {"report_type" => report_type}
       @report.save
