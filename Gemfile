@@ -25,6 +25,8 @@ gem 'hominid' # MailChimp
 gem 'shopify_api' # Shopify
 gem 'feedzirra' # XML Feed
 gem 'pismo' # XML Feed
+gem 'twitter' # Twitter
+
 gem 'hoptoad_notifier'
 
 gem 'event_machine'
