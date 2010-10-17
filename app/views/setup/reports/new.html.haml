@@ -1,7 +1,11 @@
-%h2 Configure #{@data_source.integration.to_s.titleize}
-
-- form_for [:setup, @data_source, @data_set, @report] do |f|
-  %ul
-    %li= @config_info[:description]
-    = render :partial => 'shared/custom_config_fields', :object => {:config_info => @config_info}
-    %li= f.submit 'Next'
+.data_source_title
+  %h2 #{@data_source.integration.to_s.titleize}
+.data_source_form
+  - form_for [:setup, @data_source, @data_set, @report] do |f|
+    - if @config_info[:description]
+      raw(= @config_info[:description])
+    .data_source_fields
+      %div{:style => "width: 260px; margin-left:auto; margin-right: auto;"}
+        = render :partial => 'shared/custom_config_fields', :object => {:config_info => @config_info}
+    .submit_button
+      = f.submit 'Next'

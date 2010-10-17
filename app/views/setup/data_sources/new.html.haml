@@ -1,9 +1,12 @@
-%h2 Configure #{params[:integration].titleize}
-
-- form_for [:setup, @data_source] do |f|
-  %ul
-    %li=raw @config_info[:description]
-    = render :partial => 'shared/custom_config_fields', :object => {:config_info => @config_info}
-    %li
-      = hidden_field_tag :integration, params[:integration]
+.data_source_title
+  %h2 #{params[:integration].titleize}
+.data_source_form
+  - form_for [:setup, @data_source] do |f|
+    - if @config_info[:description]
+      = raw(@config_info[:description])
+    .data_source_fields
+      %div{:class=> "source_fields_for_" + params[:integration]}
+        = render :partial => 'shared/custom_config_fields', :object => {:config_info => @config_info}
+    = hidden_field_tag :integration, params[:integration]
+    .submit_button
       = f.submit 'Next'

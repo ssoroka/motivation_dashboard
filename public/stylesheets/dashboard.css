@@ -134,6 +134,118 @@ h1 a {
   vertical-align: middle;
 }
 
+.data_source_title {
+  -moz-border-radius:10px 10px 10px 10px;
+  background:none repeat scroll 0 0 #444;
+  height:40px;
+  width:200px;
+  padding-left:10px;
+  padding-right:10px;
+  margin-bottom:10px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  vertical-align:middle;
+}
+
+.data_source_title h2 {
+  padding-top: 5px;
+}
+
+.data_source_form {
+  -moz-border-radius:10px 10px 10px 10px;
+  background:none repeat scroll 0 0 #444;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  float: bottom;
+}
+
+.data_source_fields {
+  display:block;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+}
+
+.source_fields_for_gmail {
+  width: 250px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.source_fields_for_google_analytics {
+  width: 250px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.source_fields_for_get_satisfaction {
+  width: 370px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.source_fields_for_shopify {
+  width: 350px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.source_fields_for_mail_chimp {
+  width: 350px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.source_fields_for_gmail {
+  width: 250px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.data_set_fields_for_google_analytics {
+  width: 255px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.data_set_fields_for_get_satisfaction {
+  width: 200px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.data_set_fields_for_shopify {
+  width: 260px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.data_set_fields_for_mail_chimp {
+  width: 260px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.data_set_fields_for_gmail {
+  width: 260px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.submit_button {
+  padding-top: 10px;
+  width: 65px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .top_menu ul li {
   display:inline-block;
   margin-right: 30px;
