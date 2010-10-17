@@ -10,7 +10,7 @@ class WidgetsController < ApplicationController
 
   def destroy
     @widget = current_user.dashboard.widgets.find(params[:id])
-    # @widget.destroy
+    @widget.destroy
     respond_with(@widget) {|format|
       format.js {
         render :update do |page|
