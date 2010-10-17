@@ -195,6 +195,10 @@ p.count_text {
   margin-top: 30px;
 }
 
+.data_source_item img.twitter {
+  margin-top: 30px;
+}
+
 .data_source_image {
   width: 230px;
   margin-left: auto;
@@ -309,6 +313,12 @@ p.count_text {
 }
 
 .data_set_fields_for_gmail {
+  width: 260px; 
+  margin-left:auto; 
+  margin-right: auto;
+}
+
+.data_set_fields_for_twitter {
   width: 260px; 
   margin-left:auto; 
   margin-right: auto;
