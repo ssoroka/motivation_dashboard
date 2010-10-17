@@ -25,7 +25,7 @@ class Integration
       {
         'label' => 'Email Campaign Stats',
         'headers' => ['Name', 'Subject', 'Members', 'Recent Unsubscribes'],
-        'rows' => rows
+        'rows' => rows.map { |row| { 'row' => row } }
       }
     end
 

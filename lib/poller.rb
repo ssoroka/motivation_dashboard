@@ -11,7 +11,7 @@ class Poller
           poll_datasource(data_source)
         }
       }
-      debug("loop..")
+      debug("loop..\n")
       sleep 0.2
       break
     end

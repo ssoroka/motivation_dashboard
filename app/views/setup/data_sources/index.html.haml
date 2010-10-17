@@ -6,9 +6,8 @@
   .data_sources
     - Integration::INTEGRATIONS.each_pair do |integration_key, integration_value|
       .data_source_item
-        = link_to(image_tag("integrations/#{integration_key.to_s.downcase}.png", :class => 'integration_image'), new_setup_data_source_path(:integration => integration_key))
-        - if Integration::VIEW_SHOW_WORDS.has_key?(integration_key)
-          %h2= link_to integration_key.to_s.titleize, new_setup_data_source_path(:integration => integration_key)
+        .data_source_image
+          = link_to(image_tag("integrations/#{integration_key.to_s.downcase}.png", :class => "integration_image #{integration_key}"), new_setup_data_source_path(:integration => integration_key))
 
 - else
   #new_widget

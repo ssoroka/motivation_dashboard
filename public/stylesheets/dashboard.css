@@ -97,7 +97,46 @@ h1 a {
 }
 
 .data_source_item {
-  
+  -moz-border-radius:10px 10px 10px 10px;
+  background: none repeat scroll 0 0 #FFF;
+  display: block;
+  float: left;
+  margin-top: 10px;
+  margin-right: 10px;
+  height: 150px;
+  width: 250px;
+}
+
+.data_source_item img.shopify {
+  margin-top: 30px;
+}
+
+.data_source_item img.gmail {
+  margin-top: 23px;
+}
+
+.data_source_item img.google_analytics {
+  margin-top: 19px;
+}
+
+.data_source_item img.mail_chimp {
+  margin-top: 31px;
+}
+
+.data_source_item img.github {
+  margin-top: 19px;
+}
+
+.data_source_item img.get_satisfaction {
+  margin-top: 30px;
+}
+
+.data_source_image {
+  width: 230px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+  vertical-align: middle;
 }
 
 .top_menu ul li {
