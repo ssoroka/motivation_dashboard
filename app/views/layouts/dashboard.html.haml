@@ -15,7 +15,8 @@
         %span.right.top_menu
           %ul
             %li= link_to(image_tag('blockie/button-add-blue.png', :style => 'width:24px') << ' Add Widget', '/setup')
-            %li= link_to('Modify Dashboard', '#', :id => 'modify_dashboard_toggle')
+            - if request.path_info == dashboard_path
+              %li= link_to('Modify Dashboard', '#', :id => 'modify_dashboard_toggle')
             %li= link_to('My Account', user_path(current_user))
             %li= link_to('Logout', logout_path)
         %h1

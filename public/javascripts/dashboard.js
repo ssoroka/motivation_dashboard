@@ -15,6 +15,9 @@ function process_widgets() {
   if (window.widgets){
     formatted_widgets = pre_process_widgets();
     _(widgets).each(function(w) {
+
+      if(data_is_null_check(w)) return false;
+
       // if widget already exists, update it
       if (_($('#widget_' + w.id)).any()) {
         update_widget(w);
@@ -56,8 +59,18 @@ function add_new_widget_widget() {
   }
 }
 
+function data_is_null_check (widget) {
+  if(widget.data == null){
+    log("Error: Empty data widget.data" + widget);
+    return true;
+  }
+}
+
 function pre_process_widgets() {
   return _(widgets).map(function(widget) {
+    
+    if(data_is_null_check(widget)) return false;
+
     if (widget.config.report_type == 'unread_messages_table') {
       switch(widget.widget_type){
         case 'table':
