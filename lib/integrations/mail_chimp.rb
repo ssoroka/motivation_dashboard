@@ -2,7 +2,7 @@ require 'hominid'
 
 class Integration
   class MailChimp
-    REPORT_TYPES = { :campaign_stats => 1 }
+    REPORT_TYPES = HashWithIndifferentAccess.new({ :campaign_stats => :table })
 
     def self.perform(*args)
       new(*args).perform
@@ -61,7 +61,7 @@ class Integration
       def self.info
         {
           :fields => [
-            { :name => :report_type, :type => :select, :options => [['Campaign Statistics', REPORT_TYPES[:campaign_stats]]] }
+            { :name => :report_type, :type => :select, :options => [['Campaign Statistics', :campaign_stats]] }
           ]
         }
       end
