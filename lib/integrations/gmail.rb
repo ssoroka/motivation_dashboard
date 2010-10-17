@@ -33,12 +33,15 @@ class Integration
       {
         'label' => "Recent Unread Emails",
         'headers' => ['Date', 'From', 'Subject'],
-        'rows' => emails
+        'rows' => emails.map { |email| { :row => email } }
       }
     end
 
     def unread_messages_count
-      unread_messages.at_css('fullcount').inner_text.to_i
+      {
+        'label' => 'Unread Emails',
+        'count' => unread_messages.at_css('fullcount').inner_text.to_i
+      }
     end
 
     def unread_messages
