@@ -24,7 +24,7 @@ h1 a {
 /*  border: 1px solid #999;*/
 /*  height: 100%;*/
   margin:5px;
-padding:10px;
+  padding:10px;
   background: #222;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -87,4 +87,36 @@ padding:10px;
 
 .top_menu ul li img {
   vertical-align: bottom;
+}
+
+
+/* Flash Notices */
+div.flash_notice, div.flash_error, div.flash_info  {
+	display: block;
+	margin: 0 0 10px 0;
+  padding: 0;
+	padding: 5px;
+  background: #333;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+div.flash_notice a, div.flash_error a, div.flash_info a {
+  text-decoration: none;
+}
+
+div.flash_notice {
+	border: 2px solid #C6D880;
+  color: #C6D880;
+}
+
+div.flash_error {
+  border: 2px solid #D12F19;
+  color: #fff;
+}
+
+div.flash_info {
+	border: 2px solid #FFD324; 
+	color: #fff;
 }
