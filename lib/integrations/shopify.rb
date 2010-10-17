@@ -119,7 +119,7 @@ class Integration
       def self.info
         {
           :fields => [
-            { :name => :report_type, :type => :select, :options => [['Unfulfilled Orders', :unfulfilled_orders]],
+            { :name => :report_type, :type => :select, :options => [['Unfulfilled Orders', :unfulfilled_orders],
                                                                     ['Monthly Sales', :monthly_sales]] }
           ]
         }

@@ -13,6 +13,7 @@ class Poller
       }
       debug("loop..")
       sleep 0.2
+      break
     end
   end
   
