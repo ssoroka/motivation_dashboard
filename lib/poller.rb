@@ -58,8 +58,4 @@ class Poller
   end
 end
 
-<<<<<<< HEAD
 Poller.new.poll_loop
-=======
-Poller.new.poll 
->>>>>>> 8174bfceff8dc95753ded8a2121d39f7cd2d1488
