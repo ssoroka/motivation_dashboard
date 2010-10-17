@@ -30,7 +30,7 @@ function process_widgets() {
 
 function create_widget(widget) {
   tmpl = widget_templates[widget.widget_type];
-  log(tmpl);
+  // log(tmpl);
   if (tmpl) {
     var html = $(Mustache.to_html(tmpl, widget));
     html.hide();
@@ -77,6 +77,31 @@ function pre_process_widgets() {
     }
   });
 }
+
+var client = new Faye.Client('http://0.0.0.0:8000/faye', {timeout: 120});
+
+client.subscribe('/alert', function(message) {
+  alert(message.text);
+});
+
+client.subscribe('/debug', function(message) {
+  console.log(message.text);
+});
+
+$(document).ready(function() {
+  // if (!_.isUndefined(window.user_id)) {
+  //   console.log('subscribing to user channel ' + user_id);
+  //   client.subscribe('/users/' + user_id, enqueue_method);
+  // }
+  // 
+  // if (!_.isUndefined(window.subject_ids)) {
+  //   _(subject_ids).each(function(subject_id) { 
+  //     console.log('subscribing to subject channel ' + subject_id);
+  //     client.subscribe('/subjects/' + subject_id, enqueue_method);
+  //   });
+  // }
+});
+
 
 function generate_destroy_link(widget_id){
   return "<a href='/widgets/" + widget_id + "' style='display: none;' data-method='delete' class='delete_widget'>X</a>";
