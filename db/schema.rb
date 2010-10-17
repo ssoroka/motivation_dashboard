@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101016233556) do
+ActiveRecord::Schema.define(:version => 20101017025715) do
 
   create_table "dashboards", :force => true do |t|
     t.string   "name",       :default => "Motivation Dashboard"
@@ -71,7 +71,10 @@ ActiveRecord::Schema.define(:version => 20101016233556) do
     t.datetime "updated_at"
     t.string   "phone_number"
     t.string   "twitter_username"
+    t.datetime "next_poll_at"
   end
+
+  add_index "users", ["next_poll_at"], :name => "index_users_on_next_poll_at"
 
   create_table "widgets", :force => true do |t|
     t.integer  "dashboard_id"

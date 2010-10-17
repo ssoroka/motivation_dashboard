@@ -76,7 +76,6 @@ class Integration
     end
     
     class Report
-      
       def self.info
         {
           :fields => [

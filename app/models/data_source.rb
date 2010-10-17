@@ -19,7 +19,7 @@ class DataSource < ActiveRecord::Base
   end
   
   def integration
-    Integration::INTEGRATIONS.select{ |k,v| v == integration_id }.flatten.first
+    Integration::INTEGRATIONS.invert[data_set.integration_id]
   end
   
   def integration=(key)

@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   acts_as_authentic 
   
+  before_save :set_default_next_poll
+  
   has_one :dashboard
 
   def full_name
@@ -28,4 +30,18 @@ class User < ActiveRecord::Base
     end
   end
   
+  def set_default_next_poll
+    self.next_poll_at ||= 1.minute.from_now.utc
+  end
+  
+  # punt the next_poll_at date to some time in the future.
+  def punt_polling!
+    if current_login_at > 5.minutes.ago.utc
+      update_attribute(:next_poll_at, 30.seconds.from_now.utc)
+    elsif current_login_at > 30.minutes.ago.utc
+      update_attribute(:next_poll_at, 2.minutes.from_now.utc)
+    else
+      update_attribute(:next_poll_at, 5.minutes.from_now.utc)
+    end
+  end
 end

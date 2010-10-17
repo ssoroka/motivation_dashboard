@@ -14,7 +14,7 @@ num_workers.times do |num|
     # retart if memory gets too high
     w.transition(:up, :restart) do |on|
       on.condition(:memory_usage) do |c|
-        c.above = 350.megabytes
+        c.above = 200.megabytes
         c.times = 2
       end
     end
