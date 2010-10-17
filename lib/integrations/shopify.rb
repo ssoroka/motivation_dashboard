@@ -5,7 +5,7 @@ require 'active_support/time'
 class Integration
   class Shopify
 
-    REPORT_TYPES = { :unfullfilled_orders => 1, :monthly_sales => 2 }
+    REPORT_TYPES = { :unfulfilled_orders => 1, :monthly_sales => 2 }
 
     API_KEY = 'ce4f6995cf320e00daa4be4fcb178d67'
     SECRET  = '4095ab31e7ca34e2468f4cbc360c9d49'
@@ -20,15 +20,13 @@ class Integration
 
     def initialize(options)
       # This stuff will be in the DataSource model
-      self.setup_session
+      Shopify.setup_session
       @session = ShopifyAPI::Session.new(options[:shop_url], options[:token])
       ActiveResource::Base.site = @session.site
     end
 
-    def perform
-      # This should check what type of data is needed, and run the appropriate
-      # method(s).
-      unfulfilled_orders
+    def perform(data_source_config, report_config)
+      send REPORT_TYPES.invert[report_config[:report_type].to_i]
     end
 
     def unfulfilled_orders

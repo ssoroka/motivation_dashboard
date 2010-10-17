@@ -52,9 +52,9 @@ class Integration
     end
 
     def compile_report_to_day_array(report, metric)
-      report.results.map { |day| day.send(metric) }
+      report.results.map { |day| day.send(metric).to_i }
     end
-    
+
     class DataSource
       def self.info
         {
@@ -67,7 +67,7 @@ class Integration
           ]
         }
       end
-    
+
       # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
       def self.check_config(config)
         begin
@@ -78,8 +78,8 @@ class Integration
         end
       end
     end
-    
-    
+
+
     class DataSet
       def self.info(data_source_config)
         Garb::Session.auth_sub data_source_config[:authsub_token]
@@ -92,33 +92,33 @@ class Integration
           ]
         }
       end
-      
+
       # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
       def self.check_config(config)
         config
       end
     end
-    
+
     class Report
-      
+
       def self.info
         {
           :fields => [
             { :name => :report_type, :type => :select, :options => [
                                                                       ['Visitors', REPORT_TYPES[:visitors]],
                                                                       ['Visit Amount', REPORT_TYPES[:visits]],
-                                                                      ['Hits', REPORT_TYPES[:page_views]],
-                                                                      ['Unique Hits', REPORT_TYPES[:unique_pageviews]]
+                                                                      ['Pageviews', REPORT_TYPES[:pageviews]],
+                                                                      ['Unique Pageviews', REPORT_TYPES[:unique_pageviews]]
                                                                    ]
             }
           ]
         }
       end
-      
+
       def self.check_config(config)
         config
       end
-      
+
     end
   end
 end
