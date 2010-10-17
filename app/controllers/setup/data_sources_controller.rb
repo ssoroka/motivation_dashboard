@@ -4,6 +4,13 @@ class Setup::DataSourcesController < Setup::ApplicationController
   def new
     @data_source = current_user.data_sources.build
     @config_info = integration_klass.info
+    
+    if @config_info[:fields].blank?
+      @data_source.integration = params[:integration]
+      @data_source.save
+      redirect_to [:new, :setup, @data_source, :data_set]
+    end
+    
   end
 
   def create
