@@ -1,5 +1,5 @@
 class Report < ActiveRecord::Base
-  has_many :widget
+  has_many :widgets
   belongs_to :data_set
   
   def config=(opts)

@@ -19,7 +19,7 @@ class DataSource < ActiveRecord::Base
   end
   
   def integration
-    Integration::INTEGRATIONS.invert[data_set.integration_id]
+    Integration::INTEGRATIONS.invert[integration_id]
   end
   
   def integration=(key)

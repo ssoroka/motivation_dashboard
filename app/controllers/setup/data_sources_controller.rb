@@ -6,15 +6,15 @@ class Setup::DataSourcesController < Setup::ApplicationController
   end
   
   def new
-    @data_source = DataSource.new
+    @data_source = current_user.data_sources.build
     @config_info = integration_constant.info
-  end                                                                                      
-                                                                                           
-  def create                                                                               
+  end
+
+  def create
     @config = integration_constant
     @config_info = @config.info
         
-    @data_source = DataSource.new(params[:data_source])
+    @data_source = current_user.data_sources.build(params[:data_source])
     @data_source.integration = params[:integration]
     
     config_result = @config.check_config(params[:custom_config])
@@ -30,7 +30,7 @@ class Setup::DataSourcesController < Setup::ApplicationController
   
   def auth_receive
     if params[:token]
-      @data_source = DataSource.new
+      @data_source = current_user.data_sources.build
       @data_source.integration = params[:integration]
       config_result = integration_constant.check_config({:authsub_token => params[:token]})
       @data_source.config = config_result if config_result

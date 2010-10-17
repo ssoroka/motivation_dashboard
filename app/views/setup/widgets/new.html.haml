@@ -4,6 +4,6 @@
 - form_for [:setup, @data_source, @data_set, @report, @widget] do |f|
   %ul
     %li
-      Widget Options Here
+      = f.select :widget_type_id, options_for_select(Widget::WIDGET_TYPES)
     %li
       = f.submit 'Finish'

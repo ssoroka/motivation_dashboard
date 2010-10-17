@@ -1,8 +1,16 @@
 body {
 }
 
-a {
+.top_menu a {
   text-decoration:none;
+}
+
+#header {
+  margin: 5px;
+}
+
+#footer {
+  margin: 5px;
 }
 
 h1 a {
