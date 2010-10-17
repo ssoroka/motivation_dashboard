@@ -55,6 +55,59 @@ div#main {
   min-height: 400px;
 }
 
+/* Main Nav */
+
+div#header ul {
+  margin: 0; padding: 0;
+  display: block;
+  width: 300px;
+  float: right;
+}
+
+div#header ul li {
+  margin: 0 5px 0 0; padding: 0;
+  display: block;
+  float: left;
+  height: 35px;
+  line-height: 35px;
+  width: 75px;
+  list-style: none;
+  color: #30201d;
+  font-size: 16px;
+}
+
+div#header ul li a {
+  margin: 0; padding: 0;
+  display: block;
+  height: 35px;
+  width: 75px;
+}
+
+div#header ul li a:hover, div#header ul li a.at {
+  color: #f15731;
+}
+
+/* General Container Style */
+
+#content_full {
+  display: block;
+  width: 1024px;
+  padding: 25px;
+  w\idth: 974px;
+  min-height: 300px;
+  background: #fafafa;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+
+#content_full h2 {
+  margin: 0; padding: 0;
+  font-size: 21px;
+  line-height: 40px;
+  border-bottom: 5px solid #000;
+}
 /* Home Styles */
 
 .home_left_1, .home_left_2, .home_right_1, .home_right_2 {
@@ -111,9 +164,6 @@ div#main {
   margin: 10px 0 0 0;
 }
 
-.home_left_2 .submit_contain {
-  margin: 10px 0 0 100px;
-}
 
 .home_right_2  .submit {
   margin-left: 10px;
@@ -123,8 +173,6 @@ div#main {
   line-height: 25px;
   font-size: 15px;
 }
-
-
 
 /* No Bullets */
 
@@ -183,16 +231,26 @@ form input.submit {
   -webkit-border-radius: 3px;
 }
 
+form .submit_contain {
+  margin: 10px 0 0 100px;
+}
 
 /* Flash Notices */
 div.flash_notice, div.flash_error, div.flash_info  {
-	padding: 5px 5px 5px 50px;
-	margin: 0 0 5px 0;
-	width: 925px;
-	w\idth: 870px;
-	height: 40px;
-	he\ight: 30px;
+  padding: 10px;
+	margin: 0 0 20px 0;
+	width: 1024px;
+	w\idth: 1004px;
 	display: block;
+	background: #fafafa;
+	font-weight: bold;
+	-moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+div.flash_notice a, div.flash_error a, div.flash_info a {
+  text-decoration: none;
 }
 
 div.flash_notice {

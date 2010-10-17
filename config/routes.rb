@@ -1,6 +1,8 @@
 MotivationdashboardCom::Application.routes.draw do
   
   root :to => "pages#home"
+  get 'features', :to => "pages#features"
+  get 'pricing', :to => "pages#pricing"
 
   resources :users
   resources :user_session

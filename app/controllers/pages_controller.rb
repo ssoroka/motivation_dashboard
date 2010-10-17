@@ -6,4 +6,12 @@ class PagesController < ApplicationController
     @subscriber = Subscriber.new
   end
   
+  def features
+    
+  end
+  
+  def pricing
+    
+  end
+  
 end
