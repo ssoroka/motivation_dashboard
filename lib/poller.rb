@@ -18,6 +18,7 @@ class Poller
   end
   
   def poll_datasource(data_source)
+    debug("  fetching data source #{data_source.id} #{data_source.integration}..")
     klass_str = data_source.integration.to_s.camelcase
     klass = "Integration::#{klass_str}".constantize
     
