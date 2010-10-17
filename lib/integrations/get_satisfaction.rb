@@ -51,7 +51,7 @@ class Integration
     class DataSource
       def self.info
         {
-          :description => 'The Get Satisfaction will show you unanswered questions from your community.
+          :description => 'Get Satisfaction shows you unanswered questions from your community.
             To do this, Motivation Dashboard needs your company name. (ex. if your Get Satisfaction URL is
             getsatisfaction.com/secretsauce then the company name is secretsauce)',
           :fields => [

@@ -1,5 +1,5 @@
 class Setup::DataSetsController < Setup::ApplicationController
-  
+
   def new
     @data_set = @data_source.data_sets.build
     @config_info = integration_constant.info(@data_source.config)

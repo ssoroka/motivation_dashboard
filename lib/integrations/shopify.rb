@@ -89,11 +89,10 @@ class Integration
     class DataSource
       def self.info
         {
-          :description => 'This Shopify intgration gives you graphs of sales.
-            To get the data, Motivation Dashboard needs to have access to your Shopify store.
-            When you press next, you will be taken to Shopify where you will be asked to install our app.',
+          :description => 'This Shopify integration gives you graphs of sales. To get the data, Motivation Dashboard needs to have access to your Shopify store. 
+          Enter the URL of your Shopify store (ex. secretsauce.myshopify.com) below, then when you press next, you will be taken to Shopify where you will be asked to install our app.',
           :fields => [
-            { :name => :shop_url, :type => :string, :helper_text => 'Enter the URL of your Shopify store (ex. secretsauce.myshopify.com)' },
+            { :name => :shop_url, :type => :string, :label => "Shopify URL" },
             { :type => :redirect_url }
           ]
         }
