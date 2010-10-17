@@ -7,12 +7,11 @@ class Setup::DataSourcesController < Setup::ApplicationController
   
   def new
     @data_source = DataSource.new
-    @config = "Integration::#{params[:integration].classify}::DataSource".constantize 
-    @config_info = @config.info
+    @config_info = integration_constant.info
   end                                                                                      
                                                                                            
   def create                                                                               
-    @config = "Integration::#{params[:integration].classify}::DataSource".constantize 
+    @config = integration_constant
     @config_info = @config.info
         
     @data_source = DataSource.new(params[:data_source])
@@ -29,5 +28,11 @@ class Setup::DataSourcesController < Setup::ApplicationController
     end
     
   end
+  
+  private
+    
+    def integration_constant
+      "Integration::#{params[:integration].classify}::DataSource".constantize
+    end
   
 end

@@ -2,12 +2,18 @@ class Setup::ReportsController < Setup::ApplicationController
 
   def new
     @report = Report.new
+    @config_info = integration_constant.info
   end
   
   def create
-    @report = Report.new(params[:data_set])
+    @report = Report.new(params[:report])
+    @config = integration_constant
+    @config_info = @config.info
     
-    if @report.save
+    config_result = @config.check_config(params[:custom_config]) 
+    @report.config = config_result if config_result
+    
+    if config_result && @report.save
       redirect_to [:new, :setup, @data_source, @data_set, @report, :widget]
     else
       render :action => :new
@@ -27,6 +33,12 @@ class Setup::ReportsController < Setup::ApplicationController
       render :action => :edit
     end
   end
+
+  private
+    
+    def integration_constant
+      "Integration::#{@data_source.integration.to_s.classify}::Report".constantize
+    end
 
 
 end

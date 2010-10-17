@@ -3,6 +3,7 @@ require 'json'
 
 class Integration
   class GetSatisfaction
+    REPORT_TYPES = {:unanswered_topics => 1}
     API_HOST = 'http://api.getsatisfaction.com'
 
     def self.perform(*args)
@@ -24,6 +25,16 @@ class Integration
 
       rows.sort!{ |a,b| b[1].to_i <=> a[1].to_i }
     end
+    
+    def products
+      result = open(API_HOST + "/companies/#{@company_name}/products.json").read
+      result = JSON.parse(result)
+      products = {}
+      result['data'].each do |product|
+        products[product['name']] = product['id']
+      end
+      products
+     end
 
     class DataSource
       def self.info
@@ -35,7 +46,7 @@ class Integration
         }
       end
     
-      # Checks that the config is valid and returns it with any necesary modifications, if invalid, returns errors
+      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
       def self.check_config(config)
           
         # info[:fields].each do 
@@ -43,6 +54,41 @@ class Integration
         # end
         config
       end
+    end
+    
+    
+    class DataSet
+      def self.info(data_source_config)
+        products = Integration::GetSatisfaction.new(:company_name => data_source_config[:company_name]).products
+        
+        {
+          :description => 'Choose a product from get satisfaction',
+          :fields => [
+            { :name => :product, :type => :select, :options => [['All', nil]] + products.to_a }
+          ]
+        }
+      end
+      
+      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
+      def self.check_config(config)
+        config
+      end
+    end
+    
+    class Report
+      
+      def self.info
+        {
+          :fields => [
+            { :name => :report_type, :type => :select, :options => [['Unanswered Topics', REPORT_TYPES[:unanswered_topics]]] }
+          ]
+        }
+      end
+      
+      def self.check_config(config)
+        config
+      end
+      
     end
   end
 end

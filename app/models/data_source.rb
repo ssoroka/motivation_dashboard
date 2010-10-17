@@ -10,6 +10,14 @@ class DataSource < ActiveRecord::Base
     self.api_key = SecureRandom.hex(20)
   end
   
+  def config=(opts)
+    write_attribute(:config, opts.to_yaml)
+  end
+
+  def config
+    YAML::load(read_attribute(:config))
+  end
+  
   def integration
     Integration::INTEGRATIONS.select{ |k,v| v == integration_id }.flatten.first
   end

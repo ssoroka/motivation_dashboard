@@ -2,12 +2,19 @@ class Setup::DataSetsController < Setup::ApplicationController
   
   def new
     @data_set = DataSet.new
+    @config_info = integration_constant.info(@data_source.config)
   end
   
   def create
+    @config = integration_constant
+    @config_info = @config.info(@data_source.config)
+        
     @data_set = DataSet.new(params[:data_set])
     
-    if @data_set.save
+    config_result = @config.check_config(params[:custom_config]) 
+    @data_set.config = config_result if config_result
+    
+    if config_result && @data_set.save
       redirect_to [:new, :setup, @data_source, @data_set, :report]
     else
       render :action => :new
@@ -27,6 +34,12 @@ class Setup::DataSetsController < Setup::ApplicationController
       render :action => :edit
     end
   end
+
+  private
+    
+    def integration_constant
+      "Integration::#{@data_source.integration.to_s.classify}::DataSet".constantize
+    end
 
 end
 

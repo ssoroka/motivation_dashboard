@@ -3,7 +3,7 @@
 
 - form_for [:setup, @data_source, @data_set, @report] do |f|
   %ul
-    %li
-      Dynamically Generated Stuff From Integration (AGAIN!!)
+    %li= @config_info[:description]
+    = render :partial => 'shared/custom_config_fields', :object => {:config_info => @config_info}
     %li
       = f.submit 'Next'
