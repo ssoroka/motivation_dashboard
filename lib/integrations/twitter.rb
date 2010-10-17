@@ -14,7 +14,7 @@ class Integration
     def search_table(query)
       results = ::Twitter::Search.new(query).fetch.results.map do |tweet|
         link = "http://twitter.com/#{tweet.from_user}/statuses/#{tweet.id}"
-        { 'row' => [%Q(<a href=#{link}">#{tweet.text}</a>)] }
+        { 'row' => [%Q(<a href="#{link}">#{tweet.text}</a>)] }
       end
 
       {
