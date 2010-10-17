@@ -1,14 +1,17 @@
 - unless flash[:notice].blank?
   %div.flash_notice
-    %strong Notice:
+    %span.right
+      = link_to 'Close', '#', :onclick => "$(this).parent().parent().slideUp();"
     = flash[:notice]
   
 - unless flash[:info].blank?
   %div.flash_info
-    %strong Info:
+    %span.right
+      = link_to 'Close', '#', :onclick => "$(this).parent().parent().slideUp();"
     = flash[:info]
 
 - unless flash[:error].blank?
   %div.flash_error
-    %strong Error:
+    %span.right
+      = link_to 'Close', '#', :onclick => "$(this).parent().parent().slideUp();"
     = flash[:error]

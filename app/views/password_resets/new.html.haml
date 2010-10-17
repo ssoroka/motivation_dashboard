@@ -1,15 +1,17 @@
-%h2
-  Forgot your password?
+#content_full
+  %h2
+    Forgot your password?
 
-
-- form_tag password_resets_path do
-  %ul
-    - if flash[:notice] # errr, FUGLY alerrrtttt
+  %p
+    It happens to the best of us, enter your email below and we'll happily email reset instructions to you!
+  
+  - form_tag password_resets_path do
+    %ul
       %li
-        = flash[:notice]
-    %li
-      %label
-        Your Email
-      = text_field_tag :email, params[:email], :class => :text
-    %li
-      = submit_tag 'Retrieve Password', :disable_with => 'Retrieving Password ...'
+        %label
+          Your Email
+        = text_field_tag :email, params[:email], :class => :text
+      %li.submit_contain
+        = submit_tag 'Send Reset Instructions', :disable_with => 'Sending Reset Instructions ...', :class => 'submit'
+        |
+        = link_to 'Return to Home', root_path

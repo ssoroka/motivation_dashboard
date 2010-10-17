@@ -5,7 +5,7 @@ require 'active_support/time'
 class Integration
   class Shopify
 
-    REPORT_TYPES = { :unfulfilled_orders => 1, :monthly_sales => 2 }
+    REPORT_TYPES = HashWithIndifferentAccess.new({ :unfulfilled_orders => :count, :monthly_sales => :line })
 
     API_KEY = 'ce4f6995cf320e00daa4be4fcb178d67'
     SECRET  = '4095ab31e7ca34e2468f4cbc360c9d49'
@@ -26,7 +26,7 @@ class Integration
     end
 
     def perform(data_source_config, report_config)
-      send REPORT_TYPES.invert[report_config[:report_type].to_i]
+      send report_config[:report_type].to_sym
     end
 
     def unfulfilled_orders
@@ -81,24 +81,25 @@ class Integration
           :description => 'Shows Shopify order statuses.',
           :fields => [
             { :name => :shop_url, :type => :string, :helper_text => 'Enter the URL of your Shopify store (ex. secretsauce.myshopify.com)' },
-            { :type => :shopify }
+            { :type => :redirect_url }
           ]
         }
       end
 
       # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
-      def self.check_config(config)
+      def self.check_config(params)
         begin
           Shopify.setup_session
+          config = { :shop_url => params[:shop], :token => params[:t] }
           config if ShopifyAPI::Session.new(config[:shop_url], config[:token]).valid?
         rescue Exception => e
           false
         end
       end
 
-      def self.install_url(store_url)
+      def self.redirect_url(config, url)
         Shopify.setup_session
-        ShopifyAPI::Session.new(store_url).create_permission_url
+        ShopifyAPI::Session.new(config[:shop_url]).create_permission_url
       end
     end
 
@@ -118,8 +119,8 @@ class Integration
       def self.info
         {
           :fields => [
-            { :name => :report_type, :type => :select, :options => [['Unfulfilled Orders', REPORT_TYPES[:unfulfilled_orders]],
-                                                                    ['Monthly Sales', REPORT_TYPES[:monthly_sales]]] }
+            { :name => :report_type, :type => :select, :options => [['Unfulfilled Orders', :unfulfilled_orders]],
+                                                                    ['Monthly Sales', :monthly_sales]] }
           ]
         }
       end

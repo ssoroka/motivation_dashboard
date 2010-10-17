@@ -7,7 +7,11 @@ class Integration
 
     attr_reader :profile
 
-    REPORT_TYPES = {:visitors => 1, :visits => 2, :pageviews => 3, :unique_pageviews => 4, :goal_completions => 5}
+    REPORT_TYPES = HashWithIndifferentAccess.new({ :visitors => :line,
+                                                   :visits => :line,
+                                                   :pageviews => :line,
+                                                   :unique_pageviews => :line,
+                                                   :goal_completions => :line })
 
     def self.perform(*args)
       new(*args).perform
@@ -19,7 +23,7 @@ class Integration
 
     def perform(data_set_config, report_config)
       @profile = Garb::Profile.first(data_set_config[:property_id])
-      metric_by_day(REPORT_TYPES.invert[report_config[:report_type].to_i])
+      metric_by_day([report_config[:report_type].to_sym])
     end
 
 
@@ -30,7 +34,15 @@ class Integration
     # view_type can be one of [:visitors, :visits, :pageviews, :unique_pageviews,
     #   :goal1_completions, etc]
     def metric_by_day(metric)
-      { :month_to_date => month_to_date(metric), :last_month => last_month(metric) }
+      metric_name = metric.to_s.humanize
+      {
+        :label => "#{metric_name} for #{@profile.title}",
+        :x_type => 'days',
+        :y_label => metric_name,
+        :line_labels => ["#{metric_name} Last Month",
+                         "#{metric_name} This Month"],
+        :lines => [last_month(metric), month_to_date(metric)]
+      }
     end
 
     def month_to_date(metric)
@@ -54,28 +66,25 @@ class Integration
     def compile_report_to_day_array(report, metric)
       report.results.map { |day| day.send(metric).to_i }
     end
-
-    class DataSource
+class DataSource
       def self.info
         {
           :description => 'Google Analytics',
-          :fields => [
-            { 
-              :url => lambda { |url| GData::Client::Analytics.new.authsub_url(url) }, 
-              :url_text => 'Authorize Your Google Analytics Account', :type => :authsub
-            }
-          ]
+          :fields => [{ :type => :redirect_url }]
         }
       end
 
-      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
-      def self.check_config(config)
+      def self.check_config(params)
         begin
-          config[:authsub_token] = GData::Client::Analytics.new(:authsub_token => config[:authsub_token]).auth_handler.upgrade
-          config
-        rescue Exception => e
+          token = GData::Client::Analytics.new(:authsub_token => params[:token]).auth_handler.upgrade
+          { :authsub_token => token }
+        rescue
           false
         end
+      end
+
+      def self.redirect_url(config, url)
+        GData::Client::Analytics.new.authsub_url(url)
       end
     end
 
@@ -105,10 +114,10 @@ class Integration
         {
           :fields => [
             { :name => :report_type, :type => :select, :options => [
-                                                                      ['Visitors', REPORT_TYPES[:visitors]],
-                                                                      ['Visit Amount', REPORT_TYPES[:visits]],
-                                                                      ['Pageviews', REPORT_TYPES[:pageviews]],
-                                                                      ['Unique Pageviews', REPORT_TYPES[:unique_pageviews]]
+                                                                      ['Visitors', :visitors],
+                                                                      ['Visits', :visits],
+                                                                      ['Pageviews', :pageviews],
+                                                                      ['Unique Pageviews', :unique_pageviews]
                                                                    ]
             }
           ]

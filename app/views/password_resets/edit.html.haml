@@ -1,10 +1,11 @@
-%h2
-  Reset Your Password
+#content_full
+  %h2
+    Reset Your Password
 
-- if flash[:notice]
   %p
-    %strong=flash[:notice]
-- else
+    Please reset your password and we'll log you in!
+
+
   - form_for @user, :url => password_reset_path(params[:perishable_token]) do |f|
     %ul
       %li
@@ -13,8 +14,11 @@
         = f.password_field :password, :class => :text
       %li
         %label
-          Confirm New Password
+          Confirm Pass.
         = f.password_field :password_confirmation, :class => :text
-      %li
+      %li.submit_contain
         = hidden_field_tag :perishable_token, params[:perishable_token]
-        = f.submit 'Update Password', :disable_with => 'Updating Password ...'
+        = f.submit 'Reset Your Password', :disable_with => 'Resting Your Password ...', :class => 'submit'
+        |
+        = link_to 'Return to Home', root_path
+          

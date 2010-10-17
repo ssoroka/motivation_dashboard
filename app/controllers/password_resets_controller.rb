@@ -9,11 +9,11 @@ class PasswordResetsController < ApplicationController
   def create
     # TODO - Change the flash messages? They are a bit FUGLY lookin' - Nathan 1:21AM SAT
     if User.find_by_email_and_send_reset_instructions(params[:email])
-      flash.now[:notice] = "Instructions to reset your password have been emailed to #{params[:email]}."
+      flash.now[:notice] = "Success! We've sent instructions to reset your password to #{params[:email]}."
       params[:email] = nil
       render :action => :new
     else
-      flash[:notice] = "Hmm.. Looks like no user was found with that email address."
+      flash.now[:error] = "Well thats no fun, looks like no user was found matching #{params[:email].blank? ? 'your blank email' : params[:email]}."
       render :action => :new
     end
   end
@@ -30,10 +30,11 @@ class PasswordResetsController < ApplicationController
       if @user_session.save
         redirect_to dashboard_path
       else
-        flash[:notice] = "Your password has been reset. Please login."
+        flash.now[:notice] = "Your password has been reset. Please login below."
         redirect_to root_path
       end
     else
+      flash.now[:error] = "Please be sure to enter two matching passwords."
       render :action => :edit
     end
   end
