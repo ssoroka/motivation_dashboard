@@ -26,9 +26,11 @@ class Integration
     class DataSource
       def self.info
         {
-          :description => 'MailChimp',
+          :description => %Q(The MailChimp integration give you information about your campaigns.
+            Motivation Dashboard needs an API key to connect to MailChimp. You can get this from the
+            <a href="http://admin.mailchimp.com/account/api-key-popup">MailChimp API admin page</a>.),
           :fields => [
-            { :name => :api_key, :type => :string, :helper_text => 'Enter your MailChimp API Key.' }
+            { :name => :api_key, :type => :string, :label => 'API Key' }
           ]
         }
       end

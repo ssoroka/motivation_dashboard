@@ -49,9 +49,9 @@ class Integration
     class DataSource
       def self.info
         {
-          :description => 'The Gmail integration will give you a list of recent unread messages.
-            To get the data, Motivation Dashboard will query a read-only feed of your inbox.
-            When you press next, you will be taken to Google so that you can authorize access.',
+          :description => 'The Gmail integration gives you information on unread messages.
+            To get the data, Motivation Dashboard will use a read-only feed of your inbox.
+            When you press next, you will be taken to Google to authorize access.',
           :fields => [{ :type => :redirect_url }]
         }
       end
