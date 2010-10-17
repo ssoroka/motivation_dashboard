@@ -1,8 +1,14 @@
 %h2
   Data Set
 
+= debug @config_info
+
+
 - form_for [:setup, @data_source, @data_set] do |f|
   %ul
+    %li= @config_info[:description]
+    = render :partial => 'shared/custom_config_fields', :object => {:config_info => @config_info}
+
     %li
       Dynamically Generated Stuff From Integration
     %li

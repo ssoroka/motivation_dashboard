@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101016193533) do
+ActiveRecord::Schema.define(:version => 20101016233556) do
 
   create_table "dashboards", :force => true do |t|
     t.string   "name",       :default => "Motivation Dashboard"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20101016193533) do
     t.integer  "data_source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "config"
   end
 
   add_index "data_sets", ["data_source_id"], :name => "index_data_sets_on_data_source_id"
