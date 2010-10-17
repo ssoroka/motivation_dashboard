@@ -5,7 +5,7 @@ require 'time'
 
 class Integration
   class Gmail
-    REPORT_TYPES = { :unread_messages_table => :table, :unread_messages_count => :count }
+    REPORT_TYPES = HashWithIndifferentAccess.new({ :unread_messages_table => :table, :unread_messages_count => :count })
 
     def self.perform(*args)
       new(*args).perform
@@ -17,7 +17,7 @@ class Integration
     end
 
     def perform(data_set_config, report_config)
-      send REPORT_TYPES.invert[report_config[:report_type].to_i]
+      send report_config[:report_type].to_sym
     end
 
     def unread_messages_table
@@ -79,8 +79,8 @@ class Integration
       def self.info
         {
           :fields => [
-            { :name => :report_type, :type => :select, :options => [['Unread Messages Data', REPORT_TYPES[:unread_messages_table]],
-                                                                      ['Unread Messages Count', REPORT_TYPES[:unread_messages_count]]] }
+            { :name => :report_type, :type => :select, :options => [['Unread Messages Table', :unread_messages_table],
+                                                                    ['Unread Messages Count', :unread_messages_count]] }
           ]
         }
       end

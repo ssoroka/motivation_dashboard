@@ -7,7 +7,11 @@ class Integration
 
     attr_reader :profile
 
-    REPORT_TYPES = {:visitors => 1, :visits => 2, :pageviews => 3, :unique_pageviews => 4, :goal_completions => 5}
+    REPORT_TYPES = HashWithIndifferentAccess.new({ :visitors => :line,
+                                                   :visits => :line,
+                                                   :pageviews => :line,
+                                                   :unique_pageviews => :line,
+                                                   :goal_completions => :line })
 
     def self.perform(*args)
       new(*args).perform
@@ -19,7 +23,7 @@ class Integration
 
     def perform(data_set_config, report_config)
       @profile = Garb::Profile.first(data_set_config[:property_id])
-      metric_by_day(REPORT_TYPES.invert[report_config[:report_type].to_i])
+      metric_by_day([report_config[:report_type].to_sym])
     end
 
 
@@ -110,10 +114,10 @@ class DataSource
         {
           :fields => [
             { :name => :report_type, :type => :select, :options => [
-                                                                      ['Visitors', REPORT_TYPES[:visitors]],
-                                                                      ['Visit Amount', REPORT_TYPES[:visits]],
-                                                                      ['Pageviews', REPORT_TYPES[:pageviews]],
-                                                                      ['Unique Pageviews', REPORT_TYPES[:unique_pageviews]]
+                                                                      ['Visitors', :visitors],
+                                                                      ['Visits', :visits],
+                                                                      ['Pageviews', :pageviews],
+                                                                      ['Unique Pageviews', :unique_pageviews]
                                                                    ]
             }
           ]
