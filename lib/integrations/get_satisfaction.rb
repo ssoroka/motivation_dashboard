@@ -11,7 +11,7 @@ class Integration
     end
 
     def initialize(options)
-      @company_name = options[:company_name]
+      @company_name = options[:company_name].strip.gsub(" ", "_")
     end
 
     def perform(data_set_config, report_config)
@@ -32,7 +32,7 @@ class Integration
       rows.sort!{ |a,b| b[1].to_i <=> a[1].to_i }
 
       {
-        'label' => "#{@company_name} - Unanswered Support Messages",
+        'label' => "#{@company_name.gsub("_", " ")} - Unanswered Support Messages",
         'headers' => ['Subject', 'Followers', 'Replies'],
         'rows' => rows.map { |row| { 'row' => row } }
       }
