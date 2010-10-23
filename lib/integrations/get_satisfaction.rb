@@ -25,7 +25,7 @@ class Integration
       result = JSON.parse(result)
       topics = result['data']
       rows = topics.map do |topic|
-        subject = "<a href=\"#{topic['url']}\">#{topic['subject']}</a>"
+        subject = "<a href=\"#{topic['at_sfn']}\">#{topic['subject']}</a>"
         [subject, topic['follower_count'], topic['reply_count']]
       end
 
