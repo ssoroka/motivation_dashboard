@@ -1,0 +1,21 @@
+<div id="widget_{{id}}" class="widget widget_{{widget_type}} widget_size_{{widget_size}}">
+  <div class="frame">
+    {{#config}}
+      <h2>Time in {{clock_name}}</h2>
+      <script type="text/javascript">
+      $(function($) {
+          var options={
+              timeNotation: '12h',
+              am_pm: true,
+              fontFamily: 'Verdana, Times New Roman',
+              fontSize: '40px',
+              utc: true,
+              utc_offset: {{timezone_utc}}
+            };
+          $('#world_clock_{{id}}').jclock(options);
+      });
+      </script>
+      <div class='world_clock', id="world_clock_{{id}}"></div>
+    {{/config}}
+  </div>
+</div>

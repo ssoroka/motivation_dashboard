@@ -2,7 +2,9 @@ class Widget < ActiveRecord::Base
   belongs_to :dashboard
   belongs_to :report
   
-  WIDGET_TYPES = {:pie => 1, :bar => 2, :line => 3, :table => 4, :count => 5, :ticker => 6, :map => 7, :image => 8, :calendar => 9, :tag_cloud => 10, :html => 11}
+  # :tag_cloud => 10, :html => 11
+  # This really really sucks, we need a **much** better way to manage this stuff :-)
+  WIDGET_TYPES = {:pie => 1, :bar => 2, :line => 3, :table => 4, :count => 5, :ticker => 6, :map => 7, :image => 8, :calendar => 9, :world_clock => 10}
   
   def as_json(options)
     {
