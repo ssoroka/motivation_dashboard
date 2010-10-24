@@ -14,18 +14,25 @@ class Integration
     # Compiles a report for the integration. Based ont he `:report_type` from
     # the report config, runs the methods required to generate a report. If
     # there is existing data, it should be intelligent and only poll for data
-    # that is new or outdated. If there is new data passed in, it should update
-    # the existing data with the new data. These steps should be performed in
-    # separate methods. The reason it is setup like this is to prevent the
-    # polling system from knowing about integration internals.
+    # that is new or outdated. These steps should be performed in separate
+    # methods. The reason it is setup like this is to prevent the polling system
+    # from knowing about integration internals.
     # @param [Hash] options
     # @option options [Hash] :data_set_config ({}) the DataSet#config
     # @option options [Hash] :report_config ({}) the Report#config
     # @option options [Hash] :existing_data ({}) data that should be updated
-    # @option options [Hash] :new_data ({}) data that should be added to the
-    #   existing data (usually from a webhook call)
     # @return [Hash] data to save to the database
     def perform(options)
+    end
+
+    # Later there should be a method here to update the data from a Push API
+    # call.
+
+    # Updates the report with new data received from a webhook.
+    # @param [Hash] existing_data the data already in the database
+    # @param [Hash] new_data the raw params from the webhook call
+    # @return [Hash] the updated data to save to the database
+    def webhook_update(existing_data, new_data)
     end
 
     class DataSource
