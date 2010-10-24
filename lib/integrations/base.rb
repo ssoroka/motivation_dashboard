@@ -11,13 +11,19 @@ class Integration
     end
 
 
-    # Does the per-report data poll.
+    # Compiles a report for the integration. Based ont he `:report_type` from
+    # the report config, runs the methods required to generate a report. If
+    # there is existing data, it should be intelligent and only poll for data
+    # that is new or outdated. If there is new data passed in, it should update
+    # the existing data with the new data. These steps should be performed in
+    # separate methods. The reason it is setup like this is to prevent the
+    # polling system from knowing about integration internals.
     # @param [Hash] options
     # @option options [Hash] :data_set_config ({}) the DataSet#config
     # @option options [Hash] :report_config ({}) the Report#config
     # @option options [Hash] :existing_data ({}) data that should be updated
-    # @option options [Hash] :new_data data ({}) that should be added to the existing
-    #   data (usually from a webhook call)
+    # @option options [Hash] :new_data ({}) data that should be added to the
+    #   existing data (usually from a webhook call)
     # @return [Hash] data to save to the database
     def perform(options)
     end
