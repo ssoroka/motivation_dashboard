@@ -43,6 +43,12 @@ MotivationdashboardCom::Application.routes.draw do
     
   end
   
+  namespace :big_brother do
+    root :to => "pages#index"
+    resources :users
+    resources :subscribers
+  end
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -185,6 +185,7 @@ GEM
       multi_json (~> 0.0.4)
       oauth (~> 0.4.3)
     tzinfo (0.3.23)
+    will_paginate (3.0.pre2)
     xml-simple (1.0.12)
 
 PLATFORMS
@@ -214,4 +215,5 @@ DEPENDENCIES
   thin
   titanous-garb
   twitter
+  will_paginate (~> 3.0.pre2)
   xml-simple

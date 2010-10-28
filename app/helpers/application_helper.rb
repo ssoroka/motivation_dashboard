@@ -17,4 +17,12 @@ module ApplicationHelper
     end
   end
 
+  def yes_no(boolean)
+    boolean ? 'Yes' : 'No'
+  end
+  
+  def none_text(string)
+    string.blank? ? 'None' : string
+  end
+  
 end

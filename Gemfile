@@ -13,6 +13,7 @@ gem "authlogic", :git => 'git://github.com/bdrister/authlogic.git'
 
 gem 'jquery-rails'
 gem "system_timer"
+gem "will_paginate", "~> 3.0.pre2"
 
 # Stuff for integrations
 gem 'loofah', '~> 1.0.0.beta.1' # feedzirra

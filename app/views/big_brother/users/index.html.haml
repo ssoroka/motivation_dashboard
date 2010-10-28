@@ -1,0 +1,31 @@
+%h2
+  = "Ministry of Users (Total: #{@users.total_entries})"
+
+%table.general_table{:cellpadding => 0, :cellspacing => 0}
+  %thead
+    %tr
+      %th Email
+      %th First Name
+      %th Last Name
+      %th Twitter Username
+      %th Login Count
+      %th Created At
+      %th Last Request At
+      %th Admin? 
+      %th Actions
+  - @users.each do |user|
+    %tbody
+      %tr
+        %td= user.email
+        %td= none_text(user.first_name)
+        %td= none_text(user.last_name)
+        %td= none_text(user.twitter_username)
+        %td= user.login_count
+        %td= user.created_at.to_s(:long)
+        %td= user.last_request_at.to_s(:long)
+        %td= yes_no(user.is_admin?)
+        %td
+          = link_to 'Edit', [:edit, :big_brother, user]
+          = link_to 'Delete', [:big_brother, user], :method => 'Delete', :confirm => "Are you sure you want to permanently remove #{user.email}?"
+
+= will_paginate(@users)

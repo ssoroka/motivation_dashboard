@@ -1,0 +1,24 @@
+%h2
+  Edit User
+- form_for [:big_brother, @user] do |f|
+  %fieldset
+    %ul
+      %li
+        %label Email
+        = f.text_field :email, :class => :text
+      %li
+        %label First Name
+        = f.text_field :first_name, :class => :text
+      %li
+        %label Last Name
+        = f.text_field :last_name, :class => :text
+      %li
+        %label Admin?
+        = f.radio_button :is_admin, true
+        Yes
+        = f.radio_button :is_admin, false
+        No
+      %li
+        = f.submit 'Update User'
+        |
+        = link_to 'Cancel', [:big_brother, :users]

@@ -1,0 +1,28 @@
+!!! Strict
+%html{:lang =>"en"}
+  %head
+    %link{:rel => 'shortcut icon', :href => '/favicon.ico'}
+    %title Motivation Dashboard | Admin
+    = stylesheet_link_tag 'admin'
+
+    - if Rails.env.production?
+      = javascript_include_tag %W(jquery.min rails utilities)
+    - else
+      = javascript_include_tag %W(jquery rails utilities)
+    = csrf_meta_tag
+  %body
+    #wrapper
+      #header
+        %span.right
+          = current_user.user_bar_name
+          = link_to "(Logout)", logout_path
+        %h1
+          = link_to 'Motivation Dashboard | Admin', [:big_brother, :root]
+        %ul
+          %li= link_to 'Users', [:big_brother, :users]
+          %li= link_to 'Subscribers', [:big_brother, :subscribers]
+      #main
+        = render :partial => 'shared/flashes'
+        = yield
+      #footer
+        = link_to(image_tag('logo.png', :width => 15) << " MotivationDashboard.com", root_path)
