@@ -5,9 +5,9 @@
     %title= current_user.dashboard.name == 'Motivation Dashboard' ? current_user.dashboard.name : "Motivation Dashboard - #{current_user.dashboard.name}"
     = stylesheet_link_tag 'default', 'dashboard'
     - if Rails.env.production?
-      = javascript_include_tag %W(jquery.min jquery.masonry.min underscore-min rails mustache utilities /widget_templates.js http://#{request.host}:8000/faye.js dashboard raphael-min g.raphael g.bar g.line g.pie g.custom)
+      = javascript_include_tag %W(jquery.min jquery.masonry.min jquery.jclock underscore-min rails mustache utilities /widget_templates.js http://#{request.host}:8000/faye.js dashboard raphael-min g.raphael g.bar g.line g.pie g.custom)
     - else
-      = javascript_include_tag %W(jquery jquery.masonry underscore rails mustache utilities /widget_templates.js http://#{request.host}:8000/faye.js dashboard raphael g.raphael g.bar g.line g.pie g.custom)
+      = javascript_include_tag %W(jquery jquery.masonry jquery.jclock underscore rails mustache utilities /widget_templates.js http://#{request.host}:8000/faye.js dashboard raphael g.raphael g.bar g.line g.pie g.custom)
     = csrf_meta_tag
     :plain
       <script type="text/javascript">

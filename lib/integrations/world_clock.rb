@@ -1,6 +1,6 @@
 class Integration
-  class CustomImage
-    REPORT_TYPES = HashWithIndifferentAccess.new({ :custom_image => :image })
+  class WorldClock
+    REPORT_TYPES = HashWithIndifferentAccess.new({ :world_clock => :world_clock })
 
     def self.perform(*args)
       new(*args).perform
@@ -16,7 +16,7 @@ class Integration
     class DataSource
       def self.info
         {
-          :description => "Have a widget display an image of your own by providing a url.",
+          :description => "",
           :fields => []
         }
       end
@@ -32,9 +32,8 @@ class Integration
         nil
       end
 
-      # Checks that the config is valid and returns it with any necessary modifications, if invalid, returns errors
       def self.check_config(config)
-        if config[:url].present?
+        if config[:time_zone].present?
           config
         else
           false
@@ -47,8 +46,9 @@ class Integration
       def self.info
         {
           :fields => [
-            { :name => :report_type, :type => :select, :options => [['Custom Image', :custom_image]]},
-            { :name => :url, :type => :string, :label => 'Image URL'}
+            { :name => :report_type, :type => :hidden, :value => :world_clock},
+            { :name => :timezone_utc, :type => :timezone_select, :label => 'Time Zone'},
+            { :name => :clock_name, :type => :string, :string => 'Clock Name'}
           ]
         }
       end
