@@ -1,5 +1,5 @@
 %h2
-  = "Ministry of Users (Total: #{@users.total_entries})"
+  = raw("#{link_to('Ministry of Users', [:big_brother, :users])} / Search for '#{params[:search]}'")
 
 - form_tag [:search, :big_brother, :users], :method => :get do
   %fieldset

@@ -45,7 +45,11 @@ MotivationdashboardCom::Application.routes.draw do
   
   namespace :big_brother do
     root :to => "pages#index"
-    resources :users
+    resources :users do
+      collection do
+        get :search
+      end
+    end
     resources :subscribers
   end
   
